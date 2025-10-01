@@ -1,26 +1,59 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+
+
+/* Pulse animation without @apply */
+.pulse {
+  animation: pulse 2s infinite;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .card {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    transform: translateY(0);
+  }
+  .card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transform: translateY(-0.5rem);
+  }
+  .card-soon {
+    background-color: #DDD6FE; /* lavender-200 */
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    transform: translateY(0);
+  }
+  .card-soon:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transform: translateY(-0.5rem);
+  }
+  .btn-primary {
+    background-color: #7C3AED; /* purple-500 */
+    color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  .btn-primary:hover {
+    background-color: #6D28D9; /* Slightly darker purple */
+  }
+  .btn-primary:focus {
+    outline: none;
+    ring: 2px solid #C4B5FD; /* purple-300 */
+  }
 }
