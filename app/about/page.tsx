@@ -79,7 +79,7 @@ export default function About() {
             </p>
             <p>
               At Nazsats, we believe the most powerful products emerge at the intersection of AI and
-              blockchain — and that's exactly where we build.
+              blockchain — and that&apos;s exactly where we build.
             </p>
           </div>
         </div>
