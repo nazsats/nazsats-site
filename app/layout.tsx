@@ -8,30 +8,25 @@ import { Analytics } from "@vercel/analytics/next";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://nazsats.com"), // Replace with your production URL
-  title: "Nazsats - AI & Blockchain Innovation Platform",
-  description: "Nazsats empowers clients with AI-driven solutions in machine learning, data science, and blockchain. Launching soon with advanced features.",
-  keywords: ["AI", "blockchain", "machine learning", "data science", "crypto"],
+  metadataBase: new URL("https://nazsats.com"),
+  title: "Nazsats — AI & Blockchain Innovation",
+  description: "Nazsats delivers cutting-edge AI, machine learning, data science, and blockchain solutions. Build smarter with us.",
+  keywords: ["AI", "blockchain", "machine learning", "data science", "dApp", "crypto"],
   openGraph: {
-    title: "Nazsats",
-    description: "AI-driven platform for blockchain and data science solutions.",
-    images: ["/og-image.jpg"],
+    title: "Nazsats — AI & Blockchain Innovation",
+    description: "Cutting-edge AI and blockchain solutions for the future.",
   },
-  icons: {
-    icon: "/favicon.ico",
-  },
+  icons: { icon: "/favicon.ico" },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-gradient-to-b from-purple-50 to-white text-gray-900 antialiased`}>
+      <body className={`${inter.className} bg-dark-900 text-slate-300 antialiased`}>
         <Navbar />
-        <main className="container mx-auto py-12 px-4">{children}</main>
+        <main>{children}</main>
         <Footer />
         <Analytics />
       </body>
