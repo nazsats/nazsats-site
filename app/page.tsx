@@ -64,11 +64,11 @@ export default function Home() {
         {/* Floating orbs */}
         <div
           className="absolute top-1/4 left-1/5 w-[500px] h-[500px] rounded-full blur-[120px] animate-orb pointer-events-none"
-          style={{ background: "rgba(124,58,237,0.18)" }}
+          style={{ background: "rgba(230,80,0,0.20)" }}
         />
         <div
           className="absolute bottom-1/4 right-1/5 w-[400px] h-[400px] rounded-full blur-[100px] animate-orb pointer-events-none"
-          style={{ background: "rgba(6,182,212,0.12)", animationDelay: "5s" }}
+          style={{ background: "rgba(200,0,85,0.14)", animationDelay: "5s" }}
         />
 
         {/* Content */}
