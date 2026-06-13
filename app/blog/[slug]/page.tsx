@@ -1,11 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { getAllSlugs, getPostBySlug } from "../../../lib/posts";
+import { getPostBySlug } from "../../../lib/posts";
 
-export function generateStaticParams() {
-  return getAllSlugs().map((slug) => ({ slug }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
@@ -13,7 +11,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
   if (!post) return { title: "Post not found — Nazsats Blog" };
   return {
     title: `${post.title} — Nazsats Blog`,
@@ -37,7 +35,7 @@ export default async function BlogPost({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
   if (!post) notFound();
 
   return (
@@ -48,7 +46,7 @@ export default async function BlogPost({
 
       <header className="mt-8 mb-10">
         <div className="flex flex-wrap items-center gap-3 mb-4 text-xs text-slate-600 font-mono">
-          <span className="text-purple-400">{formatDate(post.date)}</span>
+          <span className="text-purple-400">{formatDate(post.created_at)}</span>
           <span>·</span>
           <span>{post.author}</span>
           {post.tags.map((tag) => (

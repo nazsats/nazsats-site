@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { getPublishedPosts } from "../../lib/posts";
 
+export const dynamic = "force-dynamic";
+
 const topics = [
   {
     icon: "🤖",
@@ -33,8 +35,8 @@ function formatDate(date: string) {
   });
 }
 
-export default function Blog() {
-  const posts = getPublishedPosts();
+export default async function Blog() {
+  const posts = await getPublishedPosts();
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-20">
@@ -60,7 +62,7 @@ export default function Blog() {
               style={{ animationDelay: `${0.1 + i * 0.1}s` }}
             >
               <div className="flex flex-wrap items-center gap-3 mb-3 text-xs text-slate-600 font-mono">
-                <span className="text-purple-400">{formatDate(post.date)}</span>
+                <span className="text-purple-400">{formatDate(post.created_at)}</span>
                 {post.tags.slice(0, 3).map((tag) => (
                   <span key={tag} className="px-2 py-0.5 rounded-full bg-white/5 text-slate-400">
                     {tag}

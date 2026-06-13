@@ -1,61 +1,81 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
 import { marked } from "marked";
+import { getServiceClient } from "./supabase/service";
 
-const postsDir = path.join(process.cwd(), "posts");
-
-export type PostMeta = {
+export type PostRow = {
+  id: string;
   slug: string;
   title: string;
   description: string;
-  date: string;
+  body: string;
   author: string;
   tags: string[];
   published: boolean;
+  created_at: string;
+  updated_at: string;
 };
 
-export type Post = PostMeta & {
+export type Post = PostRow & {
   /** Rendered HTML body */
   html: string;
 };
 
-function readPostFile(fileName: string): Post | null {
-  const slug = fileName.replace(/\.md$/, "");
-  const raw = fs.readFileSync(path.join(postsDir, fileName), "utf8");
-  const { data, content } = matter(raw);
-
-  return {
-    slug,
-    title: data.title ?? slug,
-    description: data.description ?? "",
-    date: data.date ?? "",
-    author: data.author ?? "Nazsats",
-    tags: Array.isArray(data.tags) ? data.tags : [],
-    published: data.published === true,
-    html: marked.parse(content, { async: false }) as string,
-  };
+function toPost(row: PostRow): Post {
+  return { ...row, html: marked.parse(row.body, { async: false }) as string };
 }
 
-/** All published posts, newest first. Drafts (published: false) are hidden. */
-export function getPublishedPosts(): Post[] {
-  if (!fs.existsSync(postsDir)) return [];
-  return fs
-    .readdirSync(postsDir)
-    .filter((f) => f.endsWith(".md"))
-    .map(readPostFile)
-    .filter((p): p is Post => p !== null && p.published)
-    .sort((a, b) => (a.date < b.date ? 1 : -1));
+/** All published posts, newest first. */
+export async function getPublishedPosts(): Promise<Post[]> {
+  const supabase = getServiceClient();
+  const { data, error } = await supabase
+    .from("posts")
+    .select("*")
+    .eq("published", true)
+    .order("created_at", { ascending: false });
+  if (error) throw error;
+  return (data ?? []).map(toPost);
 }
 
 /** A single published post by slug, or null if missing / still a draft. */
-export function getPostBySlug(slug: string): Post | null {
-  const file = path.join(postsDir, `${slug}.md`);
-  if (!fs.existsSync(file)) return null;
-  const post = readPostFile(`${slug}.md`);
-  return post && post.published ? post : null;
+export async function getPostBySlug(slug: string): Promise<Post | null> {
+  const supabase = getServiceClient();
+  const { data, error } = await supabase
+    .from("posts")
+    .select("*")
+    .eq("slug", slug)
+    .eq("published", true)
+    .maybeSingle();
+  if (error) throw error;
+  return data ? toPost(data as PostRow) : null;
 }
 
-export function getAllSlugs(): string[] {
-  return getPublishedPosts().map((p) => p.slug);
+/** Every post including drafts — admin only. */
+export async function getAllPosts(): Promise<PostRow[]> {
+  const supabase = getServiceClient();
+  const { data, error } = await supabase
+    .from("posts")
+    .select("*")
+    .order("updated_at", { ascending: false });
+  if (error) throw error;
+  return (data ?? []) as PostRow[];
+}
+
+/** A single post by slug regardless of published state — admin only. */
+export async function getAnyPostBySlug(slug: string): Promise<PostRow | null> {
+  const supabase = getServiceClient();
+  const { data, error } = await supabase
+    .from("posts")
+    .select("*")
+    .eq("slug", slug)
+    .maybeSingle();
+  if (error) throw error;
+  return (data as PostRow) ?? null;
+}
+
+export function slugify(s: string): string {
+  return s
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-")
+    .slice(0, 60);
 }
