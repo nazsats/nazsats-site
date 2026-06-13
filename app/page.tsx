@@ -3,6 +3,8 @@ import { getGitHubStats, getPinnedRepos, getContributions, getRecentActivity } f
 import SubscribeForm from "../components/SubscribeForm";
 import TypewriterText from "../components/TypewriterText";
 import MouseOrb from "../components/MouseOrb";
+import Globe from "../components/Globe";
+import Tilt from "../components/Tilt";
 import ScrollReveal from "../components/ScrollReveal";
 import CountUp from "../components/CountUp";
 import TechStack from "../components/TechStack";
@@ -38,7 +40,14 @@ export default async function Home() {
         {/* Mouse-tracking orb */}
         <MouseOrb />
 
-        <div className="relative z-10 max-w-5xl mx-auto">
+        {/* Real-time 3D Earth — auto-rotates, drag to spin */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div className="w-[680px] max-w-[88vw] opacity-70 pointer-events-auto">
+            <Globe />
+          </div>
+        </div>
+
+        <div className="relative z-10 max-w-5xl mx-auto pointer-events-none">
           {/* Live badge */}
           <div className="section-badge mb-8 animate-fade-in">
             <span className="status-dot" style={{ width: 6, height: 6 }} />
@@ -60,7 +69,7 @@ export default async function Home() {
             turning complex technology into real business results.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up delay-400">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up delay-400 pointer-events-auto">
             <Link href="/services" className="btn-primary">
               Explore Services →
             </Link>
@@ -243,18 +252,20 @@ export default async function Home() {
               },
             ].map((f, i) => (
               <ScrollReveal key={i} delay={f.delay}>
-                <div className="glass-card h-full">
-                  <div className={`w-12 h-12 rounded-xl mb-5 flex items-center justify-center ${f.color} bg-white/5 animate-float`} style={{ animationDelay: `${i * 0.5}s` }}>
-                    {f.icon}
+                <Tilt>
+                  <div className="glass-card h-full">
+                    <div className={`w-12 h-12 rounded-xl mb-5 flex items-center justify-center ${f.color} bg-white/5 animate-float`} style={{ animationDelay: `${i * 0.5}s` }}>
+                      {f.icon}
+                    </div>
+                    <h3 className={`text-lg font-bold mb-2 ${f.color}`}>{f.title}</h3>
+                    <p className="text-slate-500 text-sm leading-relaxed">{f.desc}</p>
+                    {f.soon && (
+                      <span className="inline-block mt-4 text-xs font-bold text-cyan-400 border border-cyan-400/25 bg-cyan-400/5 px-3 py-1 rounded-full">
+                        Coming Soon
+                      </span>
+                    )}
                   </div>
-                  <h3 className={`text-lg font-bold mb-2 ${f.color}`}>{f.title}</h3>
-                  <p className="text-slate-500 text-sm leading-relaxed">{f.desc}</p>
-                  {f.soon && (
-                    <span className="inline-block mt-4 text-xs font-bold text-cyan-400 border border-cyan-400/25 bg-cyan-400/5 px-3 py-1 rounded-full">
-                      Coming Soon
-                    </span>
-                  )}
-                </div>
+                </Tilt>
               </ScrollReveal>
             ))}
           </div>
