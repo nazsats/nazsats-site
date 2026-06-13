@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getPublishedPosts } from "../../lib/posts";
 
 const topics = [
   {
@@ -23,7 +24,18 @@ const topics = [
   },
 ];
 
+function formatDate(date: string) {
+  if (!date) return "";
+  return new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+}
+
 export default function Blog() {
+  const posts = getPublishedPosts();
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-20">
       {/* Header */}
@@ -37,36 +49,62 @@ export default function Blog() {
         </p>
       </div>
 
-      {/* Coming soon card */}
-      <div className="max-w-3xl mx-auto mb-20">
-        <div className="terminal-card scan-container animate-fade-in-up delay-200">
-          <div className="flex items-center gap-1.5 px-5 py-3.5 border-b border-white/5">
-            <div className="w-2.5 h-2.5 rounded-full bg-red-500/50" />
-            <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/50" />
-            <div className="w-2.5 h-2.5 rounded-full bg-green-500/50" />
-            <span className="ml-2 text-xs text-slate-600">blog.nazsats.com</span>
-            <div className="ml-auto flex items-center gap-1.5">
-              <div className="status-dot" style={{ width: 6, height: 6 }} />
-              <span className="text-xs text-slate-600">writing...</span>
+      {posts.length > 0 ? (
+        /* Published posts */
+        <div className="max-w-4xl mx-auto mb-20 grid grid-cols-1 gap-6">
+          {posts.map((post, i) => (
+            <Link
+              key={post.slug}
+              href={`/blog/${post.slug}`}
+              className="glass-card block animate-fade-in-up"
+              style={{ animationDelay: `${0.1 + i * 0.1}s` }}
+            >
+              <div className="flex flex-wrap items-center gap-3 mb-3 text-xs text-slate-600 font-mono">
+                <span className="text-purple-400">{formatDate(post.date)}</span>
+                {post.tags.slice(0, 3).map((tag) => (
+                  <span key={tag} className="px-2 py-0.5 rounded-full bg-white/5 text-slate-400">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <h2 className="text-2xl font-black text-white mb-2 leading-tight">{post.title}</h2>
+              <p className="text-slate-500 text-sm leading-relaxed mb-4">{post.description}</p>
+              <span className="text-sm font-semibold gradient-text">Read article →</span>
+            </Link>
+          ))}
+        </div>
+      ) : (
+        /* Coming soon card (shown when no posts are published yet) */
+        <div className="max-w-3xl mx-auto mb-20">
+          <div className="terminal-card scan-container animate-fade-in-up delay-200">
+            <div className="flex items-center gap-1.5 px-5 py-3.5 border-b border-white/5">
+              <div className="w-2.5 h-2.5 rounded-full bg-red-500/50" />
+              <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/50" />
+              <div className="w-2.5 h-2.5 rounded-full bg-green-500/50" />
+              <span className="ml-2 text-xs text-slate-600">blog.nazsats.com</span>
+              <div className="ml-auto flex items-center gap-1.5">
+                <div className="status-dot" style={{ width: 6, height: 6 }} />
+                <span className="text-xs text-slate-600">writing...</span>
+              </div>
             </div>
-          </div>
-          <div className="px-6 py-8 text-center">
-            <p className="text-4xl mb-4">✍️</p>
-            <h2 className="text-2xl font-black text-white mb-3">
-              Coming <span className="gradient-text">Soon</span>
-            </h2>
-            <p className="text-slate-500 text-sm leading-relaxed max-w-md mx-auto">
-              Our writers are crafting the first batch of articles. Expect in-depth content on AI trends,
-              blockchain innovation, and practical tech guides.
-            </p>
-            <div className="mt-6 font-mono text-xs text-slate-600 space-y-1">
-              <p><span className="text-purple-400">drafting</span> — &ldquo;Building Your First ML Model in 2025&rdquo;</p>
-              <p><span className="text-cyan-400">drafting</span> — &ldquo;Smart Contracts Explained Simply&rdquo;</p>
-              <p><span className="text-slate-600">queued  </span> — &ldquo;AI Agents in DeFi: What You Need to Know&rdquo;</p>
+            <div className="px-6 py-8 text-center">
+              <p className="text-4xl mb-4">✍️</p>
+              <h2 className="text-2xl font-black text-white mb-3">
+                Coming <span className="gradient-text">Soon</span>
+              </h2>
+              <p className="text-slate-500 text-sm leading-relaxed max-w-md mx-auto">
+                Our writers are crafting the first batch of articles. Expect in-depth content on AI trends,
+                blockchain innovation, and practical tech guides.
+              </p>
+              <div className="mt-6 font-mono text-xs text-slate-600 space-y-1">
+                <p><span className="text-purple-400">drafting</span> — &ldquo;Building Your First ML Model in 2025&rdquo;</p>
+                <p><span className="text-cyan-400">drafting</span> — &ldquo;Smart Contracts Explained Simply&rdquo;</p>
+                <p><span className="text-slate-600">queued  </span> — &ldquo;AI Agents in DeFi: What You Need to Know&rdquo;</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Topics preview */}
       <div className="mb-20">
