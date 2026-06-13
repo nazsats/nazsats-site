@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getPublishedPosts } from "../../lib/posts";
+import Tilt from "../../components/Tilt";
 
 export const dynamic = "force-dynamic";
 
@@ -55,10 +56,10 @@ export default async function Blog() {
         /* Published posts */
         <div className="max-w-4xl mx-auto mb-20 grid grid-cols-1 gap-6">
           {posts.map((post, i) => (
+            <Tilt key={post.slug} max={6}>
             <Link
-              key={post.slug}
               href={`/blog/${post.slug}`}
-              className="glass-card block animate-fade-in-up"
+              className="glass-card block h-full animate-fade-in-up"
               style={{ animationDelay: `${0.1 + i * 0.1}s` }}
             >
               <div className="flex flex-wrap items-center gap-3 mb-3 text-xs text-slate-600 font-mono">
@@ -73,6 +74,7 @@ export default async function Blog() {
               <p className="text-slate-500 text-sm leading-relaxed mb-4">{post.description}</p>
               <span className="text-sm font-semibold gradient-text">Read article →</span>
             </Link>
+            </Tilt>
           ))}
         </div>
       ) : (

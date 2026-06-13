@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Tilt from "../../components/Tilt";
 
 const services = [
   {
@@ -85,9 +86,9 @@ export default function Services() {
       {/* Service cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
         {services.map((s, i) => (
+          <Tilt key={i} max={8}>
           <div
-            key={i}
-            className={`glass-card flex flex-col animate-fade-in-up ${s.status === "soon" ? "glass-card-cyan" : ""}`}
+            className={`glass-card flex flex-col h-full animate-fade-in-up ${s.status === "soon" ? "glass-card-cyan" : ""}`}
             style={{ animationDelay: `${0.1 + i * 0.1}s` }}
             aria-label={`Service: ${s.title}`}
           >
@@ -121,6 +122,7 @@ export default function Services() {
               ))}
             </div>
           </div>
+          </Tilt>
         ))}
       </div>
 

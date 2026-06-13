@@ -1,3 +1,5 @@
+import Tilt from "./Tilt";
+
 interface Repo {
   name: string;
   description: string;
@@ -24,12 +26,12 @@ export default function GitHubPinnedRepos({ repos }: Props) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
       {repos.map((repo) => (
+        <Tilt key={repo.name} max={8}>
         <a
-          key={repo.name}
           href={repo.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="glass-card flex flex-col gap-3 group no-underline"
+          className="glass-card flex flex-col gap-3 group no-underline h-full"
         >
           {/* Header */}
           <div className="flex items-start justify-between gap-3">
@@ -84,6 +86,7 @@ export default function GitHubPinnedRepos({ repos }: Props) {
             </span>
           </div>
         </a>
+        </Tilt>
       ))}
     </div>
   );
