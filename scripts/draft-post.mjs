@@ -1,18 +1,19 @@
-// Generate a blog post DRAFT with the OpenAI API.
+// Generate a blog post DRAFT with the OpenAI API and save it to Supabase.
 //
 // Usage:
 //   node scripts/draft-post.mjs "Your topic or working title here"
 //
-// Requires OPENAI_API_KEY in your environment (see .env.local).
-// The draft is saved to posts/<slug>.md with `published: false`, so it stays
-// hidden on the site until you review it and flip the flag to `true`.
+// The draft is inserted with published = false, so it stays hidden until you
+// review it in the /admin panel and publish it. (You can also generate drafts
+// directly from the admin panel — this script is just a convenience.)
 
 import fs from "fs";
 import path from "path";
+import { createClient } from "@supabase/supabase-js";
 
-// ── Load OPENAI_API_KEY from .env.local if not already in the environment ──
+// ── Load env from .env.local ──
 const envPath = path.join(process.cwd(), ".env.local");
-if (!process.env.OPENAI_API_KEY && fs.existsSync(envPath)) {
+if (fs.existsSync(envPath)) {
   for (const line of fs.readFileSync(envPath, "utf8").split("\n")) {
     const m = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*)\s*$/);
     if (m) process.env[m[1]] ??= m[2].replace(/^["']|["']$/g, "");
@@ -21,25 +22,25 @@ if (!process.env.OPENAI_API_KEY && fs.existsSync(envPath)) {
 
 const apiKey = process.env.OPENAI_API_KEY;
 const model = process.env.OPENAI_MODEL || "gpt-4o-mini";
-
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 const topic = process.argv.slice(2).join(" ").trim();
 
 if (!apiKey) {
-  console.error("✗ Missing OPENAI_API_KEY. Add it to .env.local or your environment.");
+  console.error("✗ Missing OPENAI_API_KEY in .env.local");
+  process.exit(1);
+}
+if (!supabaseUrl || !serviceKey) {
+  console.error("✗ Missing NEXT_PUBLIC_SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY in .env.local");
   process.exit(1);
 }
 if (!topic) {
-  console.error('✗ Give me a topic, e.g.  node scripts/draft-post.mjs "Smart contracts explained simply"');
+  console.error('✗ Give me a topic, e.g.  node scripts/draft-post.mjs "Smart contracts explained"');
   process.exit(1);
 }
 
 function slugify(s) {
-  return s
-    .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, "")
-    .trim()
-    .replace(/\s+/g, "-")
-    .slice(0, 60);
+  return s.toLowerCase().replace(/[^a-z0-9\s-]/g, "").trim().replace(/\s+/g, "-").slice(0, 60);
 }
 
 const systemPrompt = `You are a senior technical writer for Nazsats, a blog about AI,
@@ -59,10 +60,7 @@ console.log(`✍️  Drafting a post about: "${topic}" (model: ${model})…`);
 
 const res = await fetch("https://api.openai.com/v1/chat/completions", {
   method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${apiKey}`,
-  },
+  headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}` },
   body: JSON.stringify({
     model,
     response_format: { type: "json_object" },
@@ -84,37 +82,30 @@ try {
   post = JSON.parse(data.choices[0].message.content);
 } catch {
   console.error("✗ Could not parse the model's response as JSON.");
-  console.error(data.choices?.[0]?.message?.content);
   process.exit(1);
 }
 
 const title = post.title || topic;
-const slug = slugify(title);
-const date = new Date().toISOString().slice(0, 10);
-const tags = Array.isArray(post.tags) ? post.tags : [];
+let slug = slugify(title);
 
-const frontmatter = `---
-title: ${JSON.stringify(title)}
-description: ${JSON.stringify(post.description || "")}
-date: "${date}"
-author: "Nazsats"
-tags: ${JSON.stringify(tags)}
-published: false
----
+const supabase = createClient(supabaseUrl, serviceKey, { auth: { persistSession: false } });
 
-`;
+const { data: existing } = await supabase.from("posts").select("slug").eq("slug", slug).maybeSingle();
+if (existing) slug = `${slug}-${Date.now().toString().slice(-5)}`;
 
-const postsDir = path.join(process.cwd(), "posts");
-fs.mkdirSync(postsDir, { recursive: true });
-const outPath = path.join(postsDir, `${slug}.md`);
+const { error } = await supabase.from("posts").insert({
+  slug,
+  title,
+  description: post.description || "",
+  body: (post.body || "").trim(),
+  tags: Array.isArray(post.tags) ? post.tags : [],
+  published: false,
+});
 
-if (fs.existsSync(outPath)) {
-  console.error(`✗ ${outPath} already exists. Rename it or pick a different topic.`);
+if (error) {
+  console.error(`✗ Could not save to Supabase: ${error.message}`);
   process.exit(1);
 }
 
-fs.writeFileSync(outPath, frontmatter + (post.body || "").trim() + "\n", "utf8");
-
-console.log(`\n✓ Draft saved: posts/${slug}.md`);
-console.log("  It is set to  published: false  (hidden on the site).");
-console.log("  Review it, edit anything, then change to  published: true  to go live.");
+console.log(`\n✓ Draft saved to Supabase as "${title}" (published: false).`);
+console.log("  Review and publish it from the /admin panel.");

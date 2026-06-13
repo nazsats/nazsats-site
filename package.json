@@ -7,9 +7,12 @@
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint",
-    "draft": "node scripts/draft-post.mjs"
+    "draft": "node scripts/draft-post.mjs",
+    "migrate": "node scripts/migrate-posts.mjs"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.12.0",
+    "@supabase/supabase-js": "^2.108.1",
     "@vercel/analytics": "^1.5.0",
     "gray-matter": "^4.0.3",
     "marked": "^18.0.5",
