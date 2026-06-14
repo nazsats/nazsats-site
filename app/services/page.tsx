@@ -1,5 +1,14 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import Tilt from "../../components/Tilt";
+import { packages, whatsappLink } from "../../lib/site";
+
+export const metadata: Metadata = {
+  title: "Services",
+  description:
+    "Machine learning, data science, crypto software, and dApp development services by Nazsats.",
+  alternates: { canonical: "/services" },
+};
 
 const services = [
   {
@@ -126,17 +135,81 @@ export default function Services() {
         ))}
       </div>
 
+      {/* Pricing / Packages */}
+      <div className="mb-20">
+        <div className="text-center mb-12">
+          <div className="section-badge mb-4">Packages</div>
+          <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+            Simple, transparent <span className="gradient-text">pricing</span>
+          </h2>
+          <p className="text-slate-500 max-w-xl mx-auto">
+            Starting points — every project gets a tailored quote. Not sure which fits? Just message me.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+          {packages.map((pkg) => (
+            <Tilt key={pkg.name} max={6}>
+              <div
+                className={`glass-card flex flex-col h-full ${
+                  pkg.highlight ? "border-orange-500/40 animate-glow-pulse" : ""
+                }`}
+              >
+                {pkg.highlight && (
+                  <span className="self-start text-xs font-bold text-orange-400 border border-orange-400/30 bg-orange-400/10 px-3 py-1 rounded-full mb-4">
+                    Most popular
+                  </span>
+                )}
+                <h3 className="text-xl font-black text-white">{pkg.name}</h3>
+                <div className="text-3xl font-black gradient-text my-3">{pkg.price}</div>
+                <p className="text-slate-500 text-sm leading-relaxed mb-5">{pkg.blurb}</p>
+
+                <ul className="space-y-2.5 mb-7 flex-1">
+                  {pkg.features.map((f) => (
+                    <li key={f} className="flex items-start gap-2.5 text-sm text-slate-400">
+                      <svg className="w-4 h-4 text-orange-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+
+                <a
+                  href={whatsappLink(`Hi Nazsats! I'm interested in the ${pkg.name} package.`)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={pkg.highlight ? "btn-primary w-full justify-center" : "btn-secondary w-full justify-center"}
+                >
+                  Book a call →
+                </a>
+              </div>
+            </Tilt>
+          ))}
+        </div>
+      </div>
+
       {/* CTA */}
       <div className="glass-card text-center animate-glow-pulse max-w-2xl mx-auto">
         <h2 className="text-2xl font-black text-white mb-3">
           Need a custom <span className="gradient-text">solution?</span>
         </h2>
         <p className="text-slate-500 text-sm mb-6 leading-relaxed">
-          Every project is different. Tell us what you&apos;re building and we&apos;ll design the right approach for you.
+          Every project is different. Tell me what you&apos;re building and I&apos;ll design the right approach for you.
         </p>
-        <Link href="/contact" className="btn-primary">
-          Start a Conversation →
-        </Link>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href={whatsappLink()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary"
+          >
+            Chat on WhatsApp →
+          </a>
+          <Link href="/contact" className="btn-secondary">
+            Send a message
+          </Link>
+        </div>
       </div>
     </div>
   );
