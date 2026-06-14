@@ -1,6 +1,14 @@
 import Link from "next/link";
 import { getPublishedPosts } from "../../lib/posts";
 import Tilt from "../../components/Tilt";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Blog",
+  description:
+    "Insights and tutorials on AI, machine learning, data science, blockchain, and Web3 from Nazsats.",
+  alternates: { canonical: "/blog" },
+};
 
 export const dynamic = "force-dynamic";
 

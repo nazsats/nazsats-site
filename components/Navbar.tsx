@@ -3,11 +3,13 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { whatsappLink } from "../lib/site";
 
 const links = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
+  { href: "/work", label: "Work" },
   { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ];
@@ -66,9 +68,14 @@ export default function Navbar() {
 
         {/* Desktop CTA */}
         <div className="hidden md:block">
-          <Link href="/contact" className="btn-primary py-2.5 px-5 text-sm">
-            Get Started →
-          </Link>
+          <a
+            href={whatsappLink()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary py-2.5 px-5 text-sm"
+          >
+            Book a call →
+          </a>
         </div>
 
         {/* Mobile hamburger */}
@@ -109,13 +116,15 @@ export default function Navbar() {
               </li>
             ))}
             <li className="mt-2">
-              <Link
-                href="/contact"
+              <a
+                href={whatsappLink()}
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setIsOpen(false)}
                 className="btn-primary w-full justify-center text-sm py-3"
               >
-                Get Started →
-              </Link>
+                Book a call →
+              </a>
             </li>
           </ul>
         </div>

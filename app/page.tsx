@@ -5,6 +5,7 @@ import TypewriterText from "../components/TypewriterText";
 import MouseOrb from "../components/MouseOrb";
 import Globe from "../components/Globe";
 import Tilt from "../components/Tilt";
+import Projects from "../components/Projects";
 import ScrollReveal from "../components/ScrollReveal";
 import CountUp from "../components/CountUp";
 import TechStack from "../components/TechStack";
@@ -136,6 +137,33 @@ export default async function Home() {
           </ScrollReveal>
           <ScrollReveal delay={150}>
             <TechStack />
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ── Selected Work ────────────────────────── */}
+      <section className="py-24 px-4">
+        <div className="max-w-7xl mx-auto">
+          <ScrollReveal>
+            <div className="text-center mb-14">
+              <div className="section-badge mb-4">Portfolio</div>
+              <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+                Selected <span className="gradient-text">Work</span>
+              </h2>
+              <p className="text-slate-500 max-w-xl mx-auto">
+                Live products across Web3, AI, and full-stack — click any to explore.
+              </p>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal delay={150}>
+            <Projects />
+          </ScrollReveal>
+          <ScrollReveal delay={250}>
+            <div className="text-center mt-10">
+              <Link href="/work" className="btn-secondary">
+                View all work →
+              </Link>
+            </div>
           </ScrollReveal>
         </div>
       </section>

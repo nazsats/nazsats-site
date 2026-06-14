@@ -1,3 +1,12 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Learn about Nazsats — building AI, machine learning, data science, and blockchain solutions.",
+  alternates: { canonical: "/about" },
+};
+
 const values = [
   {
     icon: (
