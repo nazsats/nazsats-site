@@ -1,4 +1,5 @@
 import { marked } from "marked";
+import DOMPurify from "isomorphic-dompurify";
 import { getServiceClient } from "./supabase/service";
 
 export type PostRow = {
@@ -20,7 +21,11 @@ export type Post = PostRow & {
 };
 
 function toPost(row: PostRow): Post {
-  return { ...row, html: marked.parse(row.body, { async: false }) as string };
+  const rawHtml = marked.parse(row.body, { async: false }) as string;
+  // marked does NOT sanitize HTML — strip any scripts/handlers before it ever
+  // reaches dangerouslySetInnerHTML on the blog page.
+  const html = DOMPurify.sanitize(rawHtml, { USE_PROFILES: { html: true } });
+  return { ...row, html };
 }
 
 /** All published posts, newest first. */

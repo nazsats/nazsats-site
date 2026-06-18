@@ -17,6 +17,9 @@ async function requireUser() {
 function refreshViews() {
   revalidatePath("/admin");
   revalidatePath("/blog");
+  // Also refresh every individual post page so publish/unpublish/edit shows
+  // immediately rather than waiting for the ISR window.
+  revalidatePath("/blog/[slug]", "page");
 }
 
 export async function togglePublish(id: string, published: boolean) {

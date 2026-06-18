@@ -3,7 +3,9 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getPostBySlug } from "../../../lib/posts";
 
-export const dynamic = "force-dynamic";
+// ISR: each post is generated on first request, then cached and refreshed at
+// most every 5 minutes. Edits/unpublish trigger revalidatePath in admin actions.
+export const revalidate = 300;
 
 export async function generateMetadata({
   params,
