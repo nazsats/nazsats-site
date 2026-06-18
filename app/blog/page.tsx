@@ -10,7 +10,10 @@ export const metadata: Metadata = {
   alternates: { canonical: "/blog" },
 };
 
-export const dynamic = "force-dynamic";
+// Cache the rendered list and rebuild at most every 5 minutes. Publishing a
+// post also calls revalidatePath("/blog") in admin/actions.ts for instant
+// updates, so this is just the fallback refresh window.
+export const revalidate = 300;
 
 const topics = [
   {
