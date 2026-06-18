@@ -1,6 +1,31 @@
 import { marked } from "marked";
-import DOMPurify from "isomorphic-dompurify";
+import sanitizeHtml from "sanitize-html";
 import { getServiceClient } from "./supabase/service";
+
+// Allowlist for rendered blog HTML. marked does NOT sanitize, so we strip any
+// scripts / event handlers / javascript: URLs before it reaches the page via
+// dangerouslySetInnerHTML. sanitize-html is pure Node (no jsdom).
+const sanitizeOptions: sanitizeHtml.IOptions = {
+  allowedTags: [
+    "h1", "h2", "h3", "h4", "h5", "h6", "p", "a", "ul", "ol", "li",
+    "blockquote", "code", "pre", "strong", "em", "del", "hr", "br",
+    "img", "span", "div", "table", "thead", "tbody", "tr", "th", "td", "input",
+  ],
+  allowedAttributes: {
+    a: ["href", "name", "target", "rel"],
+    img: ["src", "alt", "title", "width", "height", "loading"],
+    code: ["class"],
+    span: ["class"],
+    div: ["class"],
+    input: ["type", "checked", "disabled"],
+    th: ["align"],
+    td: ["align"],
+  },
+  allowedSchemes: ["http", "https", "mailto"],
+  transformTags: {
+    a: sanitizeHtml.simpleTransform("a", { rel: "noopener noreferrer" }, true),
+  },
+};
 
 export type PostRow = {
   id: string;
@@ -22,9 +47,7 @@ export type Post = PostRow & {
 
 function toPost(row: PostRow): Post {
   const rawHtml = marked.parse(row.body, { async: false }) as string;
-  // marked does NOT sanitize HTML — strip any scripts/handlers before it ever
-  // reaches dangerouslySetInnerHTML on the blog page.
-  const html = DOMPurify.sanitize(rawHtml, { USE_PROFILES: { html: true } });
+  const html = sanitizeHtml(rawHtml, sanitizeOptions);
   return { ...row, html };
 }
 
