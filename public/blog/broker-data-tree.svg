@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" width="900" height="380" role="img" aria-label="Tree diagram: your agency contains agents, buyers and properties; each buyer holds their conversations, reminders and deal.">
+  <rect width="900" height="380" rx="14" fill="#0f1116"/>
+
+  <text x="40" y="46" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="700" letter-spacing="2" fill="#64748b">HOW YOUR INFORMATION IS ORGANISED</text>
+
+  <!-- root -->
+  <rect x="356" y="70" width="188" height="52" rx="10" fill="#171207" stroke="#FF5500" stroke-width="2"/>
+  <text x="450" y="94" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="16" font-weight="800" fill="#fff" text-anchor="middle">Your agency</text>
+  <text x="450" y="112" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="11.5" fill="#94a3b8" text-anchor="middle">everything below belongs only to you</text>
+
+  <!-- branch lines root -> level 2 -->
+  <g stroke="#3f4653" stroke-width="2" fill="none" stroke-linecap="round">
+    <path d="M450 122 L450 146"/>
+    <path d="M150 146 L750 146"/>
+    <path d="M150 146 L150 170"/>
+    <path d="M450 146 L450 170"/>
+    <path d="M750 146 L750 170"/>
+  </g>
+
+  <!-- level 2 -->
+  <g font-family="system-ui,-apple-system,Segoe UI,sans-serif" text-anchor="middle">
+    <rect x="66" y="170" width="168" height="56" rx="10" fill="#1a1d25" stroke="#2b303c"/>
+    <text x="150" y="195" font-size="15" font-weight="700" fill="#fff">Your agents</text>
+    <text x="150" y="214" font-size="11.5" fill="#94a3b8">admin or agent access</text>
+
+    <rect x="366" y="170" width="168" height="56" rx="10" fill="#1c2438" stroke="#4a6ea3"/>
+    <text x="450" y="195" font-size="15" font-weight="700" fill="#fff">Your buyers</text>
+    <text x="450" y="214" font-size="11.5" fill="#a5b8d8">budget · beds · areas · language</text>
+
+    <rect x="666" y="170" width="168" height="56" rx="10" fill="#1a1d25" stroke="#2b303c"/>
+    <text x="750" y="195" font-size="15" font-weight="700" fill="#fff">Your properties</text>
+    <text x="750" y="214" font-size="11.5" fill="#94a3b8">imported, uploaded or added</text>
+  </g>
+
+  <!-- lines buyers -> level 3 -->
+  <g stroke="#4a6ea3" stroke-width="2" fill="none" stroke-linecap="round">
+    <path d="M450 226 L450 250"/>
+    <path d="M230 250 L670 250"/>
+    <path d="M230 250 L230 274"/>
+    <path d="M450 250 L450 274"/>
+    <path d="M670 250 L670 274"/>
+  </g>
+
+  <!-- level 3 -->
+  <g font-family="system-ui,-apple-system,Segoe UI,sans-serif" text-anchor="middle">
+    <rect x="146" y="274" width="168" height="58" rx="10" fill="#1a1d25" stroke="#2b303c"/>
+    <text x="230" y="299" font-size="14.5" font-weight="700" fill="#e2e8f0">Every conversation</text>
+    <text x="230" y="318" font-size="11.5" fill="#94a3b8">calls · WhatsApp · viewings</text>
+
+    <rect x="366" y="274" width="168" height="58" rx="10" fill="#1a1d25" stroke="#2b303c"/>
+    <text x="450" y="299" font-size="14.5" font-weight="700" fill="#e2e8f0">Reminders</text>
+    <text x="450" y="318" font-size="11.5" fill="#94a3b8">what's due, and when</text>
+
+    <rect x="586" y="274" width="168" height="58" rx="10" fill="#0f3a2b" stroke="#10b981"/>
+    <text x="670" y="299" font-size="14.5" font-weight="700" fill="#6ee7b7">The deal</text>
+    <text x="670" y="318" font-size="11.5" fill="#86efac">value + your commission</text>
+  </g>
+
+  <text x="450" y="362" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" fill="#64748b" text-anchor="middle">Nothing lives in a spreadsheet on someone's laptop. If an agent leaves, the history stays.</text>
+</svg>

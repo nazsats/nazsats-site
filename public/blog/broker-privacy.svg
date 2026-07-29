@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 300" width="900" height="300" role="img" aria-label="Each agency sees only its own leads and listings; a shared pool of public market listings is visible to everyone.">
+  <rect width="900" height="300" rx="14" fill="#0f1116"/>
+
+  <text x="40" y="46" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="700" letter-spacing="2" fill="#64748b">MANY AGENCIES, ONE APP — NOBODY SEES YOUR BOOK</text>
+
+  <!-- Agency A -->
+  <rect x="40" y="76" width="250" height="150" rx="12" fill="#141821" stroke="#4a6ea3" stroke-width="2"/>
+  <text x="165" y="106" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="16" font-weight="800" fill="#fff" text-anchor="middle">Agency A</text>
+  <g font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" fill="#a5b8d8" text-anchor="middle">
+    <text x="165" y="136">Their buyers</text>
+    <text x="165" y="160">Their listings</text>
+    <text x="165" y="184">Their deals</text>
+  </g>
+  <text x="165" y="210" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" fill="#64748b" text-anchor="middle">private</text>
+
+  <!-- Agency B -->
+  <rect x="610" y="76" width="250" height="150" rx="12" fill="#141821" stroke="#4a6ea3" stroke-width="2"/>
+  <text x="735" y="106" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="16" font-weight="800" fill="#fff" text-anchor="middle">Agency B</text>
+  <g font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" fill="#a5b8d8" text-anchor="middle">
+    <text x="735" y="136">Their buyers</text>
+    <text x="735" y="160">Their listings</text>
+    <text x="735" y="184">Their deals</text>
+  </g>
+  <text x="735" y="210" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" fill="#64748b" text-anchor="middle">private</text>
+
+  <!-- wall -->
+  <g stroke="#ef4444" stroke-width="2" stroke-dasharray="6 6">
+    <path d="M330 76 L330 226"/>
+    <path d="M570 76 L570 226"/>
+  </g>
+  <text x="450" y="96" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" fill="#fca5a5" text-anchor="middle">no crossing</text>
+
+  <!-- shared pool -->
+  <rect x="350" y="112" width="200" height="100" rx="12" fill="#171207" stroke="#FF5500" stroke-width="2"/>
+  <text x="450" y="146" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="15" font-weight="800" fill="#fff" text-anchor="middle">Shared market</text>
+  <text x="450" y="170" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12.5" fill="#fbbf24" text-anchor="middle">public Dubai listings</text>
+  <text x="450" y="192" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">everyone can browse</text>
+
+  <text x="450" y="262" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="14" fill="#94a3b8" text-anchor="middle">Your client list is the business. It stays yours — every screen only ever loads your own agency's data.</text>
+</svg>

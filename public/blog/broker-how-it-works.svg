@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 300" width="900" height="300" role="img" aria-label="Five steps: you ask, it understands, it checks your own listings, it ranks with reasons, you send.">
+  <rect width="900" height="300" rx="14" fill="#0f1116"/>
+
+  <text x="40" y="46" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="700" letter-spacing="2" fill="#64748b">WHAT HAPPENS WHEN YOU ASK A QUESTION</text>
+
+  <!-- step boxes -->
+  <g font-family="system-ui,-apple-system,Segoe UI,sans-serif">
+
+    <!-- 1 -->
+    <rect x="40" y="76" width="148" height="120" rx="11" fill="#1a1d25" stroke="#2b303c"/>
+    <circle cx="64" cy="100" r="13" fill="#FF5500"/>
+    <text x="64" y="105" font-size="13" font-weight="800" fill="#fff" text-anchor="middle">1</text>
+    <text x="88" y="105" font-size="14" font-weight="700" fill="#fff">You ask</text>
+    <text x="56" y="134" font-size="12.5" fill="#94a3b8">“3 bed in Dubai</text>
+    <text x="56" y="152" font-size="12.5" fill="#94a3b8">Marina under 5M</text>
+    <text x="56" y="170" font-size="12.5" fill="#94a3b8">with a pool”</text>
+
+    <!-- 2 -->
+    <rect x="212" y="76" width="148" height="120" rx="11" fill="#1a1d25" stroke="#2b303c"/>
+    <circle cx="236" cy="100" r="13" fill="#FF5500"/>
+    <text x="236" y="105" font-size="13" font-weight="800" fill="#fff" text-anchor="middle">2</text>
+    <text x="260" y="105" font-size="14" font-weight="700" fill="#fff">It understands</text>
+    <text x="228" y="134" font-size="12.5" fill="#94a3b8">Turns your words</text>
+    <text x="228" y="152" font-size="12.5" fill="#94a3b8">into a proper</text>
+    <text x="228" y="170" font-size="12.5" fill="#94a3b8">search</text>
+
+    <!-- 3 (highlighted) -->
+    <rect x="384" y="76" width="148" height="120" rx="11" fill="#101a17" stroke="#10b981" stroke-width="2"/>
+    <circle cx="408" cy="100" r="13" fill="#10b981"/>
+    <text x="408" y="105" font-size="13" font-weight="800" fill="#06281f" text-anchor="middle">3</text>
+    <text x="432" y="105" font-size="14" font-weight="700" fill="#fff">It looks it up</text>
+    <text x="400" y="134" font-size="12.5" fill="#a7f3d0">In YOUR real</text>
+    <text x="400" y="152" font-size="12.5" fill="#a7f3d0">property list —</text>
+    <text x="400" y="170" font-size="12.5" fill="#a7f3d0">never invented</text>
+
+    <!-- 4 -->
+    <rect x="556" y="76" width="148" height="120" rx="11" fill="#1a1d25" stroke="#2b303c"/>
+    <circle cx="580" cy="100" r="13" fill="#FF5500"/>
+    <text x="580" y="105" font-size="13" font-weight="800" fill="#fff" text-anchor="middle">4</text>
+    <text x="604" y="105" font-size="14" font-weight="700" fill="#fff">It explains</text>
+    <text x="572" y="134" font-size="12.5" fill="#94a3b8">Best matches first,</text>
+    <text x="572" y="152" font-size="12.5" fill="#94a3b8">with a reason for</text>
+    <text x="572" y="170" font-size="12.5" fill="#94a3b8">each one</text>
+
+    <!-- 5 -->
+    <rect x="728" y="76" width="132" height="120" rx="11" fill="#1a1d25" stroke="#2b303c"/>
+    <circle cx="752" cy="100" r="13" fill="#FF5500"/>
+    <text x="752" y="105" font-size="13" font-weight="800" fill="#fff" text-anchor="middle">5</text>
+    <text x="776" y="105" font-size="14" font-weight="700" fill="#fff">You send</text>
+    <text x="744" y="134" font-size="12.5" fill="#94a3b8">Copy the ready</text>
+    <text x="744" y="152" font-size="12.5" fill="#94a3b8">message to your</text>
+    <text x="744" y="170" font-size="12.5" fill="#94a3b8">client</text>
+  </g>
+
+  <!-- connectors -->
+  <g stroke="#3f4653" stroke-width="2" stroke-linecap="round">
+    <path d="M192 136 L206 136"/>
+    <path d="M364 136 L378 136"/>
+    <path d="M536 136 L550 136"/>
+    <path d="M708 136 L722 136"/>
+  </g>
+
+  <!-- footnote -->
+  <rect x="40" y="214" width="820" height="58" rx="9" fill="#101a17" stroke="#1f513f"/>
+  <text x="62" y="240" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="14" font-weight="700" fill="#34d399">Step 3 is the important one.</text>
+  <text x="62" y="260" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="14" fill="#a7f3d0">The assistant can never make up a property — it only shows what you really have.</text>
+</svg>

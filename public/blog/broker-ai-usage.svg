@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 340" width="900" height="340" role="img" aria-label="Donut chart: six of the seven daily screens run without AI; only search uses AI, and only when you press a button.">
+  <rect width="900" height="340" rx="14" fill="#0f1116"/>
+
+  <text x="40" y="46" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="700" letter-spacing="2" fill="#64748b">WHERE THE AI ACTUALLY GETS USED</text>
+
+  <!-- donut: circumference for r=72 is 452.39 -->
+  <g transform="translate(200,190)">
+    <circle r="72" fill="none" stroke="#1a1d25" stroke-width="42"/>
+    <!-- 6/7 = 85.7%  -> 387.6 of 452.39 -->
+    <circle r="72" fill="none" stroke="#10b981" stroke-width="42"
+            stroke-dasharray="387.6 64.79" transform="rotate(-90)"/>
+    <!-- 1/7 = 14.3% -->
+    <circle r="72" fill="none" stroke="#FF5500" stroke-width="42"
+            stroke-dasharray="64.79 387.6" stroke-dashoffset="-387.6" transform="rotate(-90)"/>
+
+    <text y="-4" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="34" font-weight="800" fill="#fff" text-anchor="middle">6 of 7</text>
+    <text y="22" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" fill="#94a3b8" text-anchor="middle">screens · no AI</text>
+  </g>
+
+  <!-- legend -->
+  <g font-family="system-ui,-apple-system,Segoe UI,sans-serif">
+    <rect x="392" y="96" width="16" height="16" rx="4" fill="#10b981"/>
+    <text x="420" y="110" font-size="16" font-weight="700" fill="#fff">Runs on plain rules — costs nothing</text>
+    <text x="420" y="134" font-size="13.5" fill="#94a3b8">Today · Dashboard · Pipeline · Leads · Listings · Market</text>
+    <text x="420" y="156" font-size="13.5" fill="#64748b">Instant. No waiting. No usage bill.</text>
+
+    <rect x="392" y="196" width="16" height="16" rx="4" fill="#FF5500"/>
+    <text x="420" y="210" font-size="16" font-weight="700" fill="#fff">Uses AI — only when you press a button</text>
+    <text x="420" y="234" font-size="13.5" fill="#94a3b8">Search · Match · Pitch · Marketing · Follow-up draft</text>
+    <text x="420" y="256" font-size="13.5" fill="#64748b">Nothing runs in the background. You're in control.</text>
+  </g>
+
+  <rect x="392" y="284" width="468" height="34" rx="8" fill="#171207" stroke="#4a2a0c"/>
+  <text x="412" y="306" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13.5" fill="#fbbf24">Your busiest page — the morning follow-up list — is free to run.</text>
+</svg>

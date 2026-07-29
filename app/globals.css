@@ -382,6 +382,51 @@
   font-style: italic;
 }
 
+/* Figures & screenshots. Diagrams are SVGs in /public/blog, screenshots are
+   remote PNGs — both are plain <img> so they survive the sanitizer. */
+.blog-content img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 2rem auto 0.75rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: #0f1116;
+}
+
+/* Caption: the italic line immediately after an image. */
+.blog-content img + em,
+.blog-content p > em:only-child {
+  display: block;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #64748b;
+  font-style: normal;
+}
+
+.blog-content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.925rem;
+  display: block;
+  overflow-x: auto;
+}
+.blog-content th,
+.blog-content td {
+  padding: 0.6rem 0.9rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  text-align: left;
+  vertical-align: top;
+}
+.blog-content th {
+  color: #e2e8f0;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.03);
+  white-space: nowrap;
+}
+.blog-content td { color: #94a3b8; }
+.blog-content tbody tr:hover td { background: rgba(255, 255, 255, 0.02); }
+
 /* ── Custom cursor ────────────────────────────── */
 
 @media (pointer: fine) {

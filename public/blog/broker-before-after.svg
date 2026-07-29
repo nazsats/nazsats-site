@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" width="900" height="380" role="img" aria-label="Before: eight disconnected apps. After: one app.">
+  <defs>
+    <linearGradient id="ba-glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FF5500"/>
+      <stop offset="100%" stop-color="#C80055"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="900" height="380" rx="14" fill="#0f1116"/>
+
+  <!-- ── BEFORE ───────────────────────────────── -->
+  <text x="48" y="52" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="700" letter-spacing="2" fill="#64748b">BEFORE</text>
+  <text x="48" y="78" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="19" font-weight="700" fill="#e2e8f0">6–8 apps, none of them talking</text>
+
+  <g font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" fill="#94a3b8" text-anchor="middle">
+    <g>
+      <rect x="48"  y="104" width="118" height="52" rx="9" fill="#1a1d25" stroke="#2b303c"/>
+      <text x="107" y="135">Bayut</text>
+    </g>
+    <g>
+      <rect x="180" y="104" width="118" height="52" rx="9" fill="#1a1d25" stroke="#2b303c"/>
+      <text x="239" y="135">Property Finder</text>
+    </g>
+    <g>
+      <rect x="312" y="104" width="118" height="52" rx="9" fill="#1a1d25" stroke="#2b303c"/>
+      <text x="371" y="135">Spreadsheets</text>
+    </g>
+    <g>
+      <rect x="48"  y="170" width="118" height="52" rx="9" fill="#1a1d25" stroke="#2b303c"/>
+      <text x="107" y="201">WhatsApp</text>
+    </g>
+    <g>
+      <rect x="180" y="170" width="118" height="52" rx="9" fill="#1a1d25" stroke="#2b303c"/>
+      <text x="239" y="201">Canva</text>
+    </g>
+    <g>
+      <rect x="312" y="170" width="118" height="52" rx="9" fill="#1a1d25" stroke="#2b303c"/>
+      <text x="371" y="201">Old CRM</text>
+    </g>
+    <g>
+      <rect x="48"  y="236" width="118" height="52" rx="9" fill="#1a1d25" stroke="#2b303c"/>
+      <text x="107" y="267">Email</text>
+    </g>
+    <g>
+      <rect x="180" y="236" width="118" height="52" rx="9" fill="#1a1d25" stroke="#2b303c"/>
+      <text x="239" y="267">Notebook</text>
+    </g>
+  </g>
+
+  <text x="312" y="267" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" fill="#475569">+ whatever else</text>
+
+  <text x="48" y="325" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="14" fill="#64748b">Re-typing the same client details into all of them, every day.</text>
+
+  <!-- ── ARROW ────────────────────────────────── -->
+  <g transform="translate(470,190)">
+    <path d="M0 0 L54 0" stroke="#FF5500" stroke-width="3" stroke-linecap="round"/>
+    <path d="M46 -9 L60 0 L46 9" fill="none" stroke="#FF5500" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- ── AFTER ────────────────────────────────── -->
+  <text x="562" y="52" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="700" letter-spacing="2" fill="#FF7A2A">AFTER</text>
+  <text x="562" y="78" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="19" font-weight="700" fill="#fff">One place</text>
+
+  <rect x="562" y="104" width="290" height="184" rx="12" fill="#171207" stroke="url(#ba-glow)" stroke-width="2"/>
+  <text x="707" y="150" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="20" font-weight="800" fill="#fff" text-anchor="middle">AI Broker Assistant</text>
+
+  <g font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13.5" fill="#cbd5e1">
+    <text x="592" y="184">Listings · Leads · Pipeline</text>
+    <text x="592" y="210">Follow-ups · Pitches · Marketing</text>
+    <text x="592" y="236">Deals · Commission · Analytics</text>
+    <text x="592" y="264" fill="#FF7A2A" font-weight="700">Everything, one login</text>
+  </g>
+
+  <text x="562" y="325" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="14" fill="#64748b">Type it once. It's everywhere it needs to be.</text>
+</svg>
