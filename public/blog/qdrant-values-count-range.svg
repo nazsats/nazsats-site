@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 230" width="880" height="230" role="img" aria-label="Number line from 0 to 11. The allowed range sits between 2 and 9. The two counts, 1 and 10, both fall outside it.">
+  <rect width="880" height="230" rx="14" fill="#0f1116"/>
+
+  <text x="40" y="42" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="700" letter-spacing="2" fill="#64748b">COUNTS [1, 10] AGAINST gt=2, lt=9</text>
+
+  <!-- allowed band: 2 -> 9 on a 0..11 scale mapped to x 60..820 -->
+  <rect x="198" y="106" width="484" height="38" rx="4" fill="#10b98122" stroke="#10b981" stroke-width="2"/>
+  <text x="440" y="96" font-family="ui-monospace,Consolas,monospace" font-size="13" fill="#34d399" text-anchor="middle">allowed range</text>
+
+  <!-- track -->
+  <line x1="60" y1="125" x2="820" y2="125" stroke="#2b303c" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- ticks -->
+  <g font-family="ui-monospace,Consolas,monospace" font-size="12" fill="#64748b" text-anchor="middle">
+    <line x1="60"  y1="150" x2="60"  y2="158" stroke="#2b303c" stroke-width="2"/>
+    <text x="60"  y="176">0</text>
+    <line x1="198" y1="150" x2="198" y2="158" stroke="#2b303c" stroke-width="2"/>
+    <text x="198" y="176">2</text>
+    <line x1="405" y1="150" x2="405" y2="158" stroke="#2b303c" stroke-width="2"/>
+    <text x="405" y="176">5</text>
+    <line x1="682" y1="150" x2="682" y2="158" stroke="#2b303c" stroke-width="2"/>
+    <text x="682" y="176">9</text>
+    <line x1="820" y1="150" x2="820" y2="158" stroke="#2b303c" stroke-width="2"/>
+    <text x="820" y="176">11</text>
+  </g>
+
+  <!-- the two counts -->
+  <circle cx="129" cy="125" r="8" fill="#0f1116" stroke="#f87171" stroke-width="3.5"/>
+  <text x="129" y="66" font-family="ui-monospace,Consolas,monospace" font-size="15" font-weight="700" fill="#f87171" text-anchor="middle">1</text>
+  <line x1="129" y1="76" x2="129" y2="112" stroke="#f87171" stroke-width="1.5" stroke-dasharray="3 3"/>
+
+  <circle cx="751" cy="125" r="8" fill="#0f1116" stroke="#f87171" stroke-width="3.5"/>
+  <text x="751" y="66" font-family="ui-monospace,Consolas,monospace" font-size="15" font-weight="700" fill="#f87171" text-anchor="middle">10</text>
+  <line x1="751" y1="76" x2="751" y2="112" stroke="#f87171" stroke-width="1.5" stroke-dasharray="3 3"/>
+
+  <text x="440" y="210" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="14" fill="#94a3b8" text-anchor="middle">Neither count lands inside the range — one sits below it, the other above it.</text>
+</svg>
