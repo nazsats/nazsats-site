@@ -1,31 +1,44 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getServiceClient } from "../../../lib/supabase/service";
+
+const EMAIL_RE = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { email } = body;
+    const email = String(body.email ?? "").trim().toLowerCase();
 
     if (!email) {
       return NextResponse.json({ error: "Email is required" }, { status: 400 });
     }
-
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!emailRegex.test(email)) {
+    if (!EMAIL_RE.test(email) || email.length > 200) {
       return NextResponse.json({ error: "Invalid email address" }, { status: 400 });
     }
 
-    // TODO: Plug in a mailing list service here, e.g. Resend Audiences / Mailchimp:
-    // import { Resend } from "resend";
-    // const resend = new Resend(process.env.RESEND_API_KEY);
-    // await resend.contacts.create({
-    //   email,
-    //   audienceId: process.env.RESEND_AUDIENCE_ID!,
-    // });
+    // Store the subscriber. `email` is unique, so a repeat signup is ignored
+    // rather than erroring — the visitor sees the same friendly confirmation.
+    try {
+      const supabase = getServiceClient();
+      const { error } = await supabase
+        .from("subscribers")
+        .upsert({ email, source: "homepage" }, { onConflict: "email" });
+      if (error) throw new Error(error.message);
+    } catch (err) {
+      console.error(
+        "[subscribe] could not save subscriber — falling back to log:",
+        err instanceof Error ? err.message : err,
+        email
+      );
+    }
 
-    console.log("New subscriber:", email);
-
-    return NextResponse.json({ success: true, message: "You're subscribed! We'll keep you updated." });
+    return NextResponse.json({
+      success: true,
+      message: "You're subscribed! We'll keep you updated.",
+    });
   } catch {
-    return NextResponse.json({ error: "Failed to subscribe. Please try again." }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to subscribe. Please try again." },
+      { status: 500 }
+    );
   }
 }
