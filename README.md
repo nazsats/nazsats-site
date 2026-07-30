@@ -33,6 +33,14 @@ and a full post body, saved as a draft.
 **Forms** — contact and newsletter submissions are written to Supabase. If the database is
 unreachable, the payload is logged server-side instead so nothing is lost.
 
+**Track record** (`/admin/log`) — a private, append-only log of everything shipped: merged
+PRs, new repos, blog posts, social links, client work and daily coding time. GitHub and
+WakaTime sync nightly via cron; anything else is one-line quick capture. Flag an entry
+`resume_worthy`, give it a CV-ready bullet, and the resume becomes a query over the log
+rather than a document you maintain by hand.
+
+**Resume** (`/resume`) — public CV page with a PDF download.
+
 **SEO** — per-route metadata, canonical URLs, JSON-LD `Organization`/`WebSite` graph,
 dynamic OG images, `sitemap.xml` (including every published post) and `robots.txt`.
 
@@ -59,13 +67,33 @@ npm run dev                    # http://localhost:3000
 | `OPENAI_MODEL` | no | Defaults to `gpt-4o-mini` |
 | `GITHUB_USERNAME` | no | Defaults to `nazsats` |
 | `GITHUB_TOKEN` | recommended | Without it the homepage falls back to unauthenticated API calls (60/hour) and the contribution heatmap renders placeholder data. Needs `read:user` + `public_repo`. |
+| `CRON_SECRET` | for cron | Shared secret for `/api/cron/*`. Generate with `openssl rand -hex 32`. |
+| `WAKATIME_API_KEY` | for coding time | Read-only key from [wakatime.com/settings/api-key](https://wakatime.com/settings/api-key) |
+| `WAKATIME_API_URL` | no | Point at a self-hosted [Wakapi](https://github.com/muety/wakapi) instead of wakatime.com |
 
 ### Database setup
 
 Run [`supabase/schema.sql`](supabase/schema.sql) once in the Supabase SQL editor. It creates
-three tables — `posts`, `contact_messages`, `subscribers` — each with RLS enabled and **no
-public policies**. The anon key cannot read or write them; all access goes through the
-server-side service client.
+four tables — `posts`, `contact_messages`, `subscribers`, `activity` — each with RLS enabled
+and **no public policies**. The anon key cannot read or write them; all access goes through
+the server-side service client.
+
+### Track record setup
+
+1. Run the schema above (creates `activity`).
+2. Set `CRON_SECRET` in Vercel — the cron jobs 401 without it.
+3. For coding time: install the [WakaTime extension](https://wakatime.com/vs-code) in VS Code
+   and set `WAKATIME_API_KEY`.
+
+[`vercel.json`](vercel.json) schedules both syncs nightly. They look back 30 days (GitHub)
+and 7 days (WakaTime) on every run and upsert on `external_id`, so re-runs are idempotent
+and a missed night heals itself. To trigger one by hand:
+
+```bash
+curl -H "Authorization: Bearer $CRON_SECRET" https://nazsats.com/api/cron/github
+```
+
+> Vercel's Hobby plan allows **2 cron jobs, daily only** — exactly what's configured here.
 
 ### Create an admin user
 

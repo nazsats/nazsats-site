@@ -6,6 +6,26 @@ import { getCurrentUser, getServerSupabase } from "../../lib/supabase/server";
 import { getServiceClient } from "../../lib/supabase/service";
 import { generateDraft } from "../../lib/openai";
 import { slugify } from "../../lib/posts";
+import { logActivity } from "../../lib/activity";
+
+/**
+ * Record a publish in the track record. Keyed on slug so re-publishing the same
+ * post updates one row instead of piling up. Never blocks the publish itself.
+ */
+async function logPublished(slug: string, title: string) {
+  try {
+    await logActivity({
+      kind: "post",
+      source: "blog",
+      title,
+      url: `https://nazsats.com/blog/${slug}`,
+      tags: ["writing"],
+      external_id: `blog:${slug}`,
+    });
+  } catch (err) {
+    console.error("[activity] could not log published post:", err);
+  }
+}
 
 /** Throws (redirects to login) if no user is signed in. */
 async function requireUser() {
@@ -25,8 +45,14 @@ function refreshViews() {
 export async function togglePublish(id: string, published: boolean) {
   await requireUser();
   const supabase = getServiceClient();
-  const { error } = await supabase.from("posts").update({ published }).eq("id", id);
+  const { data, error } = await supabase
+    .from("posts")
+    .update({ published })
+    .eq("id", id)
+    .select("slug, title")
+    .maybeSingle();
   if (error) throw new Error(error.message);
+  if (published && data) await logPublished(data.slug, data.title);
   refreshViews();
 }
 
@@ -83,17 +109,21 @@ export async function savePost(formData: FormData) {
   const supabase = getServiceClient();
 
   if (id) {
-    const { error } = await supabase
+    const { data, error } = await supabase
       .from("posts")
       .update({ title, description, body, tags, published })
-      .eq("id", id);
+      .eq("id", id)
+      .select("slug")
+      .maybeSingle();
     if (error) throw new Error(error.message);
+    if (published && data) await logPublished(data.slug, title);
   } else {
     const slug = `${slugify(title)}-${Date.now().toString().slice(-5)}`;
     const { error } = await supabase
       .from("posts")
       .insert({ slug, title, description, body, tags, published });
     if (error) throw new Error(error.message);
+    if (published) await logPublished(slug, title);
   }
 
   refreshViews();

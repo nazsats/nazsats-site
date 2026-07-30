@@ -66,3 +66,48 @@ create table if not exists public.subscribers (
 );
 
 alter table public.subscribers enable row level security;
+
+
+-- ── Track record ────────────────────────────────────────────────────────────
+-- Append-only log of everything worth remembering: shipped work, merged PRs,
+-- posts, social links, coding sessions. Private — read only through /admin.
+--
+-- The resume is a *query* over this table, not a separate document: flag a row
+-- resume_worthy, write its resume_bullet, and the generator picks it up.
+
+create table if not exists public.activity (
+  id            uuid primary key default gen_random_uuid(),
+
+  -- pr | repo | release | commit | post | social | project | client | coding | learning
+  kind          text not null,
+  -- github | wakatime | blog | manual
+  source        text not null default 'manual',
+
+  title         text not null,
+  body          text not null default '',
+  url           text,
+  tags          text[] not null default '{}',
+
+  -- Free-form numbers: {"seconds": 14400, "diff": "+74/-9", "users": 50000}
+  metrics       jsonb not null default '{}'::jsonb,
+
+  occurred_at   timestamptz not null default now(),
+
+  -- Curation. Everything lands here; only flagged rows reach the CV.
+  resume_worthy boolean not null default false,
+  resume_bullet text,
+  reviewed      boolean not null default false,
+
+  -- Dedupe key for automated sources, e.g. "github:pr:qdrant/qdrant-client#1293"
+  -- or "wakatime:2026-07-30". Manual entries leave it null.
+  external_id   text unique,
+
+  created_at    timestamptz not null default now()
+);
+
+create index if not exists activity_occurred_at_idx on public.activity (occurred_at desc);
+create index if not exists activity_kind_idx        on public.activity (kind);
+create index if not exists activity_resume_idx      on public.activity (resume_worthy) where resume_worthy;
+create index if not exists activity_unreviewed_idx  on public.activity (reviewed) where not reviewed;
+
+alter table public.activity enable row level security;

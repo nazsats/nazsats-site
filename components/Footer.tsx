@@ -6,6 +6,7 @@ const pages = [
   { href: "/services", label: "Services" },
   { href: "/work", label: "Work" },
   { href: "/blog", label: "Blog" },
+  { href: "/resume", label: "Resume" },
   { href: "/contact", label: "Contact" },
 ];
 
