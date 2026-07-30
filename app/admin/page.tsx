@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getAllPosts } from "../../lib/posts";
 import { generateDraftAction, signOut } from "./actions";
 import PostRowActions from "./PostRowActions";
+import AdminNav from "./AdminNav";
 
 export const dynamic = "force-dynamic";
 
@@ -21,21 +22,16 @@ export default async function AdminDashboard() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-16">
+      <AdminNav signOut={signOut} />
+
       {/* Header */}
-      <div className="flex items-center justify-between flex-wrap gap-4 mb-10">
-        <div>
-          <h1 className="text-4xl font-black text-white">
-            Blog <span className="gradient-text">Admin</span>
-          </h1>
-          <p className="text-slate-500 text-sm mt-1">
-            {live} published · {drafts} drafts
-          </p>
-        </div>
-        <form action={signOut}>
-          <button className="px-4 py-2 rounded-lg text-sm font-semibold bg-white/5 text-slate-300 hover:bg-white/10 transition-colors">
-            Sign out
-          </button>
-        </form>
+      <div className="mb-10">
+        <h1 className="text-4xl font-black text-white">
+          Blog <span className="gradient-text">Admin</span>
+        </h1>
+        <p className="text-slate-500 text-sm mt-1">
+          {live} published · {drafts} drafts
+        </p>
       </div>
 
       {/* AI generate */}

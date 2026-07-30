@@ -30,42 +30,54 @@ type SearchItem = {
 };
 
 /**
- * Pull requests you opened on repos you don't own. This is the highest-signal
- * thing GitHub knows about you — open-source contribution beats a wall of
- * commits to your own projects on any CV.
+ * Pull requests *and* issues you opened on repos you don't own. This is the
+ * highest-signal thing GitHub knows about you — open-source contribution beats
+ * a wall of commits to your own projects on any CV.
+ *
+ * Issues count: a well-diagnosed bug report against a library you use is
+ * evidence of the same skill as the fix, and often lands before the PR does.
  */
-async function fetchExternalPRs(since: string): Promise<NewActivity[]> {
-  const q = `type:pr author:${USERNAME} -user:${USERNAME} created:>=${since}`;
-  const res = await fetch(
-    `https://api.github.com/search/issues?q=${encodeURIComponent(q)}&per_page=50&sort=created&order=desc`,
-    {
-      headers: {
-        Accept: "application/vnd.github.v3+json",
-        ...(TOKEN ? { Authorization: `Bearer ${TOKEN}` } : {}),
-      },
-      cache: "no-store",
-    }
+async function fetchExternalContributions(since: string): Promise<NewActivity[]> {
+  const queries: { type: "pr" | "issue" }[] = [{ type: "pr" }, { type: "issue" }];
+
+  const results = await Promise.all(
+    queries.map(async ({ type }) => {
+      const q = `type:${type} author:${USERNAME} -user:${USERNAME} created:>=${since}`;
+      const res = await fetch(
+        `https://api.github.com/search/issues?q=${encodeURIComponent(q)}&per_page=50&sort=created&order=desc`,
+        {
+          headers: {
+            Accept: "application/vnd.github.v3+json",
+            ...(TOKEN ? { Authorization: `Bearer ${TOKEN}` } : {}),
+          },
+          cache: "no-store",
+        }
+      );
+      if (!res.ok) return [];
+
+      const data = await res.json();
+      const items: SearchItem[] = data.items ?? [];
+
+      return items.map((item): NewActivity => {
+        const repo = item.repository_url.replace("https://api.github.com/repos/", "");
+        const merged = Boolean(item.pull_request?.merged_at);
+        const label = type === "pr" ? "PR" : "Issue";
+        return {
+          kind: "pr",
+          source: "github",
+          title: `${repo} ${label} #${item.number} — ${item.title}`,
+          body: (item.body ?? "").slice(0, 500),
+          url: item.html_url,
+          tags: ["open source", repo.split("/")[1] ?? repo],
+          metrics: { type, merged, state: item.state },
+          occurred_at: item.created_at,
+          external_id: `github:${type}:${repo}#${item.number}`,
+        };
+      });
+    })
   );
-  if (!res.ok) return [];
 
-  const data = await res.json();
-  const items: SearchItem[] = data.items ?? [];
-
-  return items.map((pr) => {
-    const repo = pr.repository_url.replace("https://api.github.com/repos/", "");
-    const merged = Boolean(pr.pull_request?.merged_at);
-    return {
-      kind: "pr" as const,
-      source: "github" as const,
-      title: `${repo}#${pr.number} — ${pr.title}`,
-      body: (pr.body ?? "").slice(0, 500),
-      url: pr.html_url,
-      tags: ["open source", repo.split("/")[0]],
-      metrics: { merged, state: pr.state },
-      occurred_at: pr.created_at,
-      external_id: `github:pr:${repo}#${pr.number}`,
-    };
-  });
+  return results.flat();
 }
 
 type RepoItem = {
@@ -117,31 +129,31 @@ export async function GET(request: NextRequest) {
   if (!authorized(request)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-  if (!TOKEN) {
-    return NextResponse.json(
-      { error: "GITHUB_TOKEN is not set — search and repo listing need it" },
-      { status: 500 }
-    );
-  }
 
-  // Look back 30 days each run. Upserts are keyed on external_id, so
-  // re-covering the same window is free and self-healing after downtime.
-  const lookback = new Date();
-  lookback.setDate(lookback.getDate() - 30);
-  const sinceDate = lookback.toISOString().slice(0, 10);
-  const sinceIso = lookback.toISOString();
+  // A token isn't strictly required — search and the public repo list work
+  // unauthenticated at 60 requests/hour, which is plenty for a nightly run.
+  // With a token the limit is 5,000/hour, so it's still worth setting.
+
+  // Look back a year for contributions, 30 days for repos. Upserts are keyed
+  // on external_id, so re-covering the same window is free and self-healing.
+  const contribSince = new Date();
+  contribSince.setFullYear(contribSince.getFullYear() - 1);
+
+  const repoSince = new Date();
+  repoSince.setDate(repoSince.getDate() - 30);
 
   try {
-    const [prs, repos] = await Promise.all([
-      fetchExternalPRs(sinceDate),
-      fetchNewRepos(sinceIso),
+    const [contributions, repos] = await Promise.all([
+      fetchExternalContributions(contribSince.toISOString().slice(0, 10)),
+      fetchNewRepos(repoSince.toISOString()),
     ]);
 
-    const inserted = await logActivityBatch([...prs, ...repos]);
+    const inserted = await logActivityBatch([...contributions, ...repos]);
 
     return NextResponse.json({
       ok: true,
-      found: { prs: prs.length, repos: repos.length },
+      authenticated: Boolean(TOKEN),
+      found: { contributions: contributions.length, repos: repos.length },
       inserted,
     });
   } catch (err) {

@@ -2,6 +2,8 @@ import Link from "next/link";
 import { getActivity, getActivityStats, KIND_META, formatDuration } from "../../../lib/activity";
 import { addEntry } from "./actions";
 import EntryRowActions from "./EntryRowActions";
+import AdminNav from "../AdminNav";
+import { signOut } from "../actions";
 
 export const dynamic = "force-dynamic";
 
@@ -42,22 +44,16 @@ export default async function ActivityLog({
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-16">
+      <AdminNav signOut={signOut} />
+
       {/* Header */}
-      <div className="flex items-center justify-between flex-wrap gap-4 mb-8">
-        <div>
-          <h1 className="text-4xl font-black text-white">
-            Track <span className="gradient-text">Record</span>
-          </h1>
-          <p className="text-slate-500 text-sm mt-1">
-            Everything you build, in one place. Flag the good ones for the CV.
-          </p>
-        </div>
-        <Link
-          href="/admin"
-          className="px-4 py-2 rounded-lg text-sm font-semibold bg-white/5 text-slate-300 hover:bg-white/10 transition-colors"
-        >
-          ← Blog admin
-        </Link>
+      <div className="mb-8">
+        <h1 className="text-4xl font-black text-white">
+          Track <span className="gradient-text">Record</span>
+        </h1>
+        <p className="text-slate-500 text-sm mt-1">
+          Everything you build, in one place. Flag the good ones for the CV.
+        </p>
       </div>
 
       {/* Stats */}
