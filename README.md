@@ -1,173 +1,106 @@
 # Nazsats
 
-**[nazsats.com](https://nazsats.com)** — my portfolio and blog, plus a small authenticated
-CMS with AI-assisted drafting behind it.
+Hi. This is my corner of the internet — **[nazsats.com](https://nazsats.com)**.
 
-Built with the Next.js App Router. The marketing pages are static, the blog is served from
-Postgres, and `/admin` is a private editor for writing and publishing posts.
-
-| | |
-|---|---|
-| **Framework** | Next.js 16 (App Router, RSC, ISR) · React 19 · TypeScript |
-| **Styling** | Tailwind CSS v4 |
-| **Data & auth** | Supabase (Postgres, Auth, Row-Level Security) |
-| **AI** | OpenAI — JSON-mode post drafting |
-| **Integrations** | GitHub REST + GraphQL · Vercel Analytics |
-| **Hosting** | Vercel |
+It started as "I should probably have a portfolio" and quietly turned into a whole thing:
+a blog, a spinning 3D globe, a live feed of whatever I pushed to GitHub this week, and a
+private back room where I keep score of everything I build.
 
 ---
 
-## Features
+## What's on it
 
-**Public site** — animated hero with an interactive WebGL globe, live GitHub stats,
-contribution heatmap and activity feed, portfolio with live screenshots, service packages
-with WhatsApp CTAs, and a blog.
+**A spinning Earth.** No reason. It's just nice.
 
-**Blog** — posts stored in Supabase, rendered from Markdown, sanitised before display.
-Individual pages use ISR with a 5-minute window; publishing revalidates immediately.
+**My work** — the stuff I've actually shipped, with screenshots that update themselves.
+AI tools, trading bots, Web3 things, a health app that reads your blood test and explains it
+in human words.
 
-**Admin** (`/admin`) — email + password login, draft/publish workflow, Markdown editor,
-and one-click AI drafting: give it a topic and OpenAI returns a title, description, tags
-and a full post body, saved as a draft.
+**A blog** where I write about what I broke and how I fixed it. Bug hunts, mostly.
 
-**Forms** — contact and newsletter submissions are written to Supabase. If the database is
-unreachable, the payload is logged server-side instead so nothing is lost.
+**A resume page** that prints straight to PDF. No "download CV" button pointing at a file I
+forgot to update three months ago.
 
-**Track record** (`/admin/log`) — a private, append-only log of everything shipped: merged
-PRs, new repos, blog posts, social links, client work and daily coding time. GitHub and
-WakaTime sync nightly via cron; anything else is one-line quick capture. Flag an entry
-`resume_worthy`, give it a CV-ready bullet, and the resume becomes a query over the log
-rather than a document you maintain by hand.
-
-**Resume** (`/resume`) — public CV page with a PDF download.
-
-**SEO** — per-route metadata, canonical URLs, JSON-LD `Organization`/`WebSite` graph,
-dynamic OG images, `sitemap.xml` (including every published post) and `robots.txt`.
+**Live GitHub stats** — repos, stars, contribution heatmap, and a feed of recent commits.
+The heatmap is real, which was surprisingly hard to make true.
 
 ---
 
-## Getting started
+## The back room
+
+There's a `/admin` area that only I can get into. Two things live there:
+
+**The blog editor.** Write a post, publish it, done. There's also a button where I type a
+topic and the AI writes a first draft for me. It's usually 70% there, which is 70% more than
+a blank page.
+
+**The track record.** This is the one I'm actually proud of. Everything I build gets logged:
+merged pull requests, bug reports I filed on other people's libraries, blog posts, LinkedIn
+and X posts, client work, and even how many hours I spent in my editor each day.
+
+Most of it logs itself overnight while I'm asleep. The rest is a one-line form — a title and
+a link, that's it.
+
+Then when something turns out to be genuinely good, I star it, write one sentence about why
+it mattered, and it goes in the pile that becomes my CV. So the resume writes itself over
+time instead of being a panicked Sunday-night rewrite every time someone asks for it.
+
+That's the whole idea: **write it down once, when it's fresh, and never try to remember what
+you did last March.**
+
+---
+
+## Built with
+
+Next.js, TypeScript, Tailwind, Supabase, and a slightly unreasonable number of hand-rolled
+CSS animations. Hosted on Vercel. The AI bits use OpenAI and Claude.
+
+No UI library. Every card tilt, glow and fade in here was written by hand, which was either
+a great use of a weekend or a terrible one — jury's still out.
+
+---
+
+## Want to run it?
 
 ```bash
 git clone https://github.com/nazsats/nazsats-site.git
 cd nazsats-site
 npm install
-cp .env.example .env.local     # then fill it in — see below
-npm run dev                    # http://localhost:3000
+cp .env.example .env.local     # fill this in
+npm run dev
 ```
 
-### Environment variables
+Then open http://localhost:3000 and you're off.
 
-| Variable | Required | Purpose |
-|---|---|---|
-| `NEXT_PUBLIC_SUPABASE_URL` | yes | Supabase project URL |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | yes | Public client key (auth) |
-| `SUPABASE_SERVICE_ROLE_KEY` | yes | **Server only.** Reads posts and writes form submissions. Never expose to the browser. |
-| `OPENAI_API_KEY` | for AI drafting | Generates post drafts in `/admin` |
-| `OPENAI_MODEL` | no | Defaults to `gpt-4o-mini` |
-| `GITHUB_USERNAME` | no | Defaults to `nazsats` |
-| `GITHUB_TOKEN` | recommended | Without it the homepage falls back to unauthenticated API calls (60/hour) and the contribution heatmap renders placeholder data. Needs `read:user` + `public_repo`. |
-| `CRON_SECRET` | for cron | Shared secret for `/api/cron/*`. Generate with `openssl rand -hex 32`. |
-| `WAKATIME_API_KEY` | for coding time | Read-only key from [wakatime.com/settings/api-key](https://wakatime.com/settings/api-key) |
-| `WAKATIME_API_URL` | no | Point at a self-hosted [Wakapi](https://github.com/muety/wakapi) instead of wakatime.com |
+You'll need a free Supabase project for the blog and the track record — paste
+[`supabase/schema.sql`](supabase/schema.sql) into its SQL editor once and it sets up all the
+tables. Everything else you might need is explained inside
+[`.env.example`](.env.example), which I wrote for future-me at 2am and it shows.
 
-### Database setup
+A few handy commands:
 
-Run [`supabase/schema.sql`](supabase/schema.sql) once in the Supabase SQL editor. It creates
-four tables — `posts`, `contact_messages`, `subscribers`, `activity` — each with RLS enabled
-and **no public policies**. The anon key cannot read or write them; all access goes through
-the server-side service client.
-
-### Track record setup
-
-1. Run the schema above (creates `activity`).
-2. Set `CRON_SECRET` in Vercel — the cron jobs 401 without it.
-3. For coding time: install the [WakaTime extension](https://wakatime.com/vs-code) in VS Code
-   and set `WAKATIME_API_KEY`.
-
-[`vercel.json`](vercel.json) schedules both syncs nightly. They look back 30 days (GitHub)
-and 7 days (WakaTime) on every run and upsert on `external_id`, so re-runs are idempotent
-and a missed night heals itself. To trigger one by hand:
-
-```bash
-curl -H "Authorization: Bearer $CRON_SECRET" https://nazsats.com/api/cron/github
-```
-
-> Vercel's Hobby plan allows **2 cron jobs, daily only** — exactly what's configured here.
-
-### Create an admin user
-
-Supabase dashboard → **Authentication → Users → Add user**. Any user who can sign in has
-admin access, so keep that list to yourself. Then visit `/admin`.
-
----
-
-## Scripts
-
-| Command | What it does |
+| | |
 |---|---|
-| `npm run dev` | Dev server (Turbopack) |
-| `npm run build` | Production build |
-| `npm run start` | Serve the production build |
-| `npm run lint` | ESLint |
-| `npm run draft` | Generate a Markdown post draft from the command line |
-| `npm run migrate` | Upsert every file in `posts/` into Supabase, keyed by filename slug |
-
-> `npm run migrate` processes **all** files in `posts/`. It upserts by slug, so posts edited
-> in `/admin` after being migrated will be overwritten by the file version. Move files you
-> don't want touched out of the folder first.
+| `npm run dev` | run it locally |
+| `npm run build` | check nothing's broken |
+| `npm run draft` | make a blog post draft from the terminal |
+| `npm run migrate` | push my markdown posts into the database |
 
 ---
 
-## Project structure
+## A note on the private bits
 
-```
-app/
-  page.tsx            home — hero, GitHub feed, tech stack, portfolio
-  about · services · work · contact
-  blog/               index + [slug] post pages (ISR)
-  admin/              protected editor — login, list, edit, server actions
-  api/                contact + subscribe route handlers
-  sitemap.ts · opengraph-image.tsx · globals.css
-components/           Navbar, Footer, Globe, Projects, GitHub widgets, animations
-lib/
-  posts.ts            Supabase queries + Markdown render & sanitise
-  github.ts           REST + GraphQL stats, pinned repos, heatmap, activity
-  openai.ts           AI draft generation
-  site.ts             projects, pricing packages, WhatsApp link
-  supabase/           browser, server (SSR) and service-role clients
-posts/                Markdown sources for `npm run migrate`
-public/blog/          diagrams used in blog posts
-supabase/schema.sql   database schema
-middleware.ts         auth guard for /admin
-next.config.ts        security headers (CSP, HSTS, frame-ancestors)
-```
+The admin area is locked, the database refuses to talk to anyone who isn't the server, and
+anything anyone types into a blog post gets scrubbed before it ever hits a page. My phone
+number is deliberately nowhere near the resume page.
 
----
-
-## Security notes
-
-- **RLS by default.** Every table has Row-Level Security on with no public policies.
-- **Sanitised Markdown.** `marked` doesn't sanitise, so rendered HTML passes through a
-  `sanitize-html` allowlist before it reaches `dangerouslySetInnerHTML` — scripts, event
-  handlers and `javascript:` URLs are stripped.
-- **Security headers** set in [`next.config.ts`](next.config.ts): CSP, HSTS with preload,
-  `frame-ancestors 'none'`, `nosniff`, Referrer-Policy and Permissions-Policy.
-- **Service-role key is server-only** — imported exclusively by server components, route
-  handlers and server actions.
-- **`/admin` is guarded in middleware**, so unauthenticated requests never reach the page.
-
----
-
-## Deploying
-
-Push to `main` — Vercel builds and deploys. Set the same environment variables in the
-Vercel project settings; `GITHUB_TOKEN` in particular is easy to forget, and without it the
-homepage heatmap shows placeholder data in production.
+I've been bitten before. Now I'm careful.
 
 ---
 
 ## Licence
 
-Personal project. The code is here to read and learn from; the branding, written content and
-project screenshots are not for reuse.
+It's a personal site, so: read it, learn from it, steal a nice animation if you like one.
+Just don't take my name, my writing, or my project screenshots and pass them off as yours.
+
+Say hi → [nazsats.com/contact](https://nazsats.com/contact)
