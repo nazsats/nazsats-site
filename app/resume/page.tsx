@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-
 import PrintButton from "./PrintButton";
 
 export const metadata: Metadata = {
   title: "Resume",
   description:
-    "Nazrul Ansari — AI Engineer & Full-Stack Developer. 4+ years building production LLM applications, AI agents and scalable web platforms across HealthTech, FinTech, Real Estate and Web3.",
+    "Nazrul Ansari — AI Engineer & Full-Stack Developer. 4+ years building production LLM applications, AI agents, algorithmic trading systems and Web3 platforms across HealthTech, FinTech, Real Estate and SaaS.",
   alternates: { canonical: "/resume" },
 };
 
@@ -16,20 +15,85 @@ const skills: { group: string; items: string[] }[] = [
     items: ["Python", "TypeScript", "JavaScript (ES6+)", "SQL", "Solidity", "C/C++", "HTML5", "CSS3"],
   },
   {
-    group: "AI",
-    items: ["OpenAI API", "Claude API", "LangChain", "RAG", "AI Agents", "MCP", "Vector Databases", "Prompt Engineering"],
+    group: "AI & LLMs",
+    items: [
+      "OpenAI API (GPT-4o, GPT-4o Vision)", "Claude API", "LangChain", "RAG", "AI Agents", "MCP",
+      "Vector Databases", "Tool-calling", "NL→SQL agents", "LLM guardrails", "Prompt engineering",
+      "Document & image analysis", "Synthetic data generation",
+    ],
   },
   {
-    group: "Backend",
-    items: ["FastAPI", "Flask", "Node.js", "PostgreSQL", "Supabase", "Firebase", "REST APIs", "WebSockets"],
+    group: "Blockchain & Web3",
+    items: [
+      "Solidity", "Hardhat", "EIP authoring", "ERC-20/721/1155", "EVM (Ethereum, Polygon, Monad, Bera)",
+      "Solana", "Aptos", "Sui", "Injective", "Bitcoin Ordinals", "Tokenomics", "DAO governance",
+      "Wallet integration (MetaMask, Phantom)", "DeFi",
+    ],
   },
   {
-    group: "Frontend",
-    items: ["React.js", "Next.js (App Router)", "TypeScript", "Tailwind CSS", "Framer Motion", "Streamlit"],
+    group: "Algorithmic Trading",
+    items: [
+      "Bybit API", "ccxt", "Automated strategy execution", "Take-profit ladders & stop-loss",
+      "Sentiment-driven signals", "Real-time WebSocket market data", "Risk & position sizing",
+      "Paper/live trading",
+    ],
+  },
+  {
+    group: "Frontend & Mobile",
+    items: [
+      "React.js", "Next.js (App Router)", "TypeScript", "React Native (Expo)", "Tailwind CSS",
+      "Framer Motion", "Recharts / Chart.js", "Streamlit", "Responsive & mobile-first",
+    ],
+  },
+  {
+    group: "Backend & APIs",
+    items: [
+      "FastAPI (REST + WebSocket)", "Flask", "Node.js", "Express.js", "Firebase (Auth, Firestore, Admin SDK)",
+      "Supabase", "REST API design", "RBAC & JWT", "Rate limiting", "Input sanitisation",
+    ],
+  },
+  {
+    group: "Databases & Data",
+    items: [
+      "PostgreSQL", "Firestore", "MongoDB", "MySQL", "Schema design & indexing",
+      "Web scraping (BeautifulSoup)", "Pandas", "CSV/JSON pipelines",
+    ],
   },
   {
     group: "Tools",
-    items: ["Git", "GitHub", "Docker", "Vercel", "Replit", "Postman", "Figma"],
+    items: ["Git", "GitHub", "Docker", "Vercel", "Replit", "Postman", "Figma", "OpenCV", "Agile"],
+  },
+];
+
+/** Filed against libraries I use in production — verified, public, linkable. */
+const openSource = [
+  {
+    repo: "qdrant/qdrant-client",
+    title: "values_count filter matched points no value satisfied",
+    detail:
+      "Found a parity bug between Qdrant's local mode and the real server: four range bounds were checked independently across all counts, so two different values could each satisfy half a range. Filed the issue, then the fix — one expression matching the server's semantics, with a congruence regression test running the same query against both clients. +74 / −9.",
+    links: [
+      { label: "Issue #1292", url: "https://github.com/qdrant/qdrant-client/issues/1292" },
+      { label: "PR #1293", url: "https://github.com/qdrant/qdrant-client/pull/1293" },
+    ],
+  },
+  {
+    repo: "run-llama/llama_index",
+    title: "run_async_tasks swallows task exceptions when show_progress=True",
+    detail:
+      "The progress-bar code path silently discarded exceptions raised inside async tasks, so failures surfaced as missing results rather than errors.",
+    links: [
+      { label: "Issue #22493", url: "https://github.com/run-llama/llama_index/issues/22493" },
+    ],
+  },
+  {
+    repo: "run-llama/llama_index",
+    title: "similarity_top_k=0 returns all embeddings instead of none",
+    detail:
+      "A falsy-zero check meant asking for zero results returned the entire index — the opposite of the request.",
+    links: [
+      { label: "Issue #22508", url: "https://github.com/run-llama/llama_index/issues/22508" },
+    ],
   },
 ];
 
@@ -66,31 +130,77 @@ const experience = [
 
 const projects = [
   {
-    name: "Dubai AI Broker Assistant",
-    tagline: "Multi-tenant AI SaaS",
-    url: "https://github.com/nazsats/dubai-real-estate",
+    name: "AutoProfit",
+    tagline: "AI algorithmic crypto trading system",
+    stack: "Python · FastAPI · Bybit (ccxt) · LLM · Solana · Next.js · Firebase",
+    url: "https://github.com/nazsats/auto-profit",
     points: [
-      "Built a multi-tenant AI real-estate platform using FastAPI, LangChain, Claude API and PostgreSQL.",
-      "Developed a Next.js dashboard with analytics, maps and secure role-based access.",
+      "Built an end-to-end platform executing live algorithmic trades on Bybit via ccxt, with dashboard-controlled demo/live switching and a take-profit ladder that auto-sells at 2×, 5× and 10×.",
+      "Engineered an LLM analysis engine scoring coins from Reddit, CryptoPanic and RSS news sentiment to drive buy/sell/hold signals, with VADER as an offline fallback.",
+      "Added real-time Pump.fun launch sniping over WebSocket plus whale-wallet copy-trading, with configurable market-cap and dev-buy filters.",
+      "Shipped a Next.js + Firebase dashboard showing live positions, realised/unrealised PnL, win rate and equity, fed by a FastAPI REST + WebSocket backend with Telegram alerts and built-in risk controls.",
     ],
   },
   {
     name: "BloodAI",
-    tagline: "Medical Report Analyser — HealthTech AI",
+    tagline: "AI blood report analyser — web & mobile",
+    stack: "Next.js 16 · TypeScript · GPT-4o Vision · React Native (Expo) · Firebase",
     url: "https://github.com/nazsats/blood-report-analyzer",
     points: [
-      "Built an AI-powered blood report analyzer using LLMs for medical insights.",
-      "Developed a secure Next.js application with intelligent document analysis.",
+      "Built a health platform that analyses PDF and image blood reports with GPT-4o Vision in under 30 seconds, extracting biomarkers and flagging out-of-range values.",
+      "Generated personalised wellness protocols — meal plans, supplement stacks and lifestyle recommendations — from each user's blood chemistry, with health-score trend tracking across reports.",
+      "Added an AI meal analyser giving photo-based calorie, macro and micronutrient breakdowns with per-user daily logs.",
+      "Shipped a React Native companion app for scanning reports by camera, gallery or PDF, with marker-by-marker action plans and six health calculators.",
+      "Secured the platform with Firebase Auth and granular Firestore security rules.",
     ],
   },
   {
-    name: "Algo Trading Dashboard",
-    tagline: "Autonomous Trading Platform",
-    url: "https://github.com/nazsats/auto-profit",
+    name: "Dubai AI Broker Assistant",
+    tagline: "Multi-tenant AI SaaS for real-estate agencies",
+    stack: "Python · FastAPI · SQLAlchemy · PostgreSQL · Claude API · LangChain · Next.js",
+    url: "https://github.com/nazsats/dubai-real-estate",
     points: [
-      "Built an AI-powered crypto trading platform using Python, FastAPI, Bybit API and Next.js for automated trade execution.",
-      "Integrated LLM-driven market analysis, real-time WebSocket data, risk management and paper/live trading modes.",
+      "Built an agentic Claude backend with tool-calling: natural-language property search, lead-to-listing matching with reasoning, and ready-to-send pitches written in the client's own language.",
+      "Designed an async FastAPI + SQLAlchemy backend on PostgreSQL with true multi-tenancy, JWT auth and role-based access.",
+      "Developed a Next.js dashboard with a kanban pipeline, an interactive UAE market map and nine analytics chart types, fed by live listing ingestion and scraping pipelines.",
     ],
+  },
+  {
+    name: "OTTER Protocol",
+    tagline: "ERC-OTTER community token standard",
+    stack: "Solidity · Hardhat · Next.js · Firebase · Sepolia",
+    url: "https://github.com/nazsats/otter-protocol",
+    points: [
+      "Authored an EIP-style token standard extending ERC-20 with four novel primitives: immutable transfer-tax distribution, time-based holder tiers, an on-chain meme economy with epoch settlement, and a constrained governance model.",
+      "Wrote and deployed the reference Solidity contracts to Sepolia testnet using Hardhat.",
+      "Built the companion dApp — cipher gate, on-chain initiation terminal, missions and governance, and an in-app EIP viewer.",
+    ],
+  },
+  {
+    name: "Eventopic",
+    tagline: "Event-staffing platform for Dubai",
+    stack: "Next.js · Firebase · OpenAI API",
+    url: "https://github.com/nazsats/eventopic",
+    points: [
+      "Built a security-first staffing marketplace: job discovery, portfolio profiles and a real-time application-tracking dashboard.",
+      "Integrated a 24/7 AI career-assistant chatbot powered by the OpenAI API.",
+      "Hardened the stack with authenticated API routes via the Firebase Admin SDK, granular Firestore rules, rate limiting and input sanitisation.",
+    ],
+  },
+];
+
+const otherWork = [
+  {
+    name: "CatCents",
+    note: "GameFi & DAO platform on Monad testnet (Founder, 2023–present). Solidity contracts for minting, burning and reward boosting; React/Next.js dashboard for wallet connection, quests and governance. 30,000+ member community.",
+  },
+  {
+    name: "Froggy Folios",
+    note: "Bitcoin Ordinals NFT collection with a competitive mini-game platform, leaderboards and whitelist checker.",
+  },
+  {
+    name: "Bao Bao · Skellies Lab · Test Tube · Smith NFT",
+    note: "NFT mint dashboards and wallet integrations across Aptos, Bera and Injective, including utility NFTs with staking rewards.",
   },
 ];
 
@@ -125,13 +235,7 @@ const languages = [
   "Bengali (Basics)",
 ];
 
-function Section({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) {
+function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="mb-12">
       <h2 className="text-xs font-black uppercase tracking-[0.2em] text-slate-500 border-b border-white/10 pb-2 mb-6">
@@ -192,11 +296,49 @@ export default function Resume() {
         <p className="text-slate-400 leading-relaxed">
           AI &amp; Full-Stack Engineer with <strong className="text-white">4+ years</strong> of
           experience building and deploying production-grade LLM applications, AI agents,
-          intelligent automation systems and scalable web platforms. Experienced in designing
+          algorithmic trading systems and scalable web platforms. Experienced in designing
           end-to-end AI solutions using Python, FastAPI, LangChain, OpenAI, Claude and Next.js —
-          from backend architecture to intuitive user interfaces. Built AI products across
-          HealthTech, FinTech, Real Estate and SaaS, while also delivering secure Web3
-          applications and blockchain solutions.
+          from backend architecture to intuitive user interfaces. Built products across HealthTech,
+          FinTech, Real Estate and SaaS, while also delivering secure Web3 applications, smart
+          contracts and token standards. Contributes bug reports and fixes to the open-source AI
+          libraries I build on.
+        </p>
+      </Section>
+
+      {/* Open source first — it's third-party-verifiable, which nothing else here is. */}
+      <Section title="Open Source Contributions">
+        <div className="space-y-6">
+          {openSource.map((c) => (
+            <div key={c.title}>
+              <div className="flex items-baseline justify-between gap-4 flex-wrap">
+                <h3 className="text-white font-bold text-sm">{c.title}</h3>
+                <span className="text-xs text-slate-600 font-mono">{c.repo}</span>
+              </div>
+              <p className="text-slate-400 text-sm leading-relaxed mt-1.5">{c.detail}</p>
+              <div className="flex flex-wrap gap-2 mt-2">
+                {c.links.map((l) => (
+                  <a
+                    key={l.url}
+                    href={l.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs font-mono text-orange-400/80 border border-orange-400/20 px-2 py-1 rounded-md hover:border-orange-400/50 transition-colors"
+                  >
+                    {l.label} ↗
+                  </a>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+        <p className="text-slate-600 text-xs mt-5 no-print">
+          Write-up of the qdrant-client fix:{" "}
+          <Link
+            href="/blog/finding-a-filter-bug-in-qdrant-client"
+            className="text-orange-400/80 hover:text-orange-400"
+          >
+            Two Values, Half a Range Each →
+          </Link>
         </p>
       </Section>
 
@@ -220,28 +362,6 @@ export default function Resume() {
         </div>
       </Section>
 
-      <Section title="Work Experience">
-        <div className="space-y-8">
-          {experience.map((e) => (
-            <div key={e.role}>
-              <div className="flex items-baseline justify-between gap-4 flex-wrap">
-                <h3 className="text-white font-bold">{e.role}</h3>
-                <span className="text-xs text-slate-600 font-mono">{e.when}</span>
-              </div>
-              <p className="text-orange-400/80 text-sm font-semibold mb-3">{e.org}</p>
-              <ul className="space-y-2">
-                {e.points.map((p) => (
-                  <li key={p} className="flex gap-3 text-sm text-slate-400 leading-relaxed">
-                    <span className="text-orange-500/60 flex-shrink-0">▸</span>
-                    {p}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </Section>
-
       <Section title="Key Projects">
         <div className="space-y-8">
           {projects.map((p) => (
@@ -257,12 +377,46 @@ export default function Resume() {
                   {p.url.replace("https://", "")} ↗
                 </a>
               </div>
-              <p className="text-orange-400/80 text-sm font-semibold mb-3">{p.tagline}</p>
+              <p className="text-orange-400/80 text-sm font-semibold">{p.tagline}</p>
+              <p className="text-slate-600 text-xs font-mono mb-3">{p.stack}</p>
               <ul className="space-y-2">
                 {p.points.map((pt) => (
                   <li key={pt} className="flex gap-3 text-sm text-slate-400 leading-relaxed">
                     <span className="text-orange-500/60 flex-shrink-0">▸</span>
                     {pt}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      <Section title="Other Work">
+        <div className="space-y-4">
+          {otherWork.map((o) => (
+            <div key={o.name}>
+              <h3 className="text-white font-bold text-sm">{o.name}</h3>
+              <p className="text-slate-400 text-sm leading-relaxed">{o.note}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      <Section title="Work Experience">
+        <div className="space-y-8">
+          {experience.map((e) => (
+            <div key={e.role}>
+              <div className="flex items-baseline justify-between gap-4 flex-wrap">
+                <h3 className="text-white font-bold">{e.role}</h3>
+                <span className="text-xs text-slate-600 font-mono">{e.when}</span>
+              </div>
+              <p className="text-orange-400/80 text-sm font-semibold mb-3">{e.org}</p>
+              <ul className="space-y-2">
+                {e.points.map((p) => (
+                  <li key={p} className="flex gap-3 text-sm text-slate-400 leading-relaxed">
+                    <span className="text-orange-500/60 flex-shrink-0">▸</span>
+                    {p}
                   </li>
                 ))}
               </ul>
@@ -311,7 +465,8 @@ export default function Resume() {
         </div>
       </Section>
 
-      {/* CTA */}
+      {/* CTA — no WhatsApp CTA here on purpose: wa.me links carry the phone
+          number in the markup, which defeats keeping it off this page. */}
       <div className="glass-card text-center animate-glow-pulse no-print">
         <h2 className="text-2xl font-black text-white mb-3">
           Let&apos;s <span className="gradient-text">work together</span>
@@ -319,8 +474,6 @@ export default function Resume() {
         <p className="text-slate-500 text-sm mb-6 leading-relaxed">
           Open to AI engineering roles and freelance projects.
         </p>
-        {/* No WhatsApp CTA here on purpose — the wa.me link carries the phone
-            number in the markup, which defeats keeping it off this page. */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link href="/contact" className="btn-primary">
             Send a message →
