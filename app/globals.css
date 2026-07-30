@@ -427,6 +427,117 @@
 .blog-content td { color: #94a3b8; }
 .blog-content tbody tr:hover td { background: rgba(255, 255, 255, 0.02); }
 
+/* ── Print: /resume → PDF ─────────────────────────
+   The page is the source of truth for the CV, so "Save as PDF" prints it
+   rather than serving a checked-in file that would drift out of date. */
+
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm 15mm;
+  }
+
+  /* Chrome/Edge only paint backgrounds when asked; we want the opposite —
+     a white sheet with dark text, whatever the screen theme was. */
+  html,
+  body {
+    background: #fff !important;
+    color: #111 !important;
+  }
+
+  /* Site chrome and anything interactive has no place in a document. */
+  nav,
+  footer,
+  .no-print,
+  .cursor-dot,
+  .cursor-ring,
+  button {
+    display: none !important;
+  }
+
+  main {
+    padding: 0 !important;
+  }
+
+  .resume-doc {
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: 10.5pt;
+  }
+
+  /* Entry animations never run in a print context — without this the whole
+     document can render at opacity 0. */
+  .resume-doc *,
+  .resume-doc *::before,
+  .resume-doc *::after {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Flatten the dark theme's palette onto paper. */
+  .resume-doc,
+  .resume-doc p,
+  .resume-doc li,
+  .resume-doc span,
+  .resume-doc h1,
+  .resume-doc h2,
+  .resume-doc h3,
+  .resume-doc strong {
+    color: #111 !important;
+  }
+
+  .resume-doc .text-slate-400,
+  .resume-doc .text-slate-500,
+  .resume-doc .text-slate-600 {
+    color: #333 !important;
+  }
+
+  /* gradient-text paints via background-clip, which prints as nothing. */
+  .resume-doc .gradient-text,
+  .resume-doc .gradient-text-animated {
+    background: none !important;
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+    -webkit-text-fill-color: #111 !important;
+    color: #111 !important;
+  }
+
+  .resume-doc .text-orange-400\/90,
+  .resume-doc .text-orange-400\/80,
+  .resume-doc .text-orange-500\/60 {
+    color: #b23c00 !important;
+  }
+
+  .resume-doc a {
+    color: #111 !important;
+    text-decoration: none !important;
+  }
+
+  /* Skill and language chips: keep the outline, drop the glass fill. */
+  .resume-doc .border-white\/5,
+  .resume-doc .bg-white\/3 {
+    border-color: #ccc !important;
+    background: none !important;
+  }
+
+  .resume-doc h1 { font-size: 24pt !important; }
+  .resume-doc h2 { color: #555 !important; border-color: #ccc !important; }
+
+  /* Don't split a role or project across a page break. */
+  .resume-doc section > div > div,
+  .resume-doc section li {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .resume-doc section {
+    margin-bottom: 1.4rem !important;
+  }
+}
+
 /* ── Custom cursor ────────────────────────────── */
 
 @media (pointer: fine) {

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { whatsappLink } from "../../lib/site";
+
+import PrintButton from "./PrintButton";
 
 export const metadata: Metadata = {
   title: "Resume",
@@ -8,8 +9,6 @@ export const metadata: Metadata = {
     "Nazrul Ansari — AI Engineer & Full-Stack Developer. 4+ years building production LLM applications, AI agents and scalable web platforms across HealthTech, FinTech, Real Estate and Web3.",
   alternates: { canonical: "/resume" },
 };
-
-const PDF_PATH = "/nazrul-ansari-cv.pdf";
 
 const skills: { group: string; items: string[] }[] = [
   {
@@ -145,10 +144,10 @@ function Section({
 
 export default function Resume() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-20">
+    <div className="resume-doc max-w-4xl mx-auto px-4 py-20">
       {/* Header */}
       <header className="mb-14">
-        <div className="section-badge mb-6 animate-fade-in">Resume</div>
+        <div className="section-badge mb-6 animate-fade-in no-print">Resume</div>
         <h1 className="text-4xl md:text-6xl font-black text-white leading-tight mb-3 animate-fade-in-up delay-100">
           Nazrul <span className="gradient-text-animated">Ansari</span>
         </h1>
@@ -156,35 +155,36 @@ export default function Resume() {
           AI Engineer &amp; Full-Stack Developer
         </p>
 
+        {/* Contact: email and public profiles only. Phone number and street
+            address stay off the public page — anyone who needs them can ask. */}
         <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-500 mb-8 animate-fade-in-up delay-200">
-          <span>Mumbai, India · Dubai</span>
           <a href="mailto:nazsats@gmail.com" className="hover:text-white transition-colors">
             nazsats@gmail.com
-          </a>
-          <span>+91 84336 02240</span>
-          <span>+971 58 302 9084</span>
-        </div>
-
-        <div className="flex flex-wrap gap-3 animate-fade-in-up delay-300">
-          <a href={PDF_PATH} download className="btn-primary">
-            Download PDF ↓
           </a>
           <a
             href="https://github.com/nazsats"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-secondary"
+            className="hover:text-white transition-colors"
           >
-            GitHub
+            github.com/nazsats
           </a>
           <a
             href="https://www.linkedin.com/in/naz-sats-026468408/"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-secondary"
+            className="hover:text-white transition-colors"
           >
             LinkedIn
           </a>
+          <span>Open to remote &amp; relocation</span>
+        </div>
+
+        <div className="flex flex-wrap gap-3 animate-fade-in-up delay-300 no-print">
+          <PrintButton />
+          <Link href="/contact" className="btn-secondary">
+            Get in touch
+          </Link>
         </div>
       </header>
 
@@ -312,25 +312,22 @@ export default function Resume() {
       </Section>
 
       {/* CTA */}
-      <div className="glass-card text-center animate-glow-pulse">
+      <div className="glass-card text-center animate-glow-pulse no-print">
         <h2 className="text-2xl font-black text-white mb-3">
           Let&apos;s <span className="gradient-text">work together</span>
         </h2>
         <p className="text-slate-500 text-sm mb-6 leading-relaxed">
           Open to AI engineering roles and freelance projects.
         </p>
+        {/* No WhatsApp CTA here on purpose — the wa.me link carries the phone
+            number in the markup, which defeats keeping it off this page. */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href={whatsappLink("Hi Nazrul! I saw your resume and would like to talk.")}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary"
-          >
-            Chat on WhatsApp →
-          </a>
-          <Link href="/contact" className="btn-secondary">
-            Send a message
+          <Link href="/contact" className="btn-primary">
+            Send a message →
           </Link>
+          <a href="mailto:nazsats@gmail.com" className="btn-secondary">
+            Email me
+          </a>
         </div>
       </div>
     </div>
