@@ -17,9 +17,9 @@ const skills: { group: string; items: string[] }[] = [
   {
     group: "AI & LLMs",
     items: [
-      "OpenAI API (GPT-4o, GPT-4o Vision)", "Claude API", "LangChain", "RAG", "AI Agents", "MCP",
-      "Vector Databases", "Tool-calling", "NL→SQL agents", "LLM guardrails", "Prompt engineering",
-      "Document & image analysis", "Synthetic data generation",
+      "OpenAI API (GPT-4o, GPT-4o Vision)", "Claude API", "LangChain", "LangGraph", "RAG",
+      "AI Agents", "MCP", "Vector Databases", "Tool-calling", "NL→SQL agents", "LLM guardrails",
+      "Prompt engineering", "Document & image analysis", "Synthetic data generation",
     ],
   },
   {
@@ -101,7 +101,7 @@ const openSource = [
 
 const experience = [
   {
-    role: "Freelance AI Engineer & Full-Stack Developer",
+    role: "Lead AI Engineer & Full-Stack Developer",
     org: "Nazsats",
     when: "2021 – Present",
     points: [
@@ -223,7 +223,8 @@ const education = [
 
 const achievements = [
   "Raised $50,000+ through NFT launches and Web3 ecosystem incentives.",
-  "Grew crypto communities to 30,000+ members across Twitter, Telegram and Discord.",
+  "Grew and managed online communities of 200,000+ members across Telegram, Twitter and Discord.",
+  "Drove 500,000+ weekly visits to a project website through community and marketing efforts.",
   "President, Rotaract Club of UPG (2019–2020) — led 10+ events with 500+ participants.",
   "NSS Volunteer (120+ hours) — blood donation and cancer awareness campaigns.",
   "Competition wins: Best Out of Waste (1st), Science & Innovation (2nd), Street Play (3rd).",
@@ -255,10 +256,13 @@ export default function Resume() {
       <header className="mb-14">
         <div className="section-badge mb-6 animate-fade-in no-print">Resume</div>
         <h1 className="text-4xl md:text-6xl font-black text-white leading-tight mb-3 animate-fade-in-up delay-100">
-          Nazrul <span className="gradient-text-animated">Ansari</span>
+          Mohammad Nazrul <span className="gradient-text-animated">Ansari</span>
         </h1>
-        <p className="text-xl text-orange-400/90 font-semibold mb-6 animate-fade-in-up delay-200">
+        <p className="text-xl text-orange-400/90 font-semibold mb-3 animate-fade-in-up delay-200">
           AI Engineer &amp; Full-Stack Developer
+        </p>
+        <p className="text-sm text-slate-500 mb-6 animate-fade-in-up delay-200">
+          Mumbai, India · Dubai, UAE — available to interview in the UAE, immediate joiner
         </p>
 
         {/* Contact: email and public profiles only. Phone number and street
@@ -283,7 +287,6 @@ export default function Resume() {
           >
             LinkedIn
           </a>
-          <span>Open to remote &amp; relocation</span>
         </div>
 
         <div className="flex flex-wrap gap-3 animate-fade-in-up delay-300 no-print">
