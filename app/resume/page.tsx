@@ -65,11 +65,11 @@ const skills: { group: string; items: string[] }[] = [
   },
 ];
 
-/** Filed against libraries I use in production — verified, public, linkable. */
+/** Filed against libraries I use in production — every item public and linkable. */
 const openSource = [
   {
     repo: "qdrant/qdrant-client",
-    title: "values_count filter matched points no value satisfied",
+    title: "values_count filter matched points that no single value satisfied",
     detail:
       "Found a parity bug between Qdrant's local mode and the real server: four range bounds were checked independently across all counts, so two different values could each satisfy half a range. Filed the issue, then the fix — one expression matching the server's semantics, with a congruence regression test running the same query against both clients. +74 / −9.",
     links: [
@@ -79,20 +79,22 @@ const openSource = [
   },
   {
     repo: "run-llama/llama_index",
-    title: "run_async_tasks swallows task exceptions when show_progress=True",
+    title: "similarity_top_k=0 returned every embedding instead of none",
     detail:
-      "The progress-bar code path silently discarded exceptions raised inside async tasks, so failures surfaced as missing results rather than errors.",
+      "Two retrieval functions tested the limit for truthiness, so an explicit 0 was indistinguishable from \"no limit\" and returned the entire index — the opposite of the request. A sibling function in the same file handled 0 correctly, so the three disagreed on one contract. Fixed both call sites with regression tests that fail on main and pin the default behaviour.",
     links: [
-      { label: "Issue #22493", url: "https://github.com/run-llama/llama_index/issues/22493" },
+      { label: "Issue #22508", url: "https://github.com/run-llama/llama_index/issues/22508" },
+      { label: "PR #22519", url: "https://github.com/run-llama/llama_index/pull/22519" },
     ],
   },
   {
     repo: "run-llama/llama_index",
-    title: "similarity_top_k=0 returns all embeddings instead of none",
+    title: "run_async_tasks swallowed task exceptions when show_progress=True",
     detail:
-      "A falsy-zero check meant asking for zero results returned the entire index — the opposite of the request.",
+      "A try/except intended as a compatibility check also wrapped task execution, so real failures were swallowed and replaced by an unrelated error that sent users debugging their event loop. Toggling a progress bar changed error semantics. Fixed with a parametrised regression test across both code paths.",
     links: [
-      { label: "Issue #22508", url: "https://github.com/run-llama/llama_index/issues/22508" },
+      { label: "Issue #22493", url: "https://github.com/run-llama/llama_index/issues/22493" },
+      { label: "PR #22520", url: "https://github.com/run-llama/llama_index/pull/22520" },
     ],
   },
 ];
@@ -301,12 +303,17 @@ export default function Resume() {
           from backend architecture to intuitive user interfaces. Built products across HealthTech,
           FinTech, Real Estate and SaaS, while also delivering secure Web3 applications, smart
           contracts and token standards. Contributes bug reports and fixes to the open-source AI
-          libraries I build on.
+          libraries I build on — currently qdrant-client and LlamaIndex.
         </p>
       </Section>
 
       {/* Open source first — it's third-party-verifiable, which nothing else here is. */}
       <Section title="Open Source Contributions">
+        <p className="text-slate-400 text-sm leading-relaxed mb-6">
+          <strong className="text-white">3 bugs found, reported and fixed</strong> across two
+          widely-used AI libraries — each with a reproduction, a minimal fix and regression
+          tests that fail without it.
+        </p>
         <div className="space-y-6">
           {openSource.map((c) => (
             <div key={c.title}>
