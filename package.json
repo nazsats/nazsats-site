@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "draft": "node scripts/draft-post.mjs",
-    "migrate": "node scripts/migrate-posts.mjs"
+    "migrate": "node scripts/migrate-posts.mjs",
+    "publish": "node scripts/publish-post.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.0",
@@ -35,4 +36,5 @@
     "tailwindcss": "^4",
     "typescript": "^5"
   }
+  
 }
