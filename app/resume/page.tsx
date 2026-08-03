@@ -70,11 +70,12 @@ const openSource = [
   {
     repo: "qdrant/qdrant-client",
     title: "values_count filter matched points that no single value satisfied",
+    merged: true,
     detail:
-      "Found a parity bug between Qdrant's local mode and the real server: four range bounds were checked independently across all counts, so two different values could each satisfy half a range. Filed the issue, then the fix — one expression matching the server's semantics, with a congruence regression test running the same query against both clients. +74 / −9.",
+      "Found a parity bug between Qdrant's local mode and the real server: four range bounds were checked independently across all counts, so two different values could each satisfy half a range. Filed the issue, then the fix — one expression matching the server's semantics, with a congruence regression test running the same query against both clients. Merged +74 / −9; a second fix submitted for the same bug two days later was closed in favour of this one.",
     links: [
       { label: "Issue #1292", url: "https://github.com/qdrant/qdrant-client/issues/1292" },
-      { label: "PR #1293", url: "https://github.com/qdrant/qdrant-client/pull/1293" },
+      { label: "PR #1293 (merged)", url: "https://github.com/qdrant/qdrant-client/pull/1293" },
     ],
   },
   {
@@ -313,15 +314,23 @@ export default function Resume() {
       {/* Open source first — it's third-party-verifiable, which nothing else here is. */}
       <Section title="Open Source Contributions">
         <p className="text-slate-400 text-sm leading-relaxed mb-6">
-          <strong className="text-white">3 bugs found, reported and fixed</strong> across two
+          <strong className="text-white">3 bugs found, reported and patched</strong> across two
           widely-used AI libraries — each with a reproduction, a minimal fix and regression
-          tests that fail without it.
+          tests that fail without it. <strong className="text-orange-400/90">One merged
+          upstream into qdrant-client.</strong>
         </p>
         <div className="space-y-6">
           {openSource.map((c) => (
             <div key={c.title}>
               <div className="flex items-baseline justify-between gap-4 flex-wrap">
-                <h3 className="text-white font-bold text-sm">{c.title}</h3>
+                <h3 className="text-white font-bold text-sm">
+                  {c.title}
+                  {c.merged && (
+                    <span className="ml-2 align-middle text-[10px] font-black uppercase tracking-wider text-green-400 border border-green-400/30 bg-green-400/10 px-2 py-0.5 rounded-full">
+                      Merged
+                    </span>
+                  )}
+                </h3>
                 <span className="text-xs text-slate-600 font-mono">{c.repo}</span>
               </div>
               <p className="text-slate-400 text-sm leading-relaxed mt-1.5">{c.detail}</p>
