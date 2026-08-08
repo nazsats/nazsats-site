@@ -171,13 +171,13 @@ const projects = [
   },
   {
     name: "Copy for LLM",
-    tagline: "VS Code extension — published",
+    tagline: "VS Code extension",
     stack: "TypeScript · VS Code Extension API",
     url: "https://github.com/nazsats/copy-for-llm",
     points: [
-      "Built and published a VS Code extension that copies a selection together with its file path and line range, formatted for pasting into an AI chat — removing a small friction repeated dozens of times a day.",
+      "Built a VS Code extension that copies a selection together with its file path and line range, formatted for pasting into an AI chat — removing a small friction repeated dozens of times a day.",
       "Handles multi-cursor selections as ordered blocks, falls back to the whole file when nothing is selected, and can dump every open tab as a single context block with a size warning.",
-      "Zero runtime dependencies, an 11 KB package, and a release workflow publishing to both the VS Code Marketplace and Open VSX.",
+      "Zero runtime dependencies, an 11 KB package, and a tagged release workflow targeting both the VS Code Marketplace and Open VSX.",
     ],
   },
 ];
