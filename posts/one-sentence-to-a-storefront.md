@@ -1,6 +1,6 @@
 ---
-title: "One Sentence to a Storefront: Building an AI Store Builder in a Day"
-description: "I built an AI store builder that turns a sentence into a complete UAE storefront in twenty seconds. The interesting part isn't the speed — it's that the model never writes a single line of code."
+title: "Building Nazsats AI Builder: One Sentence to a Storefront"
+description: "Nazsats AI Builder turns a sentence into a complete UAE storefront in twenty seconds. The interesting part isn't the speed — it's that the model never writes a single line of code."
 date: "2026-08-08"
 author: "Nazsats"
 tags: ["AI", "Next.js", "NestJS", "Product", "OpenAI"]
@@ -11,7 +11,7 @@ Type *"Create a luxury perfume store for UAE customers"*, wait about twenty seco
 complete storefront: brand name, colour palette, typography, hero, four categories, eight
 products priced in AED, plus About and Contact pages. Preview it, edit any field inline, save it.
 
-That's the **Nazsats AI Store Builder**.
+That's **Nazsats AI Builder**.
 
 ![The landing page — the headline "Your store. Imagined by you. Built by AI." beside an interactive 3D commerce globe centred on the UAE](https://raw.githubusercontent.com/nazsats/dukkanify-ai-store-builder/main/docs/screenshots/landing-hero.webp)
 

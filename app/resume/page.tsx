@@ -48,15 +48,16 @@ const skills: { group: string; items: string[] }[] = [
   {
     group: "Backend & APIs",
     items: [
-      "FastAPI (REST + WebSocket)", "Flask", "Node.js", "Express.js", "Firebase (Auth, Firestore, Admin SDK)",
-      "Supabase", "REST API design", "RBAC & JWT", "Rate limiting", "Input sanitisation",
+      "FastAPI (REST + WebSocket)", "NestJS", "Flask", "Node.js", "Express.js",
+      "Firebase (Auth, Firestore, Admin SDK)", "Supabase", "REST API design", "RBAC & JWT",
+      "Rate limiting", "Input sanitisation", "Monorepo architecture",
     ],
   },
   {
     group: "Databases & Data",
     items: [
-      "PostgreSQL", "Firestore", "MongoDB", "MySQL", "Schema design & indexing",
-      "Web scraping (BeautifulSoup)", "Pandas", "CSV/JSON pipelines",
+      "PostgreSQL", "Prisma", "SQLAlchemy", "Firestore", "MongoDB", "MySQL",
+      "Schema design & indexing", "Zod validation", "Web scraping (BeautifulSoup)", "Pandas",
     ],
   },
   {
@@ -133,15 +134,15 @@ const experience = [
 
 const projects = [
   {
-    name: "AutoProfit",
-    tagline: "AI algorithmic crypto trading system",
-    stack: "Python · FastAPI · Bybit (ccxt) · LLM · Solana · Next.js · Firebase",
-    url: "https://github.com/nazsats/auto-profit",
+    name: "Nazsats AI Builder",
+    tagline: "One sentence to a complete storefront, in twenty seconds",
+    stack: "Next.js 15 · NestJS 11 · PostgreSQL 16 · Prisma 7 · OpenAI structured outputs · Zod",
+    url: "https://github.com/nazsats/dukkanify-ai-store-builder",
     points: [
-      "Built an end-to-end platform executing live algorithmic trades on Bybit via ccxt, with dashboard-controlled demo/live switching and a take-profit ladder that auto-sells at 2×, 5× and 10×.",
-      "Engineered an LLM analysis engine scoring coins from Reddit, CryptoPanic and RSS news sentiment to drive buy/sell/hold signals, with VADER as an offline fallback.",
-      "Added real-time Pump.fun launch sniping over WebSocket plus whale-wallet copy-trading, with configurable market-cap and dev-buy filters.",
-      "Shipped a Next.js + Firebase dashboard showing live positions, realised/unrealised PnL, win rate and equity, fed by a FastAPI REST + WebSocket backend with Telegram alerts and built-in risk controls.",
+      "Built an AI store builder that turns a one-sentence brief into a full storefront — brand, palette, typography, hero, categories, an eight-product catalogue in AED, and About/Contact pages — with live preview and inline editing.",
+      "Designed the pipeline so the model returns a schema-validated blueprint rather than code: prompt → LLM → StoreBlueprint (Zod) → assembler → deterministic React renderer. Model output is data, never executable, so prompt injection cannot yield XSS.",
+      "That boundary bought inline field-level editing, relational persistence, undo/redo as JSON snapshots, provider portability behind one adapter, and a test suite that runs with no API key — 83 tests passing.",
+      "Shipped as a monorepo with shared domain packages, Google sign-in, a REST surface, and automated screenshot capture driving headless Chrome so the docs never drift from the product.",
     ],
   },
   {
@@ -169,25 +170,14 @@ const projects = [
     ],
   },
   {
-    name: "OTTER Protocol",
-    tagline: "ERC-OTTER community token standard",
-    stack: "Solidity · Hardhat · Next.js · Firebase · Sepolia",
-    url: "https://github.com/nazsats/otter-protocol",
+    name: "Copy for LLM",
+    tagline: "VS Code extension — published",
+    stack: "TypeScript · VS Code Extension API",
+    url: "https://github.com/nazsats/copy-for-llm",
     points: [
-      "Authored an EIP-style token standard extending ERC-20 with four novel primitives: immutable transfer-tax distribution, time-based holder tiers, an on-chain meme economy with epoch settlement, and a constrained governance model.",
-      "Wrote and deployed the reference Solidity contracts to Sepolia testnet using Hardhat.",
-      "Built the companion dApp — cipher gate, on-chain initiation terminal, missions and governance, and an in-app EIP viewer.",
-    ],
-  },
-  {
-    name: "Eventopic",
-    tagline: "Event-staffing platform for Dubai",
-    stack: "Next.js · Firebase · OpenAI API",
-    url: "https://github.com/nazsats/eventopic",
-    points: [
-      "Built a security-first staffing marketplace: job discovery, portfolio profiles and a real-time application-tracking dashboard.",
-      "Integrated a 24/7 AI career-assistant chatbot powered by the OpenAI API.",
-      "Hardened the stack with authenticated API routes via the Firebase Admin SDK, granular Firestore rules, rate limiting and input sanitisation.",
+      "Built and published a VS Code extension that copies a selection together with its file path and line range, formatted for pasting into an AI chat — removing a small friction repeated dozens of times a day.",
+      "Handles multi-cursor selections as ordered blocks, falls back to the whole file when nothing is selected, and can dump every open tab as a single context block with a size warning.",
+      "Zero runtime dependencies, an 11 KB package, and a release workflow publishing to both the VS Code Marketplace and Open VSX.",
     ],
   },
 ];
