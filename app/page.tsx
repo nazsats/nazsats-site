@@ -12,13 +12,23 @@ import TechStack from "../components/TechStack";
 import GitHubPinnedRepos from "../components/GitHubPinnedRepos";
 import GitHubHeatmap from "../components/GitHubHeatmap";
 import GitHubFeed from "../components/GitHubFeed";
+import CodingTime from "../components/CodingTime";
+import { getCodingStats } from "../lib/coding";
+
+/** Coding time moves through the day; don't serve an all-day-stale homepage. */
+export const revalidate = 300;
 
 export default async function Home() {
-  const [ghStats, pinnedRepos, contributions, activity] = await Promise.all([
+  const [ghStats, pinnedRepos, contributions, activity, coding] = await Promise.all([
     getGitHubStats(),
     getPinnedRepos(),
     getContributions(),
     getRecentActivity(),
+    // Never let a Supabase or WakaTime hiccup take the homepage down with it.
+    getCodingStats(90).catch((err) => {
+      console.error("[home] coding stats", err);
+      return null;
+    }),
   ]);
 
   return (
@@ -244,6 +254,32 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      {/* ── Coding Time ──────────────────────────── */}
+      {/* Left untinted on purpose: the tinted "Why Nazsats" band follows
+          immediately, and two tinted sections in a row read as one block. */}
+      {coding && (
+        <section className="pb-24 px-4">
+          <div className="max-w-7xl mx-auto">
+            <ScrollReveal>
+              <div className="text-center mb-14">
+                <div className="section-badge mb-4">Time at the keyboard</div>
+                <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+                  Coding <span className="gradient-text">Time</span>
+                </h2>
+                <p className="text-slate-500 max-w-xl mx-auto">
+                  Measured, not estimated — editor time tracked automatically, plus
+                  sessions clocked by hand.
+                </p>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={100}>
+              <CodingTime initial={coding} />
+            </ScrollReveal>
+          </div>
+        </section>
+      )}
 
       {/* ── Why Nazsats ──────────────────────────── */}
       <section className="py-24 px-4 bg-dark-800/20">
