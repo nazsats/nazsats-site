@@ -85,12 +85,8 @@ export async function logActivity(entry: NewActivity) {
   if (error) throw new Error(error.message);
 }
 
-/** Insert many at once, skipping any external_id already stored. */
-export async function logActivityBatch(entries: NewActivity[]): Promise<number> {
-  if (entries.length === 0) return 0;
-  const supabase = getServiceClient();
-
-  const rows = entries.map((e) => ({
+function toRow(e: NewActivity) {
+  return {
     kind: e.kind,
     source: e.source ?? "manual",
     title: e.title,
@@ -100,11 +96,36 @@ export async function logActivityBatch(entries: NewActivity[]): Promise<number> 
     metrics: e.metrics ?? {},
     occurred_at: e.occurred_at ?? new Date().toISOString(),
     external_id: e.external_id ?? null,
-  }));
+  };
+}
+
+/** Insert many at once, skipping any external_id already stored. */
+export async function logActivityBatch(entries: NewActivity[]): Promise<number> {
+  if (entries.length === 0) return 0;
+  const supabase = getServiceClient();
 
   const { data, error } = await supabase
     .from("activity")
-    .upsert(rows, { onConflict: "external_id", ignoreDuplicates: true })
+    .upsert(entries.map(toRow), { onConflict: "external_id", ignoreDuplicates: true })
+    .select("id");
+  if (error) throw new Error(error.message);
+  return data?.length ?? 0;
+}
+
+/**
+ * Like logActivityBatch, but existing rows are overwritten rather than kept.
+ *
+ * Use this for sources that re-report a *changing* value for the same key —
+ * coding time for today grows all day, so the row written at 02:30 is stale by
+ * evening. logActivityBatch would keep the stale row forever.
+ */
+export async function upsertActivityBatch(entries: NewActivity[]): Promise<number> {
+  if (entries.length === 0) return 0;
+  const supabase = getServiceClient();
+
+  const { data, error } = await supabase
+    .from("activity")
+    .upsert(entries.map(toRow), { onConflict: "external_id" })
     .select("id");
   if (error) throw new Error(error.message);
   return data?.length ?? 0;

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { logActivityBatch, formatDuration, type NewActivity } from "../../../../lib/activity";
+import { upsertActivityBatch, formatDuration, type NewActivity } from "../../../../lib/activity";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
@@ -42,11 +42,19 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  // Last 7 days. Re-running overwrites the same day rows via external_id, so a
-  // day that was still in progress at the last run gets corrected later.
+  // Last 7 days by default. Re-running overwrites the same day rows via
+  // external_id, so a day that was still in progress at the last run gets
+  // corrected later.
+  //
+  // ?days=N widens the window for a one-off backfill — capped at 14 because
+  // WakaTime's free plan keeps no more history than that, so a larger number
+  // would only return empty days.
+  const requested = Number(request.nextUrl.searchParams.get("days"));
+  const days = Number.isFinite(requested) ? Math.min(Math.max(requested, 1), 14) : 7;
+
   const end = new Date();
   const start = new Date();
-  start.setDate(start.getDate() - 6);
+  start.setDate(start.getDate() - (days - 1));
 
   const params = new URLSearchParams({
     start: start.toISOString().slice(0, 10),
@@ -76,31 +84,44 @@ export async function GET(request: NextRequest) {
       .filter((d) => (d.grand_total?.total_seconds ?? 0) >= 600)
       .map((d) => {
         const seconds = Math.round(d.grand_total.total_seconds);
-        const languages = (d.languages ?? []).slice(0, 5).map((l) => l.name);
-        const projects = (d.projects ?? []).slice(0, 5).map((p) => p.name);
+
+        // Keep the per-slice timings, not just the names — the public chart
+        // breaks the day down by language, and a bare name carries no number
+        // to plot. WakaTime only keeps ~14 days, so whatever is dropped here
+        // is unrecoverable later.
+        const toSlices = (rows: { name: string; total_seconds: number }[] = []) =>
+          rows
+            .filter((r) => r.total_seconds > 0)
+            .map((r) => ({ name: r.name, seconds: Math.round(r.total_seconds) }));
+
+        const languages = toSlices(d.languages);
+        const projects = toSlices(d.projects);
         const editors = (d.editors ?? []).map((e) => e.name);
+
+        const languageNames = languages.map((l) => l.name);
+        const projectNames = projects.map((p) => p.name);
 
         return {
           kind: "coding" as const,
           source: "wakatime" as const,
-          title: `${formatDuration(seconds)} coding — ${projects.slice(0, 2).join(", ") || "misc"}`,
+          title: `${formatDuration(seconds)} coding — ${projectNames.slice(0, 2).join(", ") || "misc"}`,
           body: [
-            projects.length ? `Projects: ${projects.join(", ")}` : "",
-            languages.length ? `Languages: ${languages.join(", ")}` : "",
+            projectNames.length ? `Projects: ${projectNames.join(", ")}` : "",
+            languageNames.length ? `Languages: ${languageNames.join(", ")}` : "",
             editors.length ? `Editors: ${editors.join(", ")}` : "",
           ]
             .filter(Boolean)
             .join("\n"),
-          tags: languages,
+          tags: languageNames.slice(0, 5),
           metrics: { seconds, projects, languages, editors },
           occurred_at: new Date(`${d.range.date}T12:00:00Z`).toISOString(),
           external_id: `wakatime:${d.range.date}`,
         };
       });
 
-    const inserted = await logActivityBatch(entries);
+    const written = await upsertActivityBatch(entries);
 
-    return NextResponse.json({ ok: true, days: entries.length, inserted });
+    return NextResponse.json({ ok: true, days: entries.length, written });
   } catch (err) {
     console.error("[cron/coding]", err);
     return NextResponse.json(

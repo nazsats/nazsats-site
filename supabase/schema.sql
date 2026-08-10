@@ -111,3 +111,39 @@ create index if not exists activity_resume_idx      on public.activity (resume_w
 create index if not exists activity_unreviewed_idx  on public.activity (reviewed) where not reviewed;
 
 alter table public.activity enable row level security;
+
+
+-- ── Manual coding sessions ──────────────────────────────────────────────────
+-- The stopwatch. WakaTime only sees the editor, so time spent whiteboarding,
+-- reading docs, or debugging on paper never lands in `activity`. Start/stop
+-- from /admin/coding writes here instead, and the public chart adds the two
+-- together per day.
+--
+-- A row with ended_at IS NULL is the session running right now. At most one
+-- may exist at a time — the partial unique index below is what enforces that,
+-- so a double-tap on Start cannot open two overlapping sessions.
+
+create table if not exists public.coding_sessions (
+  id         uuid primary key default gen_random_uuid(),
+  started_at timestamptz not null default now(),
+  ended_at   timestamptz,
+  note       text not null default '',
+  project    text not null default '',
+  created_at timestamptz not null default now(),
+
+  -- A session cannot finish before it began.
+  constraint coding_sessions_ends_after_start
+    check (ended_at is null or ended_at >= started_at)
+);
+
+create index if not exists coding_sessions_started_at_idx
+  on public.coding_sessions (started_at desc);
+
+-- At most one open session, ever. Indexing the expression `ended_at is null`
+-- and filtering on the same condition means every open row indexes the identical
+-- value `true`, so the second one collides. (A bare constant is not a legal
+-- index expression, hence the column-derived one.)
+create unique index if not exists coding_sessions_one_open_idx
+  on public.coding_sessions ((ended_at is null)) where ended_at is null;
+
+alter table public.coding_sessions enable row level security;
