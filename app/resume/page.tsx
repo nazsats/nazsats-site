@@ -61,6 +61,13 @@ const skills: { group: string; items: string[] }[] = [
     ],
   },
   {
+    group: "AI-Native Development",
+    items: [
+      "Cursor", "Claude Code", "GitHub Copilot", "Spec-driven development",
+      "Agentic coding workflows", "AI code review",
+    ],
+  },
+  {
     group: "Tools",
     items: ["Git", "GitHub", "Docker", "Vercel", "Replit", "Postman", "Figma", "OpenCV", "Agile"],
   },
@@ -72,11 +79,13 @@ const openSource = [
     repo: "qdrant/qdrant-client",
     title: "values_count filter matched points that no single value satisfied",
     merged: true,
+    shipped: "v1.19.0",
     detail:
-      "Found a parity bug between Qdrant's local mode and the real server: four range bounds were checked independently across all counts, so two different values could each satisfy half a range. Filed the issue, then the fix — one expression matching the server's semantics, with a congruence regression test running the same query against both clients. Merged +74 / −9; a second fix submitted for the same bug two days later was closed in favour of this one.",
+      "Found a parity bug between Qdrant's local mode and the real server: four range bounds were checked independently across all counts, so two different values could each satisfy half a range. Filed the issue, then the fix — one expression matching the server's semantics, with a congruence regression test running the same query against both clients. Merged +74 / −9 and shipped in qdrant-client v1.19.0; a second fix submitted for the same bug two days later was closed in favour of this one.",
     links: [
       { label: "Issue #1292", url: "https://github.com/qdrant/qdrant-client/issues/1292" },
       { label: "PR #1293 (merged)", url: "https://github.com/qdrant/qdrant-client/pull/1293" },
+      { label: "Released in v1.19.0", url: "https://github.com/qdrant/qdrant-client/releases/tag/v1.19.0" },
     ],
   },
   {
@@ -132,12 +141,23 @@ const experience = [
   },
 ];
 
-const projects = [
+type Project = {
+  name: string;
+  tagline: string;
+  stack: string;
+  url: string;
+  /** Deployed demo, where one is public. Recruiters click this before the repo. */
+  live?: string;
+  points: string[];
+};
+
+const projects: Project[] = [
   {
-    name: "Nazsats AI Builder",
+    name: "Nazsats AI Store Builder",
     tagline: "One sentence to a complete storefront, in twenty seconds",
     stack: "Next.js 15 · NestJS 11 · PostgreSQL 16 · Prisma 7 · OpenAI structured outputs · Zod",
-    url: "https://github.com/nazsats/dukkanify-ai-store-builder",
+    url: "https://github.com/nazsats/nazsats-ai-store-builder",
+    live: "https://nazsats-ai-store-builder-web.vercel.app/",
     points: [
       "Built an AI store builder that turns a one-sentence brief into a full storefront — brand, palette, typography, hero, categories, an eight-product catalogue in AED, and About/Contact pages — with live preview and inline editing.",
       "Designed the pipeline so the model returns a schema-validated blueprint rather than code: prompt → LLM → StoreBlueprint (Zod) → assembler → deterministic React renderer. Model output is data, never executable, so prompt injection cannot yield XSS.",
@@ -150,6 +170,7 @@ const projects = [
     tagline: "AI blood report analyser — web & mobile",
     stack: "Next.js 16 · TypeScript · GPT-4o Vision · React Native (Expo) · Firebase",
     url: "https://github.com/nazsats/blood-report-analyzer",
+    live: "https://blood-report-analyzer-phi.vercel.app/",
     points: [
       "Built a health platform that analyses PDF and image blood reports with GPT-4o Vision in under 30 seconds, extracting biomarkers and flagging out-of-range values.",
       "Generated personalised wellness protocols — meal plans, supplement stacks and lifestyle recommendations — from each user's blood chemistry, with health-score trend tracking across reports.",
@@ -184,6 +205,10 @@ const projects = [
 
 const otherWork = [
   {
+    name: "nazsats.com",
+    note: "This site — Next.js 16 with a Supabase-auth admin CMS, one-click AI draft generation, GitHub REST + GraphQL integrations and a hardened security layer (RLS, XSS sanitisation, CSP). Includes a public dashboard tracking my coding hours, languages and streaks from real editor telemetry, synced nightly.",
+  },
+  {
     name: "CatCents",
     note: "GameFi & DAO platform on Monad testnet (Founder, 2023–present). Solidity contracts for minting, burning and reward boosting; React/Next.js dashboard for wallet connection, quests and governance. 30,000+ member community.",
   },
@@ -216,6 +241,7 @@ const achievements = [
   "Raised $50,000+ through NFT launches and Web3 ecosystem incentives.",
   "Grew and managed online communities of 200,000+ members across Telegram, Twitter and Discord.",
   "Drove 500,000+ weekly visits to a project website through community and marketing efforts.",
+  "Delivered a guest lecture on AI to students at L. S. Raheja College, Mumbai (2026).",
   "President, Rotaract Club of UPG (2019–2020) — led 10+ events with 500+ participants.",
   "NSS Volunteer (120+ hours) — blood donation and cancer awareness campaigns.",
   "Competition wins: Best Out of Waste (1st), Science & Innovation (2nd), Street Play (3rd).",
@@ -252,8 +278,11 @@ export default function Resume() {
         <p className="text-xl text-orange-400/90 font-semibold mb-3 animate-fade-in-up delay-200">
           AI Engineer &amp; Full-Stack Developer
         </p>
+        {/* "Interview in the UAE" and "immediate joiner" contradicted each
+            other; split into the two facts they were trying to say. */}
         <p className="text-sm text-slate-500 mb-6 animate-fade-in-up delay-200">
-          Mumbai, India · Dubai, UAE — available to interview in the UAE, immediate joiner
+          Mumbai, India · Dubai, UAE — available for interviews now (remote/video); can relocate
+          to the UAE within 15 days
         </p>
 
         {/* Contact: email and public profiles only. Phone number and street
@@ -293,7 +322,8 @@ export default function Resume() {
           AI &amp; Full-Stack Engineer with <strong className="text-white">4+ years</strong> of
           experience building and deploying production-grade LLM applications, AI agents,
           algorithmic trading systems and scalable web platforms. Experienced in designing
-          end-to-end AI solutions using Python, FastAPI, LangChain, OpenAI, Claude and Next.js —
+          end-to-end AI solutions using Python, FastAPI, LangChain, LangGraph, OpenAI, Claude and
+          Next.js —
           from backend architecture to intuitive user interfaces. Built products across HealthTech,
           FinTech, Real Estate and SaaS, while also delivering secure Web3 applications, smart
           contracts and token standards. Contributes bug reports and fixes to the open-source AI
@@ -306,8 +336,8 @@ export default function Resume() {
         <p className="text-slate-400 text-sm leading-relaxed mb-6">
           <strong className="text-white">3 bugs found, reported and patched</strong> across two
           widely-used AI libraries — each with a reproduction, a minimal fix and regression
-          tests that fail without it. <strong className="text-orange-400/90">One merged
-          upstream into qdrant-client.</strong>
+          tests that fail without it. <strong className="text-orange-400/90">One merged upstream
+          and shipped in qdrant-client v1.19.0.</strong>
         </p>
         <div className="space-y-6">
           {openSource.map((c) => (
@@ -317,7 +347,7 @@ export default function Resume() {
                   {c.title}
                   {c.merged && (
                     <span className="ml-2 align-middle text-[10px] font-black uppercase tracking-wider text-green-400 border border-green-400/30 bg-green-400/10 px-2 py-0.5 rounded-full">
-                      Merged
+                      {c.shipped ? `Shipped ${c.shipped}` : "Merged"}
                     </span>
                   )}
                 </h3>
@@ -377,14 +407,26 @@ export default function Resume() {
             <div key={p.name}>
               <div className="flex items-baseline justify-between gap-4 flex-wrap">
                 <h3 className="text-white font-bold">{p.name}</h3>
-                <a
-                  href={p.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs text-slate-600 font-mono hover:text-orange-400 transition-colors"
-                >
-                  {p.url.replace("https://", "")} ↗
-                </a>
+                <span className="flex items-center gap-3 flex-wrap">
+                  {p.live && (
+                    <a
+                      href={p.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-mono text-orange-400/80 border border-orange-400/20 px-2 py-1 rounded-md hover:border-orange-400/50 transition-colors"
+                    >
+                      Live demo ↗
+                    </a>
+                  )}
+                  <a
+                    href={p.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs text-slate-600 font-mono hover:text-orange-400 transition-colors"
+                  >
+                    {p.url.replace("https://", "")} ↗
+                  </a>
+                </span>
               </div>
               <p className="text-orange-400/80 text-sm font-semibold">{p.tagline}</p>
               <p className="text-slate-600 text-xs font-mono mb-3">{p.stack}</p>
