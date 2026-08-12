@@ -89,6 +89,24 @@ const openSource = [
     ],
   },
   {
+    repo: "dottxt-ai/outlines",
+    title: "Regex terms with a backreference failed to compile at all",
+    detail:
+      "to_regex wrapped every term in a capturing group. Groups are there to bind operators, but capturing renumbers the groups inside them — so a user pattern carrying a numbered backreference was rewritten to mean something else, and Regex(r\"(a)\\1\") raised \"cannot refer to an open group\" instead of matching. Named backreferences were unaffected, so the behaviour depended on which group syntax you happened to pick. Fixed by making every wrapper non-capturing, with a regression test using re.fullmatch as an independent oracle.",
+    links: [
+      { label: "PR #1993", url: "https://github.com/dottxt-ai/outlines/pull/1993" },
+    ],
+  },
+  {
+    repo: "qdrant/qdrant-client",
+    title: "Two filter conditions returned the wrong points in local mode",
+    detail:
+      "Found by running identical filters against local mode and a real Qdrant 1.19.0 server and diffing the matched ids. MatchExcept treated an explicit null as a value that differs from everything, so it matched points the server excluded — it is the only negated match condition, and the only one without a type guard. Separately, an empty `should` matched nothing rather than everything, because any([]) is False while the sibling must/must_not clauses use all() and are vacuously true. Both fixed with congruence tests that fail without the change.",
+    links: [
+      { label: "PR #1333", url: "https://github.com/qdrant/qdrant-client/pull/1333" },
+    ],
+  },
+  {
     repo: "run-llama/llama_index",
     title: "similarity_top_k=0 returned every embedding instead of none",
     detail:
@@ -327,17 +345,17 @@ export default function Resume() {
           from backend architecture to intuitive user interfaces. Built products across HealthTech,
           FinTech, Real Estate and SaaS, while also delivering secure Web3 applications, smart
           contracts and token standards. Contributes bug reports and fixes to the open-source AI
-          libraries I build on — currently qdrant-client and LlamaIndex.
+          libraries I build on — currently qdrant-client, LlamaIndex and Outlines.
         </p>
       </Section>
 
       {/* Open source first — it's third-party-verifiable, which nothing else here is. */}
       <Section title="Open Source Contributions">
         <p className="text-slate-400 text-sm leading-relaxed mb-6">
-          <strong className="text-white">3 bugs found, reported and patched</strong> across two
+          <strong className="text-white">6 bugs found, reported and patched</strong> across three
           widely-used AI libraries — each with a reproduction, a minimal fix and regression
           tests that fail without it. <strong className="text-orange-400/90">One merged upstream
-          and shipped in qdrant-client v1.19.0.</strong>
+          and shipped in qdrant-client v1.19.0</strong>; the rest are open pull requests.
         </p>
         <div className="space-y-6">
           {openSource.map((c) => (
