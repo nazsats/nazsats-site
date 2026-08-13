@@ -277,7 +277,7 @@ const languages = [
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="mb-12">
-      <h2 className="text-xs font-black uppercase tracking-[0.2em] text-slate-500 border-b border-white/10 pb-2 mb-6">
+      <h2 className="text-xs font-black uppercase tracking-[0.2em] text-slate-500 border-b border-slate-900/[0.10] pb-2 mb-6">
         {title}
       </h2>
       {children}
@@ -291,7 +291,7 @@ export default function Resume() {
       {/* Header */}
       <header className="mb-14">
         <div className="section-badge mb-6 animate-fade-in no-print">Resume</div>
-        <h1 className="text-4xl md:text-6xl font-black text-white leading-tight mb-3 animate-fade-in-up delay-100">
+        <h1 className="text-4xl md:text-6xl font-black text-slate-200 leading-tight mb-3 animate-fade-in-up delay-100">
           Mohammad Nazrul <span className="gradient-text-animated">Ansari</span>
         </h1>
         <p className="text-xl text-orange-400/90 font-semibold mb-3 animate-fade-in-up delay-200">
@@ -307,14 +307,14 @@ export default function Resume() {
         {/* Contact: email and public profiles only. Phone number and street
             address stay off the public page — anyone who needs them can ask. */}
         <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-500 mb-8 animate-fade-in-up delay-200">
-          <a href="mailto:nazsats@gmail.com" className="hover:text-white transition-colors">
+          <a href="mailto:nazsats@gmail.com" className="hover:text-slate-200 transition-colors">
             nazsats@gmail.com
           </a>
           <a
             href="https://github.com/nazsats"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-white transition-colors"
+            className="hover:text-slate-200 transition-colors"
           >
             github.com/nazsats
           </a>
@@ -322,7 +322,7 @@ export default function Resume() {
             href="https://www.linkedin.com/in/naz-sats-026468408/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-white transition-colors"
+            className="hover:text-slate-200 transition-colors"
           >
             LinkedIn
           </a>
@@ -338,7 +338,7 @@ export default function Resume() {
 
       <Section title="Profile">
         <p className="text-slate-400 leading-relaxed">
-          AI &amp; Full-Stack Engineer with <strong className="text-white">4+ years</strong> of
+          AI &amp; Full-Stack Engineer with <strong className="text-slate-200">4+ years</strong> of
           experience building and deploying production-grade LLM applications, AI agents,
           algorithmic trading systems and scalable web platforms. Experienced in designing
           end-to-end AI solutions using Python, FastAPI, LangChain, LangGraph, OpenAI, Claude and
@@ -353,7 +353,7 @@ export default function Resume() {
       {/* Open source first — it's third-party-verifiable, which nothing else here is. */}
       <Section title="Open Source Contributions">
         <p className="text-slate-400 text-sm leading-relaxed mb-6">
-          <strong className="text-white">6 bugs found, reported and patched</strong> across three
+          <strong className="text-slate-200">6 bugs found, reported and patched</strong> across three
           widely-used AI libraries — each with a reproduction, a minimal fix and regression
           tests that fail without it. <strong className="text-orange-400/90">Two merged upstream into qdrant-client,
           one of them shipped in v1.19.0</strong>; the rest are open pull requests.
@@ -362,7 +362,7 @@ export default function Resume() {
           {openSource.map((c) => (
             <div key={c.title}>
               <div className="flex items-baseline justify-between gap-4 flex-wrap">
-                <h3 className="text-white font-bold text-sm">
+                <h3 className="text-slate-200 font-bold text-sm">
                   {c.title}
                   {c.merged && (
                     <span className="ml-2 align-middle text-[10px] font-black uppercase tracking-wider text-green-400 border border-green-400/30 bg-green-400/10 px-2 py-0.5 rounded-full">
@@ -404,12 +404,12 @@ export default function Resume() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {skills.map((s) => (
             <div key={s.group}>
-              <h3 className="text-white font-bold text-sm mb-3">{s.group}</h3>
+              <h3 className="text-slate-200 font-bold text-sm mb-3">{s.group}</h3>
               <div className="flex flex-wrap gap-1.5">
                 {s.items.map((i) => (
                   <span
                     key={i}
-                    className="text-xs text-slate-400 border border-white/5 bg-white/3 px-2.5 py-1 rounded-md"
+                    className="text-xs text-slate-400 border border-slate-900/[0.07] bg-slate-900/[0.025] px-2.5 py-1 rounded-md"
                   >
                     {i}
                   </span>
@@ -425,7 +425,7 @@ export default function Resume() {
           {projects.map((p) => (
             <div key={p.name}>
               <div className="flex items-baseline justify-between gap-4 flex-wrap">
-                <h3 className="text-white font-bold">{p.name}</h3>
+                <h3 className="text-slate-200 font-bold">{p.name}</h3>
                 <span className="flex items-center gap-3 flex-wrap">
                   {p.live && (
                     <a
@@ -466,7 +466,7 @@ export default function Resume() {
         <div className="space-y-4">
           {otherWork.map((o) => (
             <div key={o.name}>
-              <h3 className="text-white font-bold text-sm">{o.name}</h3>
+              <h3 className="text-slate-200 font-bold text-sm">{o.name}</h3>
               <p className="text-slate-400 text-sm leading-relaxed">{o.note}</p>
             </div>
           ))}
@@ -478,7 +478,7 @@ export default function Resume() {
           {experience.map((e) => (
             <div key={e.role}>
               <div className="flex items-baseline justify-between gap-4 flex-wrap">
-                <h3 className="text-white font-bold">{e.role}</h3>
+                <h3 className="text-slate-200 font-bold">{e.role}</h3>
                 <span className="text-xs text-slate-600 font-mono">{e.when}</span>
               </div>
               <p className="text-orange-400/80 text-sm font-semibold mb-3">{e.org}</p>
@@ -500,7 +500,7 @@ export default function Resume() {
           {education.map((e) => (
             <div key={e.degree}>
               <div className="flex items-baseline justify-between gap-4 flex-wrap">
-                <h3 className="text-white font-bold text-sm">{e.degree}</h3>
+                <h3 className="text-slate-200 font-bold text-sm">{e.degree}</h3>
                 <span className="text-xs text-slate-600 font-mono">{e.when}</span>
               </div>
               <p className="text-slate-500 text-sm">
@@ -527,7 +527,7 @@ export default function Resume() {
           {languages.map((l) => (
             <span
               key={l}
-              className="text-xs text-slate-400 border border-white/5 bg-white/3 px-3 py-1.5 rounded-md"
+              className="text-xs text-slate-400 border border-slate-900/[0.07] bg-slate-900/[0.025] px-3 py-1.5 rounded-md"
             >
               {l}
             </span>
@@ -538,7 +538,7 @@ export default function Resume() {
       {/* CTA — no WhatsApp CTA here on purpose: wa.me links carry the phone
           number in the markup, which defeats keeping it off this page. */}
       <div className="glass-card text-center animate-glow-pulse no-print">
-        <h2 className="text-2xl font-black text-white mb-3">
+        <h2 className="text-2xl font-black text-slate-200 mb-3">
           Let&apos;s <span className="gradient-text">work together</span>
         </h2>
         <p className="text-slate-500 text-sm mb-6 leading-relaxed">

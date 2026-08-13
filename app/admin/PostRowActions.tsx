@@ -31,7 +31,7 @@ export default function PostRowActions({
 
       <Link
         href={`/admin/edit/${slug}`}
-        className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/5 text-slate-300 hover:bg-white/10 transition-colors"
+        className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900/[0.035] text-slate-300 hover:bg-slate-900/[0.06] transition-colors"
       >
         Edit
       </Link>
@@ -40,7 +40,7 @@ export default function PostRowActions({
         <Link
           href={`/blog/${slug}`}
           target="_blank"
-          className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/5 text-slate-300 hover:bg-white/10 transition-colors"
+          className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900/[0.035] text-slate-300 hover:bg-slate-900/[0.06] transition-colors"
         >
           View ↗
         </Link>

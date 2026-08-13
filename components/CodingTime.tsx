@@ -101,7 +101,7 @@ export default function CodingTime({ initial }: Props) {
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
                 range === r.days
                   ? "bg-orange-500/15 text-orange-400"
-                  : "text-slate-500 hover:bg-white/5 hover:text-slate-300"
+                  : "text-slate-500 hover:bg-slate-900/[0.035] hover:text-slate-300"
               }`}
             >
               {r.label}
@@ -120,7 +120,7 @@ export default function CodingTime({ initial }: Props) {
             type="button"
             onClick={() => setShowTable((v) => !v)}
             aria-pressed={showTable}
-            className="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-500 hover:bg-white/5 hover:text-slate-300 transition-colors"
+            className="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-500 hover:bg-slate-900/[0.035] hover:text-slate-300 transition-colors"
           >
             {showTable ? "Show chart" : "Show table"}
           </button>
@@ -149,7 +149,7 @@ export default function CodingTime({ initial }: Props) {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Chart / table */}
         <div className="glass-card lg:col-span-2">
-          <h3 className="text-white font-bold text-sm mb-1">Hours per day</h3>
+          <h3 className="text-slate-200 font-bold text-sm mb-1">Hours per day</h3>
           <p className="text-slate-600 text-xs mb-6">
             {formatHours(stats.totals.window)} over the last {range} days ·{" "}
             {stats.totals.activeDays} active days
@@ -165,7 +165,7 @@ export default function CodingTime({ initial }: Props) {
 
         {/* Languages */}
         <div className="glass-card">
-          <h3 className="text-white font-bold text-sm mb-1">Languages</h3>
+          <h3 className="text-slate-200 font-bold text-sm mb-1">Languages</h3>
           <p className="text-slate-600 text-xs mb-6">
             {/* Says the span it really covers — older archived days carry no
                 per-language timings, so this is often shorter than the chart. */}
@@ -203,7 +203,7 @@ function StatTile({
       </div>
       {/* Proportional figures — tabular-nums would make a display-size number
           look loose. The table below is where digits need to align. */}
-      <div className="text-2xl font-bold text-white mt-1.5">{value}</div>
+      <div className="text-2xl font-bold text-slate-200 mt-1.5">{value}</div>
       {hint && (
         <div className="text-xs mt-0.5" style={{ color: AXIS_TEXT }}>
           {hint}
@@ -226,7 +226,7 @@ function DayTable({
   return (
     <div className="overflow-auto" style={{ maxHeight: 224 }}>
       <table className="w-full text-xs">
-        <thead className="sticky top-0" style={{ background: "rgba(10,0,16,0.97)" }}>
+        <thead className="sticky top-0" style={{ background: "#FFFFFF" }}>
           <tr style={{ color: AXIS_TEXT }}>
             <th className="text-left font-semibold py-2">Day</th>
             <th className="text-right font-semibold py-2">Editor</th>
@@ -236,7 +236,7 @@ function DayTable({
         </thead>
         <tbody>
           {rows.map((row) => (
-            <tr key={row.date} className="border-t border-white/5">
+            <tr key={row.date} className="border-t border-slate-900/[0.07]">
               <td className="py-1.5 text-slate-400 whitespace-nowrap">
                 {formatDayLabel(row.date)}
               </td>

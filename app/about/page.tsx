@@ -60,7 +60,7 @@ export default function About() {
       {/* Header */}
       <div className="text-center mb-20">
         <div className="section-badge mb-6 animate-fade-in">Our Story</div>
-        <h1 className="text-5xl md:text-7xl font-black text-white mb-6 animate-fade-in-up delay-100 leading-tight">
+        <h1 className="text-5xl md:text-7xl font-black text-slate-200 mb-6 animate-fade-in-up delay-100 leading-tight">
           About <span className="gradient-text-animated">Nazsats</span>
         </h1>
         <p className="text-slate-500 max-w-2xl mx-auto text-lg leading-relaxed animate-fade-in-up delay-200">
@@ -72,7 +72,7 @@ export default function About() {
       {/* Mission */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-24 items-center">
         <div className="animate-fade-in-up delay-200">
-          <h2 className="text-3xl font-black text-white mb-5">
+          <h2 className="text-3xl font-black text-slate-200 mb-5">
             What we <span className="gradient-text">do</span>
           </h2>
           <div className="space-y-5 text-slate-400 leading-relaxed">
@@ -95,7 +95,7 @@ export default function About() {
 
         {/* Terminal decoration */}
         <div className="terminal-card scan-container animate-fade-in-up delay-300">
-          <div className="flex items-center gap-1.5 px-5 py-3.5 border-b border-white/5">
+          <div className="flex items-center gap-1.5 px-5 py-3.5 border-b border-slate-900/[0.07]">
             <div className="w-2.5 h-2.5 rounded-full bg-red-500/50" />
             <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/50" />
             <div className="w-2.5 h-2.5 rounded-full bg-green-500/50" />
@@ -116,7 +116,7 @@ export default function About() {
       <div className="mb-24">
         <div className="text-center mb-12">
           <div className="section-badge mb-4 animate-fade-in">Our Values</div>
-          <h2 className="text-4xl font-black text-white animate-fade-in-up delay-100">
+          <h2 className="text-4xl font-black text-slate-200 animate-fade-in-up delay-100">
             How we <span className="gradient-text">think</span>
           </h2>
         </div>
@@ -130,7 +130,7 @@ export default function About() {
               <div className="w-10 h-10 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center mb-4">
                 {v.icon}
               </div>
-              <h3 className="text-white font-bold mb-2">{v.title}</h3>
+              <h3 className="text-slate-200 font-bold mb-2">{v.title}</h3>
               <p className="text-slate-500 text-sm leading-relaxed">{v.desc}</p>
             </div>
           ))}
@@ -144,7 +144,7 @@ export default function About() {
             <span className="inline-block text-xs font-bold text-cyan-400 border border-cyan-400/25 bg-cyan-400/5 px-3 py-1 rounded-full mb-4">
               Coming Soon
             </span>
-            <h2 className="text-3xl font-black text-white mb-3">
+            <h2 className="text-3xl font-black text-slate-200 mb-3">
               What&apos;s <span className="text-cyan-400">next</span>
             </h2>
             <p className="text-slate-500 text-sm leading-relaxed mb-6">

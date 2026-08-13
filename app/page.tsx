@@ -41,11 +41,11 @@ export default async function Home() {
         {/* Static orbs */}
         <div
           className="absolute top-1/4 left-1/5 w-[500px] h-[500px] rounded-full blur-[120px] animate-orb pointer-events-none"
-          style={{ background: "rgba(230,80,0,0.20)" }}
+          style={{ background: "rgba(232,93,0,0.10)" }}
         />
         <div
           className="absolute bottom-1/4 right-1/5 w-[400px] h-[400px] rounded-full blur-[100px] animate-orb pointer-events-none"
-          style={{ background: "rgba(200,0,85,0.14)", animationDelay: "5s" }}
+          style={{ background: "rgba(29,78,216,0.09)", animationDelay: "5s" }}
         />
 
         {/* Mouse-tracking orb */}
@@ -93,25 +93,25 @@ export default async function Home() {
           <div
             className="hidden lg:block absolute -right-4 top-1/2 -translate-y-1/2 terminal-card w-64 animate-float animate-fade-in delay-600"
           >
-            <div className="flex items-center gap-1.5 px-4 py-3 border-b border-white/5">
+            <div className="flex items-center gap-1.5 px-4 py-3 border-b border-white/10">
               <div className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
               <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
               <div className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
-              <span className="ml-2 text-xs text-slate-600">nazsats.ai</span>
+              <span className="ml-2 text-xs text-slate-400">nazsats.ai</span>
             </div>
             <div className="px-4 py-4 space-y-2">
-              <p className="text-cyan-400 text-xs">$ nazsats init</p>
-              <p className="text-slate-500 text-xs">✓ AI model loaded</p>
-              <p className="text-slate-500 text-xs">✓ Blockchain connected</p>
-              <p className="text-slate-500 text-xs">✓ Data pipeline ready</p>
-              <p className="text-purple-400 text-xs animate-pulse">▋ Ready to build_</p>
+              <p className="text-xs" style={{ color: "#7DD3FC" }}>$ nazsats init</p>
+              <p className="text-xs" style={{ color: "#CBD5E1" }}>✓ AI model loaded</p>
+              <p className="text-xs" style={{ color: "#CBD5E1" }}>✓ Blockchain connected</p>
+              <p className="text-xs" style={{ color: "#CBD5E1" }}>✓ Data pipeline ready</p>
+              <p className="text-xs animate-pulse" style={{ color: "#FDBA74" }}>▋ Ready to build_</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* ── GitHub Stats ─────────────────────────── */}
-      <section className="py-12 border-y border-white/5 bg-dark-800/30">
+      <section className="py-12 border-y border-slate-900/[0.07] bg-dark-800/30">
         <div className="max-w-5xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
@@ -137,7 +137,7 @@ export default async function Home() {
           <ScrollReveal>
             <div className="text-center mb-12">
               <div className="section-badge mb-4">Tech Stack</div>
-              <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+              <h2 className="text-4xl md:text-5xl font-black text-slate-200 mb-4">
                 Tools I <span className="gradient-text">work with</span>
               </h2>
               <p className="text-slate-500 max-w-xl mx-auto">
@@ -157,7 +157,7 @@ export default async function Home() {
           <ScrollReveal>
             <div className="text-center mb-14">
               <div className="section-badge mb-4">Portfolio</div>
-              <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+              <h2 className="text-4xl md:text-5xl font-black text-slate-200 mb-4">
                 Selected <span className="gradient-text">Work</span>
               </h2>
               <p className="text-slate-500 max-w-xl mx-auto">
@@ -184,7 +184,7 @@ export default async function Home() {
           <ScrollReveal>
             <div className="text-center mb-14">
               <div className="section-badge mb-4">Open Source</div>
-              <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+              <h2 className="text-4xl md:text-5xl font-black text-slate-200 mb-4">
                 Featured <span className="gradient-text">Projects</span>
               </h2>
               <p className="text-slate-500 max-w-xl mx-auto">
@@ -219,7 +219,7 @@ export default async function Home() {
           <ScrollReveal>
             <div className="text-center mb-14">
               <div className="section-badge mb-4">Activity</div>
-              <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+              <h2 className="text-4xl md:text-5xl font-black text-slate-200 mb-4">
                 GitHub <span className="gradient-text">Activity</span>
               </h2>
             </div>
@@ -229,7 +229,7 @@ export default async function Home() {
             {/* Heatmap — takes 2/3 width */}
             <ScrollReveal className="lg:col-span-2" delay={100}>
               <div className="glass-card h-full">
-                <h3 className="text-white font-bold mb-1 text-sm">Contribution Calendar</h3>
+                <h3 className="text-slate-200 font-bold mb-1 text-sm">Contribution Calendar</h3>
                 <p className="text-slate-600 text-xs mb-6">
                   {contributions.total > 0
                     ? `${contributions.total.toLocaleString()} contributions in the last year`
@@ -245,7 +245,7 @@ export default async function Home() {
             <ScrollReveal delay={200}>
               <div className="glass-card h-full">
                 <div className="flex items-center gap-2 mb-5">
-                  <h3 className="text-white font-bold text-sm">Live Activity</h3>
+                  <h3 className="text-slate-200 font-bold text-sm">Live Activity</h3>
                   <div className="status-dot ml-auto" style={{ width: 6, height: 6 }} />
                 </div>
                 <GitHubFeed events={activity} />
@@ -264,7 +264,7 @@ export default async function Home() {
             <ScrollReveal>
               <div className="text-center mb-14">
                 <div className="section-badge mb-4">Time at the keyboard</div>
-                <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+                <h2 className="text-4xl md:text-5xl font-black text-slate-200 mb-4">
                   Coding <span className="gradient-text">Time</span>
                 </h2>
                 <p className="text-slate-500 max-w-xl mx-auto">
@@ -287,7 +287,7 @@ export default async function Home() {
           <ScrollReveal>
             <div className="text-center mb-16">
               <div className="section-badge mb-5">Why Nazsats</div>
-              <h2 className="text-4xl md:text-5xl font-black text-white mb-5">
+              <h2 className="text-4xl md:text-5xl font-black text-slate-200 mb-5">
                 Technology that <span className="gradient-text">works for you</span>
               </h2>
               <p className="text-slate-500 max-w-xl mx-auto text-lg">
@@ -318,7 +318,7 @@ export default async function Home() {
               <ScrollReveal key={i} delay={f.delay}>
                 <Tilt>
                   <div className="glass-card h-full">
-                    <div className={`w-12 h-12 rounded-xl mb-5 flex items-center justify-center ${f.color} bg-white/5 animate-float`} style={{ animationDelay: `${i * 0.5}s` }}>
+                    <div className={`w-12 h-12 rounded-xl mb-5 flex items-center justify-center ${f.color} bg-slate-900/[0.035] animate-float`} style={{ animationDelay: `${i * 0.5}s` }}>
                       {f.icon}
                     </div>
                     <h3 className={`text-lg font-bold mb-2 ${f.color}`}>{f.title}</h3>
@@ -342,7 +342,7 @@ export default async function Home() {
           <ScrollReveal>
             <div className="glass-card text-center animate-glow-pulse">
               <div className="section-badge mb-5 mx-auto w-fit">Stay Updated</div>
-              <h2 className="text-3xl md:text-4xl font-black text-white mb-3">
+              <h2 className="text-3xl md:text-4xl font-black text-slate-200 mb-3">
                 Join the <span className="gradient-text">launch</span>
               </h2>
               <p className="text-slate-500 mb-8 leading-relaxed">

@@ -42,7 +42,7 @@ export default async function BlogPost({
 
   return (
     <article className="max-w-3xl mx-auto px-4 py-20">
-      <Link href="/blog" className="text-sm text-slate-500 hover:text-white transition-colors">
+      <Link href="/blog" className="text-sm text-slate-500 hover:text-slate-200 transition-colors">
         ← Back to blog
       </Link>
 
@@ -52,12 +52,12 @@ export default async function BlogPost({
           <span>·</span>
           <span>{post.author}</span>
           {post.tags.map((tag) => (
-            <span key={tag} className="px-2 py-0.5 rounded-full bg-white/5 text-slate-400">
+            <span key={tag} className="px-2 py-0.5 rounded-full bg-slate-900/[0.035] text-slate-400">
               {tag}
             </span>
           ))}
         </div>
-        <h1 className="text-4xl md:text-5xl font-black text-white leading-tight mb-4">
+        <h1 className="text-4xl md:text-5xl font-black text-slate-200 leading-tight mb-4">
           {post.title}
         </h1>
         <p className="text-slate-500 text-lg leading-relaxed">{post.description}</p>
@@ -65,7 +65,7 @@ export default async function BlogPost({
 
       <div className="blog-content" dangerouslySetInnerHTML={{ __html: post.html }} />
 
-      <div className="mt-16 pt-8 border-t border-white/5 text-center">
+      <div className="mt-16 pt-8 border-t border-slate-900/[0.07] text-center">
         <Link href="/blog" className="btn-primary">
           ← More articles
         </Link>

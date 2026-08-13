@@ -48,7 +48,7 @@ export default async function ActivityLog({
 
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-4xl font-black text-white">
+        <h1 className="text-4xl font-black text-slate-200">
           Track <span className="gradient-text">Record</span>
         </h1>
         <p className="text-slate-500 text-sm mt-1">
@@ -75,7 +75,7 @@ export default async function ActivityLog({
 
       {/* Quick capture */}
       <div className="glass-card mb-6">
-        <h2 className="text-lg font-bold text-white mb-1">Log something</h2>
+        <h2 className="text-lg font-bold text-slate-200 mb-1">Log something</h2>
         <p className="text-slate-500 text-sm mb-4">
           Title and a link is enough — everything else is optional.
         </p>
@@ -85,12 +85,12 @@ export default async function ActivityLog({
               name="title"
               required
               placeholder="What did you do?"
-              className="flex-1 min-w-[260px] rounded-lg bg-white/5 border border-white/10 px-4 py-2.5 text-white text-sm outline-none focus:border-orange-500/50"
+              className="flex-1 min-w-[260px] rounded-lg bg-slate-900/[0.035] border border-slate-900/[0.10] px-4 py-2.5 text-slate-200 text-sm outline-none focus:border-orange-500/50"
             />
             <select
               name="kind"
               defaultValue="project"
-              className="rounded-lg bg-white/5 border border-white/10 px-3 py-2.5 text-white text-sm outline-none focus:border-orange-500/50"
+              className="rounded-lg bg-slate-900/[0.035] border border-slate-900/[0.10] px-3 py-2.5 text-slate-200 text-sm outline-none focus:border-orange-500/50"
             >
               {KIND_OPTIONS.map((k) => (
                 <option key={k.value} value={k.value} className="bg-dark-900">
@@ -105,18 +105,18 @@ export default async function ActivityLog({
               name="url"
               type="url"
               placeholder="Link (LinkedIn, X, PR, deploy…)"
-              className="flex-1 min-w-[260px] rounded-lg bg-white/5 border border-white/10 px-4 py-2.5 text-white text-sm outline-none focus:border-orange-500/50"
+              className="flex-1 min-w-[260px] rounded-lg bg-slate-900/[0.035] border border-slate-900/[0.10] px-4 py-2.5 text-slate-200 text-sm outline-none focus:border-orange-500/50"
             />
             <input
               name="tags"
               placeholder="tags, comma, separated"
-              className="flex-1 min-w-[180px] rounded-lg bg-white/5 border border-white/10 px-4 py-2.5 text-white text-sm outline-none focus:border-orange-500/50"
+              className="flex-1 min-w-[180px] rounded-lg bg-slate-900/[0.035] border border-slate-900/[0.10] px-4 py-2.5 text-slate-200 text-sm outline-none focus:border-orange-500/50"
             />
             <input
               name="occurred_at"
               type="date"
               defaultValue={today}
-              className="rounded-lg bg-white/5 border border-white/10 px-3 py-2.5 text-slate-300 text-sm outline-none focus:border-orange-500/50"
+              className="rounded-lg bg-slate-900/[0.035] border border-slate-900/[0.10] px-3 py-2.5 text-slate-300 text-sm outline-none focus:border-orange-500/50"
             />
           </div>
 
@@ -124,7 +124,7 @@ export default async function ActivityLog({
             name="body"
             rows={2}
             placeholder="Notes — what it was, why it mattered (optional)"
-            className="w-full rounded-lg bg-white/5 border border-white/10 px-4 py-2.5 text-white text-sm outline-none focus:border-orange-500/50 resize-none"
+            className="w-full rounded-lg bg-slate-900/[0.035] border border-slate-900/[0.10] px-4 py-2.5 text-slate-200 text-sm outline-none focus:border-orange-500/50 resize-none"
           />
 
           <div className="flex justify-end">
@@ -142,7 +142,7 @@ export default async function ActivityLog({
           className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
             !filter && !kind
               ? "bg-orange-500/15 text-orange-400"
-              : "bg-white/5 text-slate-400 hover:bg-white/10"
+              : "bg-slate-900/[0.035] text-slate-400 hover:bg-slate-900/[0.06]"
           }`}
         >
           All
@@ -152,7 +152,7 @@ export default async function ActivityLog({
           className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
             unreviewedOnly
               ? "bg-orange-500/15 text-orange-400"
-              : "bg-white/5 text-slate-400 hover:bg-white/10"
+              : "bg-slate-900/[0.035] text-slate-400 hover:bg-slate-900/[0.06]"
           }`}
         >
           Needs review{stats.unreviewed > 0 ? ` (${stats.unreviewed})` : ""}
@@ -164,7 +164,7 @@ export default async function ActivityLog({
             className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
               kind === k
                 ? "bg-orange-500/15 text-orange-400"
-                : "bg-white/5 text-slate-500 hover:bg-white/10"
+                : "bg-slate-900/[0.035] text-slate-500 hover:bg-slate-900/[0.06]"
             }`}
           >
             {meta.label}
@@ -210,7 +210,7 @@ export default async function ActivityLog({
                   )}
                 </div>
 
-                <h3 className="text-white font-bold leading-tight">
+                <h3 className="text-slate-200 font-bold leading-tight">
                   {e.url ? (
                     <a
                       href={e.url}
@@ -240,7 +240,7 @@ export default async function ActivityLog({
                     {e.tags.map((t) => (
                       <span
                         key={t}
-                        className="text-xs text-slate-600 border border-white/5 px-2 py-0.5 rounded-md"
+                        className="text-xs text-slate-600 border border-slate-900/[0.07] px-2 py-0.5 rounded-md"
                       >
                         {t}
                       </span>

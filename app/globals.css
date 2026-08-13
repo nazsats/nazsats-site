@@ -2,28 +2,32 @@
 
 /* ── Design tokens ────────────────────────────── */
 @theme {
-  /* Backgrounds — near-black with a warm deep-purple tint */
-  --color-dark-950: #050008;
-  --color-dark-900: #0A0010;
-  --color-dark-800: #100018;
-  --color-dark-700: #180025;
-  --color-dark-600: #220035;
+  /* Surfaces. The scale runs light -> slightly darker, so `dark-950` is the
+     page and `dark-600` is the deepest tint. Names kept from the previous
+     dark theme so 20 files of `bg-dark-800` markup did not have to churn. */
+  --color-dark-950: #FFFFFF;
+  --color-dark-900: #FFFFFF;
+  --color-dark-800: #F5F7FA;
+  --color-dark-700: #EDF1F6;
+  --color-dark-600: #E2E8F0;
 
-  /* Primary accent — orange → red-orange */
-  --color-purple-400: #FF7A00;
-  --color-purple-500: #E63300;
-  --color-purple-600: #CC1A00;
+  /* Brand accent — orange, kept from the old identity. Used for CTAs and
+     highlights only, never for large fills. */
+  --color-purple-400: #E85D00;
+  --color-purple-500: #C2410C;
+  --color-purple-600: #9A3412;
 
-  /* Secondary accent — hot magenta-red */
-  --color-cyan-400: #FF2266;
-  --color-cyan-500: #CC0055;
+  /* Trust accent — deep blue. Carries structure: links, headings, borders. */
+  --color-cyan-400: #1D4ED8;
+  --color-cyan-500: #1E40AF;
 
-  /* Text neutrals */
-  --color-slate-200: #f0e8f0;
-  --color-slate-300: #d8cce0;
-  --color-slate-400: #a090b0;
-  --color-slate-500: #6a5878;
-  --color-slate-600: #4a3858;
+  /* Ink. `slate-200` is the strongest (headings) down to `slate-600` (faint),
+     matching how the tokens were used when the theme was dark. */
+  --color-slate-200: #0F172A;
+  --color-slate-300: #1E293B;
+  --color-slate-400: #475569;
+  --color-slate-500: #64748B;
+  --color-slate-600: #94A3B8;
 }
 
 /* ── Keyframes ────────────────────────────────── */
@@ -109,53 +113,52 @@
 
 .bg-grid {
   background-image:
-    linear-gradient(rgba(230, 80, 0, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(230, 80, 0, 0.05) 1px, transparent 1px);
+    linear-gradient(rgba(15, 23, 42, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.045) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
 .bg-dot-pattern {
-  background-image: radial-gradient(rgba(230, 80, 0, 0.18) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(29, 78, 216, 0.16) 1px, transparent 1px);
   background-size: 22px 22px;
 }
 
 .bg-radial-glow {
-  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(200, 30, 0, 0.18) 0%, transparent 70%);
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(232, 93, 0, 0.10) 0%, transparent 70%);
 }
 
 /* ── Glassmorphism cards ──────────────────────── */
 
 .glass {
-  background: rgba(255, 255, 255, 0.025);
+  background: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(15, 23, 42, 0.08);
 }
 
 .glass-card {
-  background: rgba(10, 0, 16, 0.75);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(230, 80, 0, 0.12);
+  background: #FFFFFF;
+  backdrop-filter: none;
+  border: 1px solid rgba(15, 23, 42, 0.09);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px rgba(15, 23, 42, 0.04);
   border-radius: 1rem;
   padding: 2rem;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-card:hover {
-  border-color: rgba(230, 80, 0, 0.38);
-  background: rgba(10, 0, 16, 0.95);
-  transform: translateY(-6px);
+  border-color: rgba(232, 93, 0, 0.35);
+  background: #FFFFFF;
+  transform: translateY(-4px);
   box-shadow:
-    0 24px 48px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(230, 80, 0, 0.18),
-    0 0 40px rgba(200, 30, 0, 0.10);
+    0 2px 4px rgba(15, 23, 42, 0.05),
+    0 16px 40px rgba(15, 23, 42, 0.10);
 }
 
 .glass-card-cyan:hover {
-  border-color: rgba(200, 0, 85, 0.38);
+  border-color: rgba(29, 78, 216, 0.35);
   box-shadow:
-    0 24px 48px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(200, 0, 85, 0.18),
-    0 0 40px rgba(200, 0, 85, 0.10);
+    0 2px 4px rgba(15, 23, 42, 0.05),
+    0 16px 40px rgba(29, 78, 216, 0.10);
 }
 
 /* ── Gradient text ────────────────────────────── */
@@ -207,7 +210,7 @@
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(230, 80, 0, 0.5), 0 4px 12px rgba(200, 0, 85, 0.25);
+  box-shadow: 0 8px 22px rgba(232, 93, 0, 0.30);
 }
 
 .btn-primary:disabled {
@@ -222,22 +225,22 @@
   align-items: center;
   gap: 0.5rem;
   background: transparent;
-  color: #a090b0;
+  color: #1D4ED8;
   padding: 0.875rem 2rem;
   border-radius: 9999px;
   font-weight: 600;
   font-size: 0.9rem;
-  border: 1px solid rgba(230, 80, 0, 0.35);
+  border: 1px solid rgba(29, 78, 216, 0.30);
   transition: all 0.3s ease;
   white-space: nowrap;
 }
 
 .btn-secondary:hover {
-  border-color: rgba(255, 122, 0, 0.7);
-  color: #FF7A00;
+  border-color: rgba(29, 78, 216, 0.6);
+  color: #1E40AF;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(230, 80, 0, 0.2);
-  background: rgba(230, 80, 0, 0.05);
+  box-shadow: 0 8px 20px rgba(29, 78, 216, 0.12);
+  background: rgba(29, 78, 216, 0.05);
 }
 
 /* ── Badge ────────────────────────────────────── */
@@ -246,9 +249,9 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(230, 80, 0, 0.12);
-  border: 1px solid rgba(230, 80, 0, 0.28);
-  color: #FF7A00;
+  background: rgba(232, 93, 0, 0.09);
+  border: 1px solid rgba(232, 93, 0, 0.25);
+  color: #C2410C;
   padding: 0.35rem 1rem;
   border-radius: 9999px;
   font-size: 0.75rem;
@@ -262,21 +265,21 @@
 .input-dark {
   width: 100%;
   padding: 0.875rem 1.25rem;
-  background: rgba(255, 255, 255, 0.025);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: #FFFFFF;
+  border: 1px solid rgba(15, 23, 42, 0.14);
   border-radius: 0.75rem;
-  color: #f0e8f0;
+  color: #0F172A;
   transition: all 0.3s ease;
   font-size: 0.95rem;
 }
 
-.input-dark::placeholder { color: #3a2848; }
+.input-dark::placeholder { color: #94A3B8; }
 
 .input-dark:focus {
   outline: none;
-  border-color: rgba(230, 80, 0, 0.6);
-  background: rgba(230, 80, 0, 0.04);
-  box-shadow: 0 0 0 3px rgba(230, 80, 0, 0.10);
+  border-color: rgba(29, 78, 216, 0.55);
+  background: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.12);
 }
 
 /* ── Divider line ─────────────────────────────── */
@@ -284,14 +287,14 @@
 .divider {
   border: none;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(230, 80, 0, 0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(15, 23, 42, 0.14), transparent);
 }
 
 /* ── Terminal/code block decoration ──────────── */
 
 .terminal-card {
-  background: rgba(5, 0, 8, 0.92);
-  border: 1px solid rgba(230, 80, 0, 0.18);
+  background: #0F172A;
+  border: 1px solid rgba(15, 23, 42, 0.18);
   border-radius: 0.75rem;
   font-family: 'Courier New', monospace;
   font-size: 0.8rem;
@@ -320,7 +323,7 @@
   position: absolute;
   left: 0; right: 0;
   height: 60px;
-  background: linear-gradient(to bottom, transparent, rgba(230, 80, 0, 0.04), transparent);
+  background: linear-gradient(to bottom, transparent, rgba(232, 93, 0, 0.05), transparent);
   animation: scan-line 4s linear infinite;
   pointer-events: none;
 }
@@ -330,31 +333,31 @@
 .status-dot {
   width: 8px;
   height: 8px;
-  background: #FF5500;
+  background: #16A34A;
   border-radius: 50%;
-  box-shadow: 0 0 0 3px rgba(255, 85, 0, 0.22);
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.20);
   animation: pulse-dot 1.8s ease-in-out infinite;
 }
 /* ── Blog article content ─────────────────────── */
 
-.blog-content { color: #94a3b8; line-height: 1.8; }
+.blog-content { color: #334155; line-height: 1.8; }
 .blog-content > * + * { margin-top: 1.25rem; }
 .blog-content h2 {
-  color: #fff;
+  color: #0F172A;
   font-weight: 800;
   font-size: 1.6rem;
   margin-top: 2.5rem;
   margin-bottom: 0.5rem;
 }
 .blog-content h3 {
-  color: #fff;
+  color: #0F172A;
   font-weight: 700;
   font-size: 1.25rem;
   margin-top: 2rem;
 }
-.blog-content p { color: #94a3b8; }
-.blog-content a { color: #FF7A2A; text-decoration: underline; }
-.blog-content strong { color: #e2e8f0; font-weight: 700; }
+.blog-content p { color: #334155; }
+.blog-content a { color: #1D4ED8; text-decoration: underline; }
+.blog-content strong { color: #0F172A; font-weight: 700; }
 .blog-content ul, .blog-content ol { padding-left: 1.5rem; }
 .blog-content ul { list-style: disc; }
 .blog-content ol { list-style: decimal; }
@@ -362,23 +365,23 @@
 .blog-content code {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 0.85em;
-  background: rgba(255,255,255,0.06);
+  background: rgba(15, 23, 42, 0.06);
   padding: 0.15em 0.4em;
   border-radius: 4px;
-  color: #fbbf24;
+  color: #9A3412;
 }
 .blog-content pre {
-  background: rgba(0,0,0,0.4);
-  border: 1px solid rgba(255,255,255,0.07);
+  background: #0F172A;
+  border: 1px solid rgba(15, 23, 42, 0.12);
   border-radius: 10px;
   padding: 1.1rem 1.25rem;
   overflow-x: auto;
 }
-.blog-content pre code { background: none; padding: 0; color: #cbd5e1; }
+.blog-content pre code { background: none; padding: 0; color: #E2E8F0; }
 .blog-content blockquote {
-  border-left: 3px solid #FF5500;
+  border-left: 3px solid #E85D00;
   padding-left: 1rem;
-  color: #cbd5e1;
+  color: #475569;
   font-style: italic;
 }
 
@@ -390,8 +393,8 @@
   height: auto;
   margin: 2rem auto 0.75rem;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  background: #0f1116;
+  border: 1px solid rgba(15, 23, 42, 0.10);
+  background: #FFFFFF;
 }
 
 /* Caption: the italic line immediately after an image. */
@@ -414,7 +417,7 @@
 .blog-content th,
 .blog-content td {
   padding: 0.6rem 0.9rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.10);
   text-align: left;
   vertical-align: top;
 }
@@ -425,7 +428,7 @@
   white-space: nowrap;
 }
 .blog-content td { color: #94a3b8; }
-.blog-content tbody tr:hover td { background: rgba(255, 255, 255, 0.02); }
+.blog-content tbody tr:hover td { background: rgba(15, 23, 42, 0.025); }
 
 /* ── Print: /resume → PDF ─────────────────────────
    The page is the source of truth for the CV, so "Save as PDF" prints it
@@ -495,6 +498,11 @@
     color: #333 !important;
   }
 
+  .resume-doc .text-slate-200,
+  .resume-doc .text-slate-300 {
+    color: #111 !important;
+  }
+
   /* gradient-text paints via background-clip, which prints as nothing. */
   .resume-doc .gradient-text,
   .resume-doc .gradient-text-animated {
@@ -516,9 +524,9 @@
     text-decoration: none !important;
   }
 
-  /* Skill and language chips: keep the outline, drop the glass fill. */
-  .resume-doc .border-white\/5,
-  .resume-doc .bg-white\/3 {
+  /* Skill and language chips: keep the outline, drop the tinted fill. */
+  .resume-doc [class*="border-slate-900"],
+  .resume-doc [class*="bg-slate-900"] {
     border-color: #ccc !important;
     background: none !important;
   }

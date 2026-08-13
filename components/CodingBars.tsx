@@ -3,7 +3,10 @@
 import { useMemo, useState } from "react";
 import type { CodingDay } from "../lib/coding-shared";
 import { formatHours, formatDayLabel } from "../lib/coding-shared";
-import { SERIES_EDITOR, SERIES_MANUAL, GRID, AXIS_TEXT, CHART_SURFACE } from "../lib/chart-palette";
+import {
+  SERIES_EDITOR, SERIES_MANUAL, GRID, AXIS_TEXT, CHART_SURFACE,
+  TOOLTIP_BG, TOOLTIP_BORDER, TOOLTIP_SHADOW,
+} from "../lib/chart-palette";
 
 const PLOT_HEIGHT = 168;
 /** Below this a segment is thinner than its own separator — draw it flush. */
@@ -122,7 +125,7 @@ export default function CodingBars({ days, pending = false }: Props) {
                     {/* Focus/hover wash across the whole column */}
                     <span
                       className="absolute inset-0 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity"
-                      style={{ background: "rgba(255,255,255,0.05)" }}
+                      style={{ background: "rgba(15,23,42,0.05)" }}
                       aria-hidden="true"
                     />
 
@@ -183,9 +186,9 @@ export default function CodingBars({ days, pending = false }: Props) {
               role="status"
               className="absolute z-20 pointer-events-none px-3 py-2 rounded-lg"
               style={{
-                background: "rgba(10,0,16,0.97)",
-                border: "1px solid rgba(230,80,0,0.3)",
-                boxShadow: "0 8px 24px rgba(0,0,0,0.5)",
+                background: TOOLTIP_BG,
+                border: `1px solid ${TOOLTIP_BORDER}`,
+                boxShadow: TOOLTIP_SHADOW,
                 bottom: PLOT_HEIGHT + 8,
                 left: `${(hover! / Math.max(1, days.length)) * 100}%`,
                 transform:
@@ -193,10 +196,10 @@ export default function CodingBars({ days, pending = false }: Props) {
                 minWidth: 150,
               }}
             >
-              <div className="text-white text-xs font-semibold whitespace-nowrap">
+              <div className="text-slate-200 text-xs font-semibold whitespace-nowrap">
                 {formatDayLabel(active.date)}
               </div>
-              <div className="text-white text-sm font-bold mt-0.5">
+              <div className="text-slate-200 text-sm font-bold mt-0.5">
                 {formatHours(active.seconds)}
               </div>
               {active.seconds > 0 && (

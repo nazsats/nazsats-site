@@ -12,13 +12,13 @@ const pages = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/5 bg-dark-950 mt-24">
+    <footer className="border-t border-slate-900/[0.07] bg-dark-950 mt-24">
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           {/* Brand */}
           <div className="md:col-span-1">
             <div className="flex items-center gap-2.5 mb-5">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-purple-500 to-cyan-500 flex items-center justify-center text-white font-black text-base">
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-purple-500 to-cyan-500 flex items-center justify-center text-slate-200 font-black text-base">
                 N
               </div>
               <span className="text-lg font-black gradient-text">Nazsats</span>
@@ -34,7 +34,7 @@ export default function Footer() {
 
           {/* Pages */}
           <div>
-            <h4 className="text-white font-semibold mb-5 text-xs uppercase tracking-widest text-slate-500">
+            <h4 className="text-slate-200 font-semibold mb-5 text-xs uppercase tracking-widest text-slate-500">
               Pages
             </h4>
             <ul className="space-y-3">
@@ -53,7 +53,7 @@ export default function Footer() {
 
           {/* Connect */}
           <div>
-            <h4 className="text-white font-semibold mb-5 text-xs uppercase tracking-widest text-slate-500">
+            <h4 className="text-slate-200 font-semibold mb-5 text-xs uppercase tracking-widest text-slate-500">
               Connect
             </h4>
             <ul className="space-y-3">

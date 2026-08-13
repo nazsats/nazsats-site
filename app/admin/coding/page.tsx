@@ -18,7 +18,7 @@ export default async function AdminCoding() {
       <AdminNav signOut={signOut} />
 
       <div className="mb-10">
-        <h1 className="text-4xl font-black text-white">
+        <h1 className="text-4xl font-black text-slate-200">
           Coding <span className="gradient-text">Time</span>
         </h1>
         <p className="text-slate-500 text-sm mt-1">
@@ -32,7 +32,7 @@ export default async function AdminCoding() {
 
       {/* Recent manual sessions */}
       <div className="glass-card mt-6">
-        <h2 className="text-lg font-bold text-white mb-1">Recent sessions</h2>
+        <h2 className="text-lg font-bold text-slate-200 mb-1">Recent sessions</h2>
         <p className="text-slate-500 text-sm mb-6">
           Manual entries only. Editor time syncs from WakaTime nightly and is not
           listed here.
@@ -43,7 +43,7 @@ export default async function AdminCoding() {
             Nothing logged yet — start the stopwatch above.
           </p>
         ) : (
-          <ul className="divide-y divide-white/5">
+          <ul className="divide-y divide-slate-900/[0.07]">
             {sessions.map((session) => (
               <li key={session.id} className="flex items-center gap-4 py-3">
                 <div className="min-w-0 flex-1">

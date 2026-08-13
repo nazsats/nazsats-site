@@ -17,7 +17,7 @@ export default function AdminNav({ signOut }: { signOut: () => Promise<void> }) 
   const pathname = usePathname();
 
   return (
-    <nav className="flex items-center justify-between gap-4 flex-wrap mb-10 pb-4 border-b border-white/5">
+    <nav className="flex items-center justify-between gap-4 flex-wrap mb-10 pb-4 border-b border-slate-900/[0.07]">
       <div className="flex items-center gap-2">
         {tabs.map((t) => {
           const active = t.exact ? pathname === t.href : pathname.startsWith(t.href);
@@ -28,7 +28,7 @@ export default function AdminNav({ signOut }: { signOut: () => Promise<void> }) 
               className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
                 active
                   ? "bg-orange-500/15 text-orange-400"
-                  : "text-slate-400 hover:bg-white/5 hover:text-white"
+                  : "text-slate-400 hover:bg-slate-900/[0.035] hover:text-slate-200"
               }`}
             >
               {t.label}
@@ -40,12 +40,12 @@ export default function AdminNav({ signOut }: { signOut: () => Promise<void> }) 
       <div className="flex items-center gap-2">
         <Link
           href="/"
-          className="px-3 py-2 rounded-lg text-sm font-semibold text-slate-500 hover:bg-white/5 hover:text-white transition-colors"
+          className="px-3 py-2 rounded-lg text-sm font-semibold text-slate-500 hover:bg-slate-900/[0.035] hover:text-slate-200 transition-colors"
         >
           View site ↗
         </Link>
         <form action={signOut}>
-          <button className="px-4 py-2 rounded-lg text-sm font-semibold bg-white/5 text-slate-300 hover:bg-white/10 transition-colors">
+          <button className="px-4 py-2 rounded-lg text-sm font-semibold bg-slate-900/[0.035] text-slate-300 hover:bg-slate-900/[0.06] transition-colors">
             Sign out
           </button>
         </form>

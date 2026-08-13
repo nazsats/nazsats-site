@@ -34,7 +34,7 @@ export default function EntryRowActions({
           className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-colors disabled:opacity-50 ${
             resumeWorthy
               ? "bg-orange-500/15 text-orange-400 border border-orange-400/30"
-              : "bg-white/5 text-slate-400 hover:bg-white/10 border border-transparent"
+              : "bg-slate-900/[0.035] text-slate-400 hover:bg-slate-900/[0.06] border border-transparent"
           }`}
         >
           {resumeWorthy ? "★ On CV" : "☆ CV"}
@@ -45,7 +45,7 @@ export default function EntryRowActions({
             type="button"
             disabled={pending}
             onClick={() => start(() => markReviewed(id))}
-            className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/5 text-slate-400 hover:bg-white/10 transition-colors disabled:opacity-50"
+            className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900/[0.035] text-slate-400 hover:bg-slate-900/[0.06] transition-colors disabled:opacity-50"
           >
             Skip
           </button>
@@ -55,7 +55,7 @@ export default function EntryRowActions({
           type="button"
           disabled={pending}
           onClick={() => setEditing((v) => !v)}
-          className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/5 text-slate-400 hover:bg-white/10 transition-colors disabled:opacity-50"
+          className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900/[0.035] text-slate-400 hover:bg-slate-900/[0.06] transition-colors disabled:opacity-50"
         >
           Bullet
         </button>
@@ -66,7 +66,7 @@ export default function EntryRowActions({
           onClick={() => {
             if (confirm("Delete this entry?")) start(() => deleteEntry(id));
           }}
-          className="px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-white/5 text-slate-500 hover:bg-red-500/10 hover:text-red-400 transition-colors disabled:opacity-50"
+          className="px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-900/[0.035] text-slate-500 hover:bg-red-500/10 hover:text-red-400 transition-colors disabled:opacity-50"
         >
           ✕
         </button>
@@ -79,7 +79,7 @@ export default function EntryRowActions({
             onChange={(e) => setDraft(e.target.value)}
             rows={2}
             placeholder="CV-ready one-liner for this…"
-            className="flex-1 rounded-lg bg-white/5 border border-white/10 px-3 py-2 text-white text-xs outline-none focus:border-orange-500/50 resize-none"
+            className="flex-1 rounded-lg bg-slate-900/[0.035] border border-slate-900/[0.10] px-3 py-2 text-slate-200 text-xs outline-none focus:border-orange-500/50 resize-none"
           />
           <button
             type="button"

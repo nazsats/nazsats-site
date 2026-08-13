@@ -26,7 +26,7 @@ export default async function AdminDashboard() {
 
       {/* Header */}
       <div className="mb-10">
-        <h1 className="text-4xl font-black text-white">
+        <h1 className="text-4xl font-black text-slate-200">
           Blog <span className="gradient-text">Admin</span>
         </h1>
         <p className="text-slate-500 text-sm mt-1">
@@ -36,7 +36,7 @@ export default async function AdminDashboard() {
 
       {/* AI generate */}
       <div className="glass-card mb-6">
-        <h2 className="text-lg font-bold text-white mb-1">✨ Generate a draft with AI</h2>
+        <h2 className="text-lg font-bold text-slate-200 mb-1">✨ Generate a draft with AI</h2>
         <p className="text-slate-500 text-sm mb-4">
           Enter a topic. The AI writes a full post, saved as a hidden draft for you to review.
         </p>
@@ -45,7 +45,7 @@ export default async function AdminDashboard() {
             name="topic"
             required
             placeholder="e.g. How zero-knowledge proofs work"
-            className="flex-1 min-w-[240px] rounded-lg bg-white/5 border border-white/10 px-4 py-2.5 text-white text-sm outline-none focus:border-orange-500/50"
+            className="flex-1 min-w-[240px] rounded-lg bg-slate-900/[0.035] border border-slate-900/[0.10] px-4 py-2.5 text-slate-200 text-sm outline-none focus:border-orange-500/50"
           />
           <button type="submit" className="btn-primary">
             Generate draft →
@@ -57,7 +57,7 @@ export default async function AdminDashboard() {
       <div className="flex justify-end mb-6">
         <Link
           href="/admin/edit/new"
-          className="px-4 py-2 rounded-lg text-sm font-semibold bg-white/5 text-slate-300 hover:bg-white/10 transition-colors"
+          className="px-4 py-2 rounded-lg text-sm font-semibold bg-slate-900/[0.035] text-slate-300 hover:bg-slate-900/[0.06] transition-colors"
         >
           + Write a post manually
         </Link>
@@ -84,7 +84,7 @@ export default async function AdminDashboard() {
                   </span>
                 ))}
               </div>
-              <h3 className="text-white font-bold leading-tight">{post.title}</h3>
+              <h3 className="text-slate-200 font-bold leading-tight">{post.title}</h3>
               <p className="text-slate-500 text-sm line-clamp-1">{post.description}</p>
             </div>
             <PostRowActions id={post.id} slug={post.slug} published={post.published} />

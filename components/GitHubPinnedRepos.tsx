@@ -39,7 +39,7 @@ export default function GitHubPinnedRepos({ repos }: Props) {
               <svg className="w-4 h-4 text-slate-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
               </svg>
-              <span className="text-white font-bold text-sm group-hover:text-purple-400 transition-colors truncate">
+              <span className="text-slate-200 font-bold text-sm group-hover:text-purple-400 transition-colors truncate">
                 {repo.name}
               </span>
             </div>
@@ -57,7 +57,7 @@ export default function GitHubPinnedRepos({ repos }: Props) {
           {repo.topics.length > 0 && (
             <div className="flex flex-wrap gap-1.5">
               {repo.topics.slice(0, 3).map((t) => (
-                <span key={t} className="text-xs text-slate-600 border border-white/5 bg-white/3 px-2 py-0.5 rounded-md">
+                <span key={t} className="text-xs text-slate-600 border border-slate-900/[0.07] bg-slate-900/[0.025] px-2 py-0.5 rounded-md">
                   {t}
                 </span>
               ))}
@@ -65,7 +65,7 @@ export default function GitHubPinnedRepos({ repos }: Props) {
           )}
 
           {/* Footer */}
-          <div className="flex items-center gap-4 pt-1 border-t border-white/5">
+          <div className="flex items-center gap-4 pt-1 border-t border-slate-900/[0.07]">
             {repo.language && (
               <span className="flex items-center gap-1.5 text-xs text-slate-500">
                 <span className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ background: repo.languageColor }} />

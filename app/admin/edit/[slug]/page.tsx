@@ -17,11 +17,11 @@ export default async function EditPost({
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-16">
-      <Link href="/admin" className="text-sm text-slate-500 hover:text-white transition-colors">
+      <Link href="/admin" className="text-sm text-slate-500 hover:text-slate-200 transition-colors">
         ← Back to admin
       </Link>
 
-      <h1 className="text-3xl font-black text-white mt-6 mb-8">
+      <h1 className="text-3xl font-black text-slate-200 mt-6 mb-8">
         {isNew ? "New" : "Edit"} <span className="gradient-text">post</span>
       </h1>
 
@@ -34,7 +34,7 @@ export default async function EditPost({
             name="title"
             required
             defaultValue={post?.title ?? ""}
-            className="w-full rounded-lg bg-white/5 border border-white/10 px-4 py-2.5 text-white text-sm outline-none focus:border-orange-500/50"
+            className="w-full rounded-lg bg-slate-900/[0.035] border border-slate-900/[0.10] px-4 py-2.5 text-slate-200 text-sm outline-none focus:border-orange-500/50"
           />
         </div>
 
@@ -43,7 +43,7 @@ export default async function EditPost({
           <input
             name="description"
             defaultValue={post?.description ?? ""}
-            className="w-full rounded-lg bg-white/5 border border-white/10 px-4 py-2.5 text-white text-sm outline-none focus:border-orange-500/50"
+            className="w-full rounded-lg bg-slate-900/[0.035] border border-slate-900/[0.10] px-4 py-2.5 text-slate-200 text-sm outline-none focus:border-orange-500/50"
           />
         </div>
 
@@ -53,7 +53,7 @@ export default async function EditPost({
             name="tags"
             defaultValue={post?.tags?.join(", ") ?? ""}
             placeholder="AI, Blockchain, Tutorial"
-            className="w-full rounded-lg bg-white/5 border border-white/10 px-4 py-2.5 text-white text-sm outline-none focus:border-orange-500/50"
+            className="w-full rounded-lg bg-slate-900/[0.035] border border-slate-900/[0.10] px-4 py-2.5 text-slate-200 text-sm outline-none focus:border-orange-500/50"
           />
         </div>
 
@@ -63,7 +63,7 @@ export default async function EditPost({
             name="body"
             rows={20}
             defaultValue={post?.body ?? ""}
-            className="w-full rounded-lg bg-white/5 border border-white/10 px-4 py-3 text-white text-sm font-mono leading-relaxed outline-none focus:border-orange-500/50"
+            className="w-full rounded-lg bg-slate-900/[0.035] border border-slate-900/[0.10] px-4 py-3 text-slate-200 text-sm font-mono leading-relaxed outline-none focus:border-orange-500/50"
           />
         </div>
 
@@ -83,7 +83,7 @@ export default async function EditPost({
           </button>
           <Link
             href="/admin"
-            className="px-5 py-2.5 rounded-lg text-sm font-semibold bg-white/5 text-slate-300 hover:bg-white/10 transition-colors"
+            className="px-5 py-2.5 rounded-lg text-sm font-semibold bg-slate-900/[0.035] text-slate-300 hover:bg-slate-900/[0.06] transition-colors"
           >
             Cancel
           </Link>

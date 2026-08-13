@@ -19,7 +19,7 @@ export default function Projects() {
             className="glass-card flex flex-col h-full group no-underline !p-0 overflow-hidden"
           >
             {/* Live screenshot */}
-            <div className="relative aspect-[16/10] overflow-hidden border-b border-white/5 bg-dark-700">
+            <div className="relative aspect-[16/10] overflow-hidden border-b border-slate-900/[0.07] bg-dark-700">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={`https://image.thum.io/get/width/800/crop/500/noanimate/${p.url}`}
@@ -33,7 +33,7 @@ export default function Projects() {
             <div className="flex items-center justify-between gap-3 mb-3">
               <span
                 className={`text-xs font-bold px-2.5 py-1 rounded-full border ${
-                  categoryColor[p.category] ?? "text-slate-400 border-white/10"
+                  categoryColor[p.category] ?? "text-slate-400 border-slate-900/[0.10]"
                 }`}
               >
                 {p.category}
@@ -48,17 +48,17 @@ export default function Projects() {
               </svg>
             </div>
 
-            <h3 className="text-white font-black text-lg leading-tight group-hover:text-purple-400 transition-colors">
+            <h3 className="text-slate-200 font-black text-lg leading-tight group-hover:text-purple-400 transition-colors">
               {p.name}
             </h3>
             <p className="text-orange-400/80 text-xs font-semibold mb-3">{p.tagline}</p>
             <p className="text-slate-500 text-sm leading-relaxed flex-1">{p.description}</p>
 
-            <div className="flex flex-wrap gap-1.5 mt-4 pt-4 border-t border-white/5">
+            <div className="flex flex-wrap gap-1.5 mt-4 pt-4 border-t border-slate-900/[0.07]">
               {p.tags.map((t) => (
                 <span
                   key={t}
-                  className="text-xs text-slate-500 border border-white/5 bg-white/3 px-2 py-0.5 rounded-md"
+                  className="text-xs text-slate-500 border border-slate-900/[0.07] bg-slate-900/[0.025] px-2 py-0.5 rounded-md"
                 >
                   {t}
                 </span>

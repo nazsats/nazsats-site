@@ -66,7 +66,7 @@ export default function CodingTimerControl({ initial }: Props) {
     <div className="glass-card">
       <div className="flex items-start justify-between gap-6 flex-wrap">
         <div>
-          <h2 className="text-lg font-bold text-white mb-1">Stopwatch</h2>
+          <h2 className="text-lg font-bold text-slate-200 mb-1">Stopwatch</h2>
           <p className="text-slate-500 text-sm">
             For coding that happens away from the editor — WakaTime can&apos;t see
             whiteboarding, docs, or debugging on paper.
@@ -99,14 +99,14 @@ export default function CodingTimerControl({ initial }: Props) {
             onChange={(e) => setProject(e.target.value)}
             placeholder="Project (optional)"
             maxLength={120}
-            className="flex-1 min-w-[180px] rounded-lg bg-white/5 border border-white/10 px-4 py-2.5 text-white text-sm outline-none focus:border-orange-500/50"
+            className="flex-1 min-w-[180px] rounded-lg bg-slate-900/[0.035] border border-slate-900/[0.10] px-4 py-2.5 text-slate-200 text-sm outline-none focus:border-orange-500/50"
           />
           <input
             value={note}
             onChange={(e) => setNote(e.target.value)}
             placeholder="What are you working on? (private)"
             maxLength={200}
-            className="flex-1 min-w-[220px] rounded-lg bg-white/5 border border-white/10 px-4 py-2.5 text-white text-sm outline-none focus:border-orange-500/50"
+            className="flex-1 min-w-[220px] rounded-lg bg-slate-900/[0.035] border border-slate-900/[0.10] px-4 py-2.5 text-slate-200 text-sm outline-none focus:border-orange-500/50"
           />
         </div>
       )}

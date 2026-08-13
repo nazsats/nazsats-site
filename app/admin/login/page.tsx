@@ -29,7 +29,7 @@ export default function AdminLogin() {
   return (
     <div className="max-w-md mx-auto px-4 py-32">
       <div className="glass-card">
-        <h1 className="text-3xl font-black text-white mb-2">
+        <h1 className="text-3xl font-black text-slate-200 mb-2">
           Admin <span className="gradient-text">Login</span>
         </h1>
         <p className="text-slate-500 text-sm mb-6">Sign in to manage blog posts.</p>
@@ -42,7 +42,7 @@ export default function AdminLogin() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full rounded-lg bg-white/5 border border-white/10 px-4 py-2.5 text-white text-sm outline-none focus:border-orange-500/50"
+              className="w-full rounded-lg bg-slate-900/[0.035] border border-slate-900/[0.10] px-4 py-2.5 text-slate-200 text-sm outline-none focus:border-orange-500/50"
             />
           </div>
           <div>
@@ -52,7 +52,7 @@ export default function AdminLogin() {
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full rounded-lg bg-white/5 border border-white/10 px-4 py-2.5 text-white text-sm outline-none focus:border-orange-500/50"
+              className="w-full rounded-lg bg-slate-900/[0.035] border border-slate-900/[0.10] px-4 py-2.5 text-slate-200 text-sm outline-none focus:border-orange-500/50"
             />
           </div>
 

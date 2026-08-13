@@ -97,7 +97,7 @@ export default function Services() {
       {/* Header */}
       <div className="text-center mb-20">
         <div className="section-badge mb-6 animate-fade-in">What We Build</div>
-        <h1 className="text-5xl md:text-7xl font-black text-white mb-6 animate-fade-in-up delay-100 leading-tight">
+        <h1 className="text-5xl md:text-7xl font-black text-slate-200 mb-6 animate-fade-in-up delay-100 leading-tight">
           Our <span className="gradient-text-animated">Services</span>
         </h1>
         <p className="text-slate-500 max-w-xl mx-auto text-lg leading-relaxed animate-fade-in-up delay-200">
@@ -137,7 +137,7 @@ export default function Services() {
               {s.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="text-xs text-slate-600 border border-white/5 bg-white/3 px-2 py-1 rounded-md"
+                  className="text-xs text-slate-600 border border-slate-900/[0.07] bg-slate-900/[0.025] px-2 py-1 rounded-md"
                 >
                   {tag}
                 </span>
@@ -152,7 +152,7 @@ export default function Services() {
       <div className="mb-20">
         <div className="text-center mb-12">
           <div className="section-badge mb-4">Packages</div>
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-black text-slate-200 mb-4">
             Simple, transparent <span className="gradient-text">pricing</span>
           </h2>
           <p className="text-slate-500 max-w-xl mx-auto">
@@ -173,7 +173,7 @@ export default function Services() {
                     Most popular
                   </span>
                 )}
-                <h3 className="text-xl font-black text-white">{pkg.name}</h3>
+                <h3 className="text-xl font-black text-slate-200">{pkg.name}</h3>
                 <div className="text-3xl font-black gradient-text my-3">{pkg.price}</div>
                 <p className="text-slate-500 text-sm leading-relaxed mb-5">{pkg.blurb}</p>
 
@@ -204,7 +204,7 @@ export default function Services() {
 
       {/* CTA */}
       <div className="glass-card text-center animate-glow-pulse max-w-2xl mx-auto">
-        <h2 className="text-2xl font-black text-white mb-3">
+        <h2 className="text-2xl font-black text-slate-200 mb-3">
           Need a custom <span className="gradient-text">solution?</span>
         </h2>
         <p className="text-slate-500 text-sm mb-6 leading-relaxed">

@@ -44,7 +44,7 @@ export default function Contact() {
       <div className="max-w-2xl mx-auto px-4 py-32 text-center">
         <div className="glass-card animate-glow-pulse">
           <div className="text-5xl mb-6 animate-float">✅</div>
-          <h2 className="text-3xl font-black text-white mb-3">
+          <h2 className="text-3xl font-black text-slate-200 mb-3">
             Message <span className="gradient-text">Sent!</span>
           </h2>
           <p className="text-slate-500 mb-8 leading-relaxed">
@@ -63,7 +63,7 @@ export default function Contact() {
       {/* Header */}
       <div className="text-center mb-16">
         <div className="section-badge mb-6 animate-fade-in">Get in Touch</div>
-        <h1 className="text-5xl md:text-7xl font-black text-white mb-6 animate-fade-in-up delay-100 leading-tight">
+        <h1 className="text-5xl md:text-7xl font-black text-slate-200 mb-6 animate-fade-in-up delay-100 leading-tight">
           Let&apos;s <span className="gradient-text-animated">Talk</span>
         </h1>
         <p className="text-slate-500 max-w-xl mx-auto text-lg leading-relaxed animate-fade-in-up delay-200">
@@ -113,7 +113,7 @@ export default function Contact() {
               </div>
               <div>
                 <p className="text-slate-600 text-xs uppercase tracking-wider mb-0.5">{item.label}</p>
-                <p className="text-white text-sm font-medium">{item.value}</p>
+                <p className="text-slate-200 text-sm font-medium">{item.value}</p>
               </div>
             </div>
           ))}

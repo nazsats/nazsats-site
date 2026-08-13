@@ -36,14 +36,14 @@ export default function Navbar() {
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-dark-900/95 backdrop-blur-xl border-b border-white/5 shadow-lg shadow-black/30"
+          ? "bg-dark-900/95 backdrop-blur-xl border-b border-slate-900/[0.07] shadow-lg shadow-black/30"
           : "bg-dark-900/70 backdrop-blur-md"
       }`}
     >
       <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-purple-500 to-cyan-500 flex items-center justify-center text-white font-black text-base animate-glow-pulse shadow-lg shadow-purple-900/40">
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-purple-500 to-cyan-500 flex items-center justify-center text-slate-200 font-black text-base animate-glow-pulse shadow-lg shadow-purple-900/40">
             N
           </div>
           <span className="text-xl font-black gradient-text-animated tracking-tight">Nazsats</span>
@@ -60,7 +60,7 @@ export default function Navbar() {
                   className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                     active
                       ? "text-purple-400 bg-purple-500/10"
-                      : "text-slate-500 hover:text-slate-200 hover:bg-white/5"
+                      : "text-slate-500 hover:text-slate-200 hover:bg-slate-900/[0.035]"
                   }`}
                 >
                   {label}
@@ -93,7 +93,7 @@ export default function Navbar() {
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition"
+          className="md:hidden p-2 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-900/[0.035] transition"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
         >
@@ -111,7 +111,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className="md:hidden border-t border-white/5 bg-dark-900/98 backdrop-blur-xl">
+        <div className="md:hidden border-t border-slate-900/[0.07] bg-dark-900/98 backdrop-blur-xl">
           <ul className="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-1">
             {links.map(({ href, label }) => (
               <li key={href}>
@@ -121,7 +121,7 @@ export default function Navbar() {
                   className={`block px-4 py-3 rounded-lg text-sm font-medium transition-all ${
                     pathname === href
                       ? "text-purple-400 bg-purple-500/10"
-                      : "text-slate-400 hover:text-white hover:bg-white/5"
+                      : "text-slate-400 hover:text-slate-200 hover:bg-slate-900/[0.035]"
                   }`}
                 >
                   {label}

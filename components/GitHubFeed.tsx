@@ -80,7 +80,7 @@ export default function GitHubFeed({ events }: Props) {
         <div key={ev.id} className="relative flex gap-4 pb-5">
           {/* Timeline line */}
           {i < events.length - 1 && (
-            <div className="absolute left-5 top-8 bottom-0 w-px bg-white/5" />
+            <div className="absolute left-5 top-8 bottom-0 w-px bg-slate-900/[0.035]" />
           )}
 
           {/* Icon */}
@@ -95,7 +95,7 @@ export default function GitHubFeed({ events }: Props) {
                 href={ev.repoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white text-sm font-semibold hover:text-purple-400 transition-colors truncate"
+                className="text-slate-200 text-sm font-semibold hover:text-purple-400 transition-colors truncate"
               >
                 {ev.repo}
               </a>

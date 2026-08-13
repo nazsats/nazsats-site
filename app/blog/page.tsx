@@ -55,7 +55,7 @@ export default async function Blog() {
       {/* Header */}
       <div className="text-center mb-20">
         <div className="section-badge mb-6 animate-fade-in">Knowledge Hub</div>
-        <h1 className="text-5xl md:text-7xl font-black text-white mb-6 animate-fade-in-up delay-100 leading-tight">
+        <h1 className="text-5xl md:text-7xl font-black text-slate-200 mb-6 animate-fade-in-up delay-100 leading-tight">
           Nazsats <span className="gradient-text-animated">Blog</span>
         </h1>
         <p className="text-slate-500 max-w-xl mx-auto text-lg leading-relaxed animate-fade-in-up delay-200">
@@ -76,12 +76,12 @@ export default async function Blog() {
               <div className="flex flex-wrap items-center gap-3 mb-3 text-xs text-slate-600 font-mono">
                 <span className="text-purple-400">{formatDate(post.created_at)}</span>
                 {post.tags.slice(0, 3).map((tag) => (
-                  <span key={tag} className="px-2 py-0.5 rounded-full bg-white/5 text-slate-400">
+                  <span key={tag} className="px-2 py-0.5 rounded-full bg-slate-900/[0.035] text-slate-400">
                     {tag}
                   </span>
                 ))}
               </div>
-              <h2 className="text-2xl font-black text-white mb-2 leading-tight">{post.title}</h2>
+              <h2 className="text-2xl font-black text-slate-200 mb-2 leading-tight">{post.title}</h2>
               <p className="text-slate-500 text-sm leading-relaxed mb-4">{post.description}</p>
               <span className="text-sm font-semibold gradient-text">Read article →</span>
             </Link>
@@ -92,7 +92,7 @@ export default async function Blog() {
         /* Coming soon card (shown when no posts are published yet) */
         <div className="max-w-3xl mx-auto mb-20">
           <div className="terminal-card scan-container animate-fade-in-up delay-200">
-            <div className="flex items-center gap-1.5 px-5 py-3.5 border-b border-white/5">
+            <div className="flex items-center gap-1.5 px-5 py-3.5 border-b border-slate-900/[0.07]">
               <div className="w-2.5 h-2.5 rounded-full bg-red-500/50" />
               <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/50" />
               <div className="w-2.5 h-2.5 rounded-full bg-green-500/50" />
@@ -104,7 +104,7 @@ export default async function Blog() {
             </div>
             <div className="px-6 py-8 text-center">
               <p className="text-4xl mb-4">✍️</p>
-              <h2 className="text-2xl font-black text-white mb-3">
+              <h2 className="text-2xl font-black text-slate-200 mb-3">
                 Coming <span className="gradient-text">Soon</span>
               </h2>
               <p className="text-slate-500 text-sm leading-relaxed max-w-md mx-auto">
@@ -124,7 +124,7 @@ export default async function Blog() {
       {/* Topics preview */}
       <div className="mb-20">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-black text-white animate-fade-in-up">
+          <h2 className="text-3xl font-black text-slate-200 animate-fade-in-up">
             Topics we&apos;ll <span className="gradient-text">cover</span>
           </h2>
         </div>
@@ -139,7 +139,7 @@ export default async function Blog() {
                 {t.icon}
               </div>
               <div>
-                <h3 className="text-white font-bold mb-1">{t.title}</h3>
+                <h3 className="text-slate-200 font-bold mb-1">{t.title}</h3>
                 <p className="text-slate-500 text-sm leading-relaxed">{t.desc}</p>
               </div>
             </div>
@@ -149,7 +149,7 @@ export default async function Blog() {
 
       {/* Newsletter CTA */}
       <div className="glass-card text-center animate-glow-pulse max-w-2xl mx-auto">
-        <h2 className="text-2xl font-black text-white mb-3">
+        <h2 className="text-2xl font-black text-slate-200 mb-3">
           Get notified <span className="gradient-text">first</span>
         </h2>
         <p className="text-slate-500 text-sm mb-6 leading-relaxed">

@@ -25,7 +25,7 @@ export default function TechStack() {
       {stack.map((tech, i) => (
         <div
           key={tech.name}
-          className="group flex items-center gap-2 px-4 py-2.5 rounded-xl border border-white/5 transition-all duration-300 cursor-default"
+          className="group flex items-center gap-2 px-4 py-2.5 rounded-xl border border-slate-900/[0.07] transition-all duration-300 cursor-default"
           style={{
             background: "rgba(255,255,255,0.03)",
             animationDelay: `${i * 0.05}s`,
@@ -46,7 +46,7 @@ export default function TechStack() {
           }}
         >
           <span className="text-lg leading-none">{tech.symbol}</span>
-          <span className="text-sm font-semibold text-slate-400 group-hover:text-white transition-colors whitespace-nowrap">
+          <span className="text-sm font-semibold text-slate-400 group-hover:text-slate-200 transition-colors whitespace-nowrap">
             {tech.name}
           </span>
         </div>

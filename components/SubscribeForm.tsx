@@ -41,7 +41,7 @@ export default function SubscribeForm() {
     return (
       <div className="text-center">
         <p className="text-2xl mb-2">🎉</p>
-        <p className="text-white font-bold">You&apos;re in!</p>
+        <p className="text-slate-200 font-bold">You&apos;re in!</p>
         <p className="text-slate-500 text-sm mt-1">We&apos;ll keep you updated with the latest.</p>
       </div>
     );
