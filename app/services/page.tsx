@@ -96,9 +96,9 @@ export default function Services() {
     <div className="max-w-7xl mx-auto px-4 py-20">
       {/* Header */}
       <div className="text-center mb-20">
-        <div className="section-badge mb-6 animate-fade-in">What We Build</div>
+        <div className="section-badge mb-6 animate-fade-in">What I Build</div>
         <h1 className="text-5xl md:text-7xl font-black text-slate-200 mb-6 animate-fade-in-up delay-100 leading-tight">
-          Our <span className="gradient-text-animated">Services</span>
+          <span className="gradient-text-animated">Services</span>
         </h1>
         <p className="text-slate-500 max-w-xl mx-auto text-lg leading-relaxed animate-fade-in-up delay-200">
           AI systems for businesses — assistants, document processing and automation, built to run in production rather than demo well.
