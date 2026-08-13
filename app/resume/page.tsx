@@ -100,10 +100,11 @@ const openSource = [
   {
     repo: "qdrant/qdrant-client",
     title: "Two filter conditions returned the wrong points in local mode",
+    merged: true,
     detail:
       "Found by running identical filters against local mode and a real Qdrant 1.19.0 server and diffing the matched ids. MatchExcept treated an explicit null as a value that differs from everything, so it matched points the server excluded — it is the only negated match condition, and the only one without a type guard. Separately, an empty `should` matched nothing rather than everything, because any([]) is False while the sibling must/must_not clauses use all() and are vacuously true. Both fixed with congruence tests that fail without the change.",
     links: [
-      { label: "PR #1333", url: "https://github.com/qdrant/qdrant-client/pull/1333" },
+      { label: "PR #1333 (merged)", url: "https://github.com/qdrant/qdrant-client/pull/1333" },
     ],
   },
   {
@@ -354,8 +355,8 @@ export default function Resume() {
         <p className="text-slate-400 text-sm leading-relaxed mb-6">
           <strong className="text-white">6 bugs found, reported and patched</strong> across three
           widely-used AI libraries — each with a reproduction, a minimal fix and regression
-          tests that fail without it. <strong className="text-orange-400/90">One merged upstream
-          and shipped in qdrant-client v1.19.0</strong>; the rest are open pull requests.
+          tests that fail without it. <strong className="text-orange-400/90">Two merged upstream into qdrant-client,
+          one of them shipped in v1.19.0</strong>; the rest are open pull requests.
         </p>
         <div className="space-y-6">
           {openSource.map((c) => (
