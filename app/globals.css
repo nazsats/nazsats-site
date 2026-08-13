@@ -4,36 +4,37 @@
 @theme {
   /* Black, white and their shades — with cyan as the only colour, used
      sparingly. Nothing here is pure #fff or #000: paper and ink both carry a
-     little tint, which is what stops a monochrome page looking like a
-     default browser render.
+     little warmth, which stops a monochrome page looking like a default
+     browser render and keeps the neutrals from going cold beside the orange.
 
      Token names are inherited from the original dark theme. `dark-*` is the
      surface scale (light), `slate-*` is ink from strongest to faintest, and
      `purple-*` / `cyan-*` both hold cyan — they were the two accent slots. */
 
   /* Paper. */
-  --color-dark-950: #F6F7F8;   /* page */
-  --color-dark-900: #FCFCFD;   /* cards, raised above the page */
-  --color-dark-800: #EEF0F2;   /* banded sections */
-  --color-dark-700: #E4E7EA;
-  --color-dark-600: #D7DBE0;
+  --color-dark-950: #F8F7F5;   /* page */
+  --color-dark-900: #FDFCFB;   /* cards, raised above the page */
+  --color-dark-800: #F1EFEC;   /* banded sections */
+  --color-dark-700: #E6E3DF;
+  --color-dark-600: #DAD6D1;
 
-  /* The cherry. Two steps because one cyan cannot do both jobs: #0891B2 is
-     the recognisable one but only clears 3.5:1, so it is limited to large
-     type and chart marks. Anything smaller, and anything reversed out on a
-     fill, uses #0E7490 (5.4:1 against white). */
-  --color-purple-400: #0891B2;
-  --color-purple-500: #0E7490;
-  --color-purple-600: #155E75;
-  --color-cyan-400: #0E7490;
-  --color-cyan-500: #155E75;
+  /* The cherry. Two steps, because the logo's own orange (#F7591F) measures
+     2.91:1 on this page — fine as a mark, unreadable as text. #E04000 is the
+     closest step that clears the 3:1 mark floor and carries large type;
+     #C2410C (4.84:1, and 5.05:1 reversed out on a fill) carries links,
+     buttons and anything small. */
+  --color-purple-400: #E04000;
+  --color-purple-500: #C2410C;
+  --color-purple-600: #9A3412;
+  --color-cyan-400: #C2410C;
+  --color-cyan-500: #9A3412;
 
   /* Ink. */
-  --color-slate-200: #16181D;  /* headings — 16.6:1 on the page */
-  --color-slate-300: #2A2E35;
-  --color-slate-400: #565C66;  /* body — 6.3:1 */
-  --color-slate-500: #7A828D;  /* muted — 3.6:1, large text only */
-  --color-slate-600: #A9B0BA;  /* hairlines and decoration */
+  --color-slate-200: #1A1815;  /* headings — 16.6:1 on the page */
+  --color-slate-300: #2C2926;
+  --color-slate-400: #57534E;  /* body — 6.3:1 */
+  --color-slate-500: #7C7873;  /* muted — 3.6:1, large text only */
+  --color-slate-600: #ADA8A2;  /* hairlines and decoration */
 }
 
 /* ── Keyframes ────────────────────────────────── */
@@ -54,8 +55,8 @@
 }
 
 @keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 24px rgba(8, 145, 178, 0.3),  0 0 60px rgba(21, 94, 117, 0.08); }
-  50%       { box-shadow: 0 0 48px rgba(8, 145, 178, 0.6),  0 0 90px rgba(21, 94, 117, 0.20); }
+  0%, 100% { box-shadow: 0 0 24px rgba(224, 64, 0, 0.3),  0 0 60px rgba(154, 52, 18, 0.08); }
+  50%       { box-shadow: 0 0 48px rgba(224, 64, 0, 0.6),  0 0 90px rgba(154, 52, 18, 0.20); }
 }
 
 @keyframes orb-drift {
@@ -119,18 +120,18 @@
 
 .bg-grid {
   background-image:
-    linear-gradient(rgba(22, 24, 29, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(22, 24, 29, 0.035) 1px, transparent 1px);
+    linear-gradient(rgba(26, 24, 21, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 24, 21, 0.035) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
 .bg-dot-pattern {
-  background-image: radial-gradient(rgba(8, 145, 178, 0.14) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(224, 64, 0, 0.14) 1px, transparent 1px);
   background-size: 22px 22px;
 }
 
 .bg-radial-glow {
-  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(8, 145, 178, 0.10) 0%, transparent 70%);
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(224, 64, 0, 0.10) 0%, transparent 70%);
 }
 
 /* ── Glassmorphism cards ──────────────────────── */
@@ -138,46 +139,46 @@
 .glass {
   background: rgba(252, 252, 253, 0.78);
   backdrop-filter: blur(16px);
-  border: 1px solid rgba(22, 24, 29, 0.08);
+  border: 1px solid rgba(26, 24, 21, 0.08);
 }
 
 .glass-card {
-  background: #FCFCFD;
+  background: #FDFCFB;
   backdrop-filter: none;
-  border: 1px solid rgba(22, 24, 29, 0.09);
-  box-shadow: 0 1px 2px rgba(22, 24, 29, 0.04), 0 8px 24px rgba(22, 24, 29, 0.04);
+  border: 1px solid rgba(26, 24, 21, 0.09);
+  box-shadow: 0 1px 2px rgba(26, 24, 21, 0.04), 0 8px 24px rgba(26, 24, 21, 0.04);
   border-radius: 1rem;
   padding: 2rem;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-card:hover {
-  border-color: rgba(8, 145, 178, 0.35);
-  background: #FCFCFD;
+  border-color: rgba(224, 64, 0, 0.35);
+  background: #FDFCFB;
   transform: translateY(-4px);
   box-shadow:
-    0 2px 4px rgba(22, 24, 29, 0.05),
-    0 16px 40px rgba(22, 24, 29, 0.10);
+    0 2px 4px rgba(26, 24, 21, 0.05),
+    0 16px 40px rgba(26, 24, 21, 0.10);
 }
 
 .glass-card-cyan:hover {
-  border-color: rgba(14, 116, 144, 0.32);
+  border-color: rgba(194, 65, 12, 0.32);
   box-shadow:
-    0 2px 4px rgba(22, 24, 29, 0.05),
-    0 16px 40px rgba(14, 116, 144, 0.10);
+    0 2px 4px rgba(26, 24, 21, 0.05),
+    0 16px 40px rgba(194, 65, 12, 0.10);
 }
 
 /* ── Gradient text ────────────────────────────── */
 
 .gradient-text {
-  background: linear-gradient(135deg, #0891B2 0%, #155E75 100%);
+  background: linear-gradient(135deg, #E04000 0%, #9A3412 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .gradient-text-animated {
-  background: linear-gradient(270deg, #0891B2, #0891B2, #0E7490, #0891B2);
+  background: linear-gradient(270deg, #E04000, #E04000, #C2410C, #E04000);
   background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -191,8 +192,8 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: linear-gradient(135deg, #0E7490 0%, #155E75 100%);
-  color: #FCFCFD;
+  background: linear-gradient(135deg, #C2410C 0%, #9A3412 100%);
+  color: #FDFCFB;
   padding: 0.875rem 2rem;
   border-radius: 9999px;
   font-weight: 600;
@@ -216,7 +217,7 @@
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(8, 145, 178, 0.30);
+  box-shadow: 0 8px 22px rgba(224, 64, 0, 0.30);
 }
 
 .btn-primary:disabled {
@@ -231,22 +232,22 @@
   align-items: center;
   gap: 0.5rem;
   background: transparent;
-  color: #0E7490;
+  color: #C2410C;
   padding: 0.875rem 2rem;
   border-radius: 9999px;
   font-weight: 600;
   font-size: 0.9rem;
-  border: 1px solid rgba(8, 145, 178, 0.32);
+  border: 1px solid rgba(224, 64, 0, 0.32);
   transition: all 0.3s ease;
   white-space: nowrap;
 }
 
 .btn-secondary:hover {
-  border-color: rgba(8, 145, 178, 0.6);
-  color: #155E75;
+  border-color: rgba(224, 64, 0, 0.6);
+  color: #9A3412;
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(8, 145, 178, 0.14);
-  background: rgba(8, 145, 178, 0.05);
+  box-shadow: 0 8px 20px rgba(224, 64, 0, 0.14);
+  background: rgba(224, 64, 0, 0.05);
 }
 
 /* ── Badge ────────────────────────────────────── */
@@ -255,9 +256,9 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(8, 145, 178, 0.09);
-  border: 1px solid rgba(8, 145, 178, 0.25);
-  color: #0E7490;
+  background: rgba(224, 64, 0, 0.09);
+  border: 1px solid rgba(224, 64, 0, 0.25);
+  color: #C2410C;
   padding: 0.35rem 1rem;
   border-radius: 9999px;
   font-size: 0.75rem;
@@ -271,21 +272,21 @@
 .input-dark {
   width: 100%;
   padding: 0.875rem 1.25rem;
-  background: #FCFCFD;
-  border: 1px solid rgba(22, 24, 29, 0.14);
+  background: #FDFCFB;
+  border: 1px solid rgba(26, 24, 21, 0.14);
   border-radius: 0.75rem;
-  color: #16181D;
+  color: #1A1815;
   transition: all 0.3s ease;
   font-size: 0.95rem;
 }
 
-.input-dark::placeholder { color: #A9B0BA; }
+.input-dark::placeholder { color: #ADA8A2; }
 
 .input-dark:focus {
   outline: none;
-  border-color: rgba(8, 145, 178, 0.55);
-  background: #FCFCFD;
-  box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.14);
+  border-color: rgba(224, 64, 0, 0.55);
+  background: #FDFCFB;
+  box-shadow: 0 0 0 3px rgba(224, 64, 0, 0.14);
 }
 
 /* ── Divider line ─────────────────────────────── */
@@ -293,14 +294,14 @@
 .divider {
   border: none;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(22, 24, 29, 0.14), transparent);
+  background: linear-gradient(90deg, transparent, rgba(26, 24, 21, 0.14), transparent);
 }
 
 /* ── Terminal/code block decoration ──────────── */
 
 .terminal-card {
-  background: #16181D;
-  border: 1px solid rgba(22, 24, 29, 0.18);
+  background: #1A1815;
+  border: 1px solid rgba(26, 24, 21, 0.18);
   border-radius: 0.75rem;
   font-family: 'Courier New', monospace;
   font-size: 0.8rem;
@@ -313,7 +314,7 @@
   position: absolute;
   left: 0; right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(8, 145, 178, 0.9), rgba(21, 94, 117, 0.9), transparent);
+  background: linear-gradient(90deg, transparent, rgba(224, 64, 0, 0.9), rgba(154, 52, 18, 0.9), transparent);
   top: 0;
 }
 
@@ -329,7 +330,7 @@
   position: absolute;
   left: 0; right: 0;
   height: 60px;
-  background: linear-gradient(to bottom, transparent, rgba(8, 145, 178, 0.05), transparent);
+  background: linear-gradient(to bottom, transparent, rgba(224, 64, 0, 0.05), transparent);
   animation: scan-line 4s linear infinite;
   pointer-events: none;
 }
@@ -339,31 +340,31 @@
 .status-dot {
   width: 8px;
   height: 8px;
-  background: #0891B2;
+  background: #E04000;
   border-radius: 50%;
-  box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.20);
+  box-shadow: 0 0 0 3px rgba(224, 64, 0, 0.20);
   animation: pulse-dot 1.8s ease-in-out infinite;
 }
 /* ── Blog article content ─────────────────────── */
 
-.blog-content { color: #3A4049; line-height: 1.8; }
+.blog-content { color: #3D3A35; line-height: 1.8; }
 .blog-content > * + * { margin-top: 1.25rem; }
 .blog-content h2 {
-  color: #16181D;
+  color: #1A1815;
   font-weight: 800;
   font-size: 1.6rem;
   margin-top: 2.5rem;
   margin-bottom: 0.5rem;
 }
 .blog-content h3 {
-  color: #16181D;
+  color: #1A1815;
   font-weight: 700;
   font-size: 1.25rem;
   margin-top: 2rem;
 }
-.blog-content p { color: #3A4049; }
-.blog-content a { color: #0E7490; text-decoration: underline; }
-.blog-content strong { color: #16181D; font-weight: 700; }
+.blog-content p { color: #3D3A35; }
+.blog-content a { color: #C2410C; text-decoration: underline; }
+.blog-content strong { color: #1A1815; font-weight: 700; }
 .blog-content ul, .blog-content ol { padding-left: 1.5rem; }
 .blog-content ul { list-style: disc; }
 .blog-content ol { list-style: decimal; }
@@ -371,23 +372,23 @@
 .blog-content code {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 0.85em;
-  background: rgba(22, 24, 29, 0.06);
+  background: rgba(26, 24, 21, 0.06);
   padding: 0.15em 0.4em;
   border-radius: 4px;
-  color: #155E75;
+  color: #9A3412;
 }
 .blog-content pre {
-  background: #16181D;
-  border: 1px solid rgba(22, 24, 29, 0.12);
+  background: #1A1815;
+  border: 1px solid rgba(26, 24, 21, 0.12);
   border-radius: 10px;
   padding: 1.1rem 1.25rem;
   overflow-x: auto;
 }
-.blog-content pre code { background: none; padding: 0; color: #E4E7EA; }
+.blog-content pre code { background: none; padding: 0; color: #E6E3DF; }
 .blog-content blockquote {
-  border-left: 3px solid #0891B2;
+  border-left: 3px solid #E04000;
   padding-left: 1rem;
-  color: #565C66;
+  color: #57534E;
   font-style: italic;
 }
 
@@ -399,8 +400,8 @@
   height: auto;
   margin: 2rem auto 0.75rem;
   border-radius: 12px;
-  border: 1px solid rgba(22, 24, 29, 0.10);
-  background: #FCFCFD;
+  border: 1px solid rgba(26, 24, 21, 0.10);
+  background: #FDFCFB;
 }
 
 /* Caption: the italic line immediately after an image. */
@@ -409,7 +410,7 @@
   display: block;
   text-align: center;
   font-size: 0.875rem;
-  color: #7A828D;
+  color: #7C7873;
   font-style: normal;
 }
 
@@ -423,18 +424,18 @@
 .blog-content th,
 .blog-content td {
   padding: 0.6rem 0.9rem;
-  border-bottom: 1px solid rgba(22, 24, 29, 0.10);
+  border-bottom: 1px solid rgba(26, 24, 21, 0.10);
   text-align: left;
   vertical-align: top;
 }
 .blog-content th {
-  color: #16181D;
+  color: #1A1815;
   font-weight: 700;
-  background: rgba(22, 24, 29, 0.04);
+  background: rgba(26, 24, 21, 0.04);
   white-space: nowrap;
 }
-.blog-content td { color: #7A828D; }
-.blog-content tbody tr:hover td { background: rgba(22, 24, 29, 0.025); }
+.blog-content td { color: #7C7873; }
+.blog-content tbody tr:hover td { background: rgba(26, 24, 21, 0.025); }
 
 /* ── Print: /resume → PDF ─────────────────────────
    The page is the source of truth for the CV, so "Save as PDF" prints it
@@ -451,7 +452,7 @@
   html,
   body {
     background: #fff !important;
-    color: #16181D !important;
+    color: #1A1815 !important;
   }
 
   /* Site chrome and anything interactive has no place in a document. */
@@ -493,18 +494,18 @@
   .resume-doc h2,
   .resume-doc h3,
   .resume-doc strong {
-    color: #16181D !important;
+    color: #1A1815 !important;
   }
 
   .resume-doc .text-slate-400,
   .resume-doc .text-slate-500,
   .resume-doc .text-slate-600 {
-    color: #565C66 !important;
+    color: #57534E !important;
   }
 
   .resume-doc .text-slate-200,
   .resume-doc .text-slate-300 {
-    color: #16181D !important;
+    color: #1A1815 !important;
   }
 
   /* gradient-text paints via background-clip, which prints as nothing. */
@@ -513,18 +514,18 @@
     background: none !important;
     -webkit-background-clip: border-box !important;
     background-clip: border-box !important;
-    -webkit-text-fill-color: #16181D !important;
-    color: #16181D !important;
+    -webkit-text-fill-color: #1A1815 !important;
+    color: #1A1815 !important;
   }
 
   .resume-doc .text-orange-400\/90,
   .resume-doc .text-orange-400\/80,
   .resume-doc .text-orange-500\/60 {
-    color: #0E7490 !important;
+    color: #C2410C !important;
   }
 
   .resume-doc a {
-    color: #16181D !important;
+    color: #1A1815 !important;
     text-decoration: none !important;
   }
 
@@ -536,7 +537,7 @@
   }
 
   .resume-doc h1 { font-size: 24pt !important; }
-  .resume-doc h2 { color: #7A828D !important; border-color: #ccc !important; }
+  .resume-doc h2 { color: #7C7873 !important; border-color: #ccc !important; }
 
   /* Don't split a role or project across a page break. */
   .resume-doc section > div > div,

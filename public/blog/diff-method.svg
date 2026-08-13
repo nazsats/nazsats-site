@@ -1,49 +1,49 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 340" width="880" height="340" role="img" aria-label="One input is sent to both implementations of the same contract. Identical answers mean nothing to see. Different answers mean one of them is wrong.">
-  <rect width="880" height="340" rx="14" fill="#FFFFFF" stroke="#E4E7EA"/>
+  <rect width="880" height="340" rx="14" fill="#FFFFFF" stroke="#E6E3DF"/>
 
-  <text x="40" y="44" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="700" letter-spacing="2" fill="#7A828D">DIFFERENTIAL TESTING, IN ONE PICTURE</text>
+  <text x="40" y="44" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="700" letter-spacing="2" fill="#7C7873">DIFFERENTIAL TESTING, IN ONE PICTURE</text>
 
   <!-- input -->
-  <rect x="40" y="140" width="150" height="58" rx="8" fill="#EEF0F2" stroke="#E4E7EA"/>
-  <text x="115" y="166" font-family="ui-monospace,Consolas,monospace" font-size="13" fill="#16181D" text-anchor="middle">one input</text>
-  <text x="115" y="184" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="11" fill="#7A828D" text-anchor="middle">a query, a pattern</text>
+  <rect x="40" y="140" width="150" height="58" rx="8" fill="#F1EFEC" stroke="#E6E3DF"/>
+  <text x="115" y="166" font-family="ui-monospace,Consolas,monospace" font-size="13" fill="#1A1815" text-anchor="middle">one input</text>
+  <text x="115" y="184" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="11" fill="#7C7873" text-anchor="middle">a query, a pattern</text>
 
   <!-- split arrows -->
-  <path d="M198 158 C 240 158, 240 108, 282 108" stroke="#3A4049" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <path d="M274 101 L282 108 L274 115" stroke="#3A4049" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M198 180 C 240 180, 240 230, 282 230" stroke="#3A4049" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <path d="M274 223 L282 230 L274 237" stroke="#3A4049" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M198 158 C 240 158, 240 108, 282 108" stroke="#3D3A35" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M274 101 L282 108 L274 115" stroke="#3D3A35" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M198 180 C 240 180, 240 230, 282 230" stroke="#3D3A35" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M274 223 L282 230 L274 237" stroke="#3D3A35" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 
   <!-- implementation A -->
-  <rect x="290" y="80" width="235" height="58" rx="8" fill="#EEF0F2" stroke="#E4E7EA"/>
-  <text x="407" y="105" font-family="ui-monospace,Consolas,monospace" font-size="13" fill="#16181D" text-anchor="middle">implementation A</text>
-  <text x="407" y="124" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="11" fill="#7A828D" text-anchor="middle">the convenient one — local, embedded, in-memory</text>
+  <rect x="290" y="80" width="235" height="58" rx="8" fill="#F1EFEC" stroke="#E6E3DF"/>
+  <text x="407" y="105" font-family="ui-monospace,Consolas,monospace" font-size="13" fill="#1A1815" text-anchor="middle">implementation A</text>
+  <text x="407" y="124" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="11" fill="#7C7873" text-anchor="middle">the convenient one — local, embedded, in-memory</text>
 
   <!-- implementation B -->
-  <rect x="290" y="202" width="235" height="58" rx="8" fill="#EEF0F2" stroke="#E4E7EA"/>
-  <text x="407" y="227" font-family="ui-monospace,Consolas,monospace" font-size="13" fill="#16181D" text-anchor="middle">implementation B</text>
-  <text x="407" y="246" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="11" fill="#7A828D" text-anchor="middle">the authority — the real server, the stdlib</text>
+  <rect x="290" y="202" width="235" height="58" rx="8" fill="#F1EFEC" stroke="#E6E3DF"/>
+  <text x="407" y="227" font-family="ui-monospace,Consolas,monospace" font-size="13" fill="#1A1815" text-anchor="middle">implementation B</text>
+  <text x="407" y="246" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="11" fill="#7C7873" text-anchor="middle">the authority — the real server, the stdlib</text>
 
   <!-- join arrows -->
-  <path d="M533 108 C 575 108, 575 158, 617 158" stroke="#3A4049" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <path d="M609 151 L617 158 L609 165" stroke="#3A4049" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M533 230 C 575 230, 575 180, 617 180" stroke="#3A4049" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <path d="M609 173 L617 180 L609 187" stroke="#3A4049" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M533 108 C 575 108, 575 158, 617 158" stroke="#3D3A35" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M609 151 L617 158 L609 165" stroke="#3D3A35" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M533 230 C 575 230, 575 180, 617 180" stroke="#3D3A35" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M609 173 L617 180 L609 187" stroke="#3D3A35" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 
   <!-- diff -->
-  <rect x="625" y="140" width="90" height="58" rx="8" fill="#EEF0F2" stroke="#0E7490"/>
-  <text x="670" y="175" font-family="ui-monospace,Consolas,monospace" font-size="15" font-weight="700" fill="#0E7490" text-anchor="middle">diff</text>
+  <rect x="625" y="140" width="90" height="58" rx="8" fill="#F1EFEC" stroke="#C2410C"/>
+  <text x="670" y="175" font-family="ui-monospace,Consolas,monospace" font-size="15" font-weight="700" fill="#C2410C" text-anchor="middle">diff</text>
 
   <!-- outcomes -->
-  <path d="M723 158 L775 128" stroke="#3A4049" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <path d="M767 126 L775 128 L773 136" stroke="#3A4049" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="785" y="126" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" fill="#7A828D">same</text>
-  <text x="785" y="142" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="11" fill="#A9B0BA">nothing to see</text>
+  <path d="M723 158 L775 128" stroke="#3D3A35" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M767 126 L775 128 L773 136" stroke="#3D3A35" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="785" y="126" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" fill="#7C7873">same</text>
+  <text x="785" y="142" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="11" fill="#ADA8A2">nothing to see</text>
 
-  <path d="M723 180 L775 210" stroke="#0E7490" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <path d="M767 212 L775 210 L773 202" stroke="#0E7490" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="785" y="208" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" font-weight="700" fill="#0E7490">differ</text>
-  <text x="785" y="224" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="11" fill="#3A4049">one is wrong</text>
+  <path d="M723 180 L775 210" stroke="#C2410C" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M767 212 L775 210 L773 202" stroke="#C2410C" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="785" y="208" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" font-weight="700" fill="#C2410C">differ</text>
+  <text x="785" y="224" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="11" fill="#3D3A35">one is wrong</text>
 
-  <text x="40" y="304" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" fill="#7A828D">You never need to know the right answer. You only need two things that claim to give the same one.</text>
+  <text x="40" y="304" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" fill="#7C7873">You never need to know the right answer. You only need two things that claim to give the same one.</text>
 </svg>

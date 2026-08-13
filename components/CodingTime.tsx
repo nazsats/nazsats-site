@@ -226,7 +226,7 @@ function DayTable({
   return (
     <div className="overflow-auto" style={{ maxHeight: 224 }}>
       <table className="w-full text-xs">
-        <thead className="sticky top-0" style={{ background: "#FCFCFD" }}>
+        <thead className="sticky top-0" style={{ background: "#FDFCFB" }}>
           <tr style={{ color: AXIS_TEXT }}>
             <th className="text-left font-semibold py-2">Day</th>
             <th className="text-right font-semibold py-2">Editor</th>

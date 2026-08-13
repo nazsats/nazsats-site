@@ -10,11 +10,11 @@ interface Props { weeks: Week[]; total: number; }
 // The empty step is a tint of the ink rather than of the accent, so "no
 // contributions" never reads as "a few".
 function cellColor(count: number): string {
-  if (count === 0) return "rgba(22,24,29,0.06)";
-  if (count <= 2)  return "#BFE9F2";
-  if (count <= 5)  return "#6DCADD";
-  if (count <= 9)  return "#0E9DBB";
-  return "#0E7490";
+  if (count === 0) return "rgba(26,24,21,0.06)";
+  if (count <= 2)  return "#F8D3B8";
+  if (count <= 5)  return "#F0A268";
+  if (count <= 9)  return "#DE6111";
+  return "#9A3412";
 }
 
 const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
@@ -45,7 +45,7 @@ export default function GitHubHeatmap({ weeks, total }: Props) {
           {weeks.map((_, wi) => {
             const ml = monthLabels.find((m) => m.col === wi);
             return (
-              <div key={wi} className="w-3 text-center" style={{ fontSize: "9px", color: "#7A828D" }}>
+              <div key={wi} className="w-3 text-center" style={{ fontSize: "9px", color: "#7C7873" }}>
                 {ml?.label || ""}
               </div>
             );
@@ -57,7 +57,7 @@ export default function GitHubHeatmap({ weeks, total }: Props) {
           {/* Day labels */}
           <div className="flex flex-col gap-1 mr-1">
             {DAYS.map((d, i) => (
-              <div key={i} className="h-3 flex items-center" style={{ fontSize: "9px", color: "#7A828D", width: 24 }}>
+              <div key={i} className="h-3 flex items-center" style={{ fontSize: "9px", color: "#7C7873", width: 24 }}>
                 {d}
               </div>
             ))}
@@ -88,13 +88,13 @@ export default function GitHubHeatmap({ weeks, total }: Props) {
 
         {/* Legend */}
         <div className="flex items-center gap-2 mt-3 ml-8">
-          <span style={{ fontSize: "10px", color: "#7A828D" }}>Less</span>
+          <span style={{ fontSize: "10px", color: "#7C7873" }}>Less</span>
           {[0, 2, 5, 9, 12].map((n) => (
             <div key={n} className="w-3 h-3 rounded-sm" style={{ background: cellColor(n) }} />
           ))}
-          <span style={{ fontSize: "10px", color: "#7A828D" }}>More</span>
+          <span style={{ fontSize: "10px", color: "#7C7873" }}>More</span>
           {total > 0 && (
-            <span className="ml-4" style={{ fontSize: "10px", color: "#7A828D" }}>
+            <span className="ml-4" style={{ fontSize: "10px", color: "#7C7873" }}>
               {total.toLocaleString()} contributions this year
             </span>
           )}
@@ -106,8 +106,8 @@ export default function GitHubHeatmap({ weeks, total }: Props) {
         <div
           className="fixed z-50 pointer-events-none px-2 py-1 rounded text-xs text-slate-200"
           style={{
-            background: "#16181D",
-            border: "1px solid rgba(22,24,29,0.2)",
+            background: "#1A1815",
+            border: "1px solid rgba(26,24,21,0.2)",
             left: tooltip.x,
             top: tooltip.y,
             whiteSpace: "nowrap",
