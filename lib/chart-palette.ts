@@ -32,7 +32,7 @@ export const CATEGORICAL = [
 ] as const;
 
 /** Everything past the 6 slots collapses here rather than growing the palette. */
-export const OTHER = "#94A3B8";
+export const OTHER = "#A8A29E";
 
 /** Editor time — the brand orange, stepped down to clear 3:1 on white. */
 export const SERIES_EDITOR = "#E06A00";
@@ -41,13 +41,13 @@ export const SERIES_EDITOR = "#E06A00";
 export const SERIES_MANUAL = "#2E86E0";
 
 /** Recessive chrome: one step off the surface, never competing with the data. */
-export const GRID = "rgba(15, 23, 42, 0.10)";
-export const AXIS_TEXT = "#64748B";
+export const GRID = "rgba(28, 25, 23, 0.10)";
+export const AXIS_TEXT = "#78716C";
 
 /** Tooltip surface — a raised white card, not an inverted dark one. */
 export const TOOLTIP_BG = "#FFFFFF";
-export const TOOLTIP_BORDER = "rgba(15, 23, 42, 0.12)";
-export const TOOLTIP_SHADOW = "0 8px 24px rgba(15, 23, 42, 0.14)";
+export const TOOLTIP_BORDER = "rgba(28, 25, 23, 0.12)";
+export const TOOLTIP_SHADOW = "0 8px 24px rgba(28, 25, 23, 0.14)";
 
 /** Assign a slot by index, folding the tail into OTHER. */
 export function slot(index: number): string {

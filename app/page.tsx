@@ -2,7 +2,6 @@ import Link from "next/link";
 import { getGitHubStats, getPinnedRepos, getContributions, getRecentActivity } from "../lib/github";
 import SubscribeForm from "../components/SubscribeForm";
 import TypewriterText from "../components/TypewriterText";
-import MouseOrb from "../components/MouseOrb";
 import Globe from "../components/Globe";
 import Tilt from "../components/Tilt";
 import Projects from "../components/Projects";
@@ -36,20 +35,7 @@ export default async function Home() {
       {/* ── Hero ─────────────────────────────────── */}
       <section className="relative min-h-[92vh] flex flex-col items-center justify-center text-center overflow-hidden px-4 py-24">
         <div className="absolute inset-0 bg-grid" />
-        <div className="absolute inset-0 bg-radial-glow" />
 
-        {/* Static orbs */}
-        <div
-          className="absolute top-1/4 left-1/5 w-[500px] h-[500px] rounded-full blur-[120px] animate-orb pointer-events-none"
-          style={{ background: "rgba(232,93,0,0.10)" }}
-        />
-        <div
-          className="absolute bottom-1/4 right-1/5 w-[400px] h-[400px] rounded-full blur-[100px] animate-orb pointer-events-none"
-          style={{ background: "rgba(29,78,216,0.09)", animationDelay: "5s" }}
-        />
-
-        {/* Mouse-tracking orb */}
-        <MouseOrb />
 
         {/* Real-time 3D Earth — auto-rotates, drag to spin */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">

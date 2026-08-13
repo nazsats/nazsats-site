@@ -10,7 +10,7 @@ interface Props { weeks: Week[]; total: number; }
 // The empty step is a tint of the ink rather than of the accent, so "no
 // contributions" never reads as "a few".
 function cellColor(count: number): string {
-  if (count === 0) return "rgba(15,23,42,0.06)";
+  if (count === 0) return "rgba(28,25,23,0.06)";
   if (count <= 2)  return "#FBD9BC";
   if (count <= 5)  return "#F2A868";
   if (count <= 9)  return "#E06A00";
@@ -45,7 +45,7 @@ export default function GitHubHeatmap({ weeks, total }: Props) {
           {weeks.map((_, wi) => {
             const ml = monthLabels.find((m) => m.col === wi);
             return (
-              <div key={wi} className="w-3 text-center" style={{ fontSize: "9px", color: "#64748B" }}>
+              <div key={wi} className="w-3 text-center" style={{ fontSize: "9px", color: "#78716C" }}>
                 {ml?.label || ""}
               </div>
             );
@@ -57,7 +57,7 @@ export default function GitHubHeatmap({ weeks, total }: Props) {
           {/* Day labels */}
           <div className="flex flex-col gap-1 mr-1">
             {DAYS.map((d, i) => (
-              <div key={i} className="h-3 flex items-center" style={{ fontSize: "9px", color: "#64748B", width: 24 }}>
+              <div key={i} className="h-3 flex items-center" style={{ fontSize: "9px", color: "#78716C", width: 24 }}>
                 {d}
               </div>
             ))}
@@ -88,13 +88,13 @@ export default function GitHubHeatmap({ weeks, total }: Props) {
 
         {/* Legend */}
         <div className="flex items-center gap-2 mt-3 ml-8">
-          <span style={{ fontSize: "10px", color: "#64748B" }}>Less</span>
+          <span style={{ fontSize: "10px", color: "#78716C" }}>Less</span>
           {[0, 2, 5, 9, 12].map((n) => (
             <div key={n} className="w-3 h-3 rounded-sm" style={{ background: cellColor(n) }} />
           ))}
-          <span style={{ fontSize: "10px", color: "#64748B" }}>More</span>
+          <span style={{ fontSize: "10px", color: "#78716C" }}>More</span>
           {total > 0 && (
-            <span className="ml-4" style={{ fontSize: "10px", color: "#64748B" }}>
+            <span className="ml-4" style={{ fontSize: "10px", color: "#78716C" }}>
               {total.toLocaleString()} contributions this year
             </span>
           )}
@@ -106,8 +106,8 @@ export default function GitHubHeatmap({ weeks, total }: Props) {
         <div
           className="fixed z-50 pointer-events-none px-2 py-1 rounded text-xs text-slate-200"
           style={{
-            background: "#0F172A",
-            border: "1px solid rgba(15,23,42,0.2)",
+            background: "#1C1917",
+            border: "1px solid rgba(28,25,23,0.2)",
             left: tooltip.x,
             top: tooltip.y,
             whiteSpace: "nowrap",

@@ -4,8 +4,9 @@ import { useEffect, useRef } from "react";
 import createGlobe from "cobe";
 
 /**
- * Real-time rotating 3D Earth, themed to the Nazsats orange→magenta palette.
- * Auto-rotates, and you can grab and drag it to spin — built on cobe (WebGL).
+ * Real-time rotating 3D Earth, lit for the light theme: a near-white sphere
+ * with orange landmasses and markers, so it reads as a diagram rather than a
+ * dark object dropped on the page. Auto-rotates; drag to spin. Built on cobe.
  */
 export default function Globe() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -30,13 +31,13 @@ export default function Globe() {
       height: width * 2,
       phi: 0,
       theta: 0.25,
-      dark: 1,
-      diffuse: 1.2,
+      dark: 0,
+      diffuse: 0.4,
       mapSamples: 18000,
-      mapBrightness: 7,
-      baseColor: [0.25, 0.12, 0.22],
-      markerColor: [1, 0.13, 0.4],
-      glowColor: [0.9, 0.32, 0.05],
+      mapBrightness: 1.2,
+      baseColor: [1, 1, 1],
+      markerColor: [0.91, 0.36, 0.0],
+      glowColor: [1, 0.93, 0.87],
       markers: [
         { location: [37.7595, -122.4367], size: 0.05 }, // San Francisco
         { location: [40.7128, -74.006], size: 0.06 }, // New York

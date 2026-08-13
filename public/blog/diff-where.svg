@@ -1,41 +1,41 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 360" width="880" height="360" role="img" aria-label="Libraries that ship two implementations of one contract: Qdrant local mode versus server, Chroma persistent versus HTTP client, Milvus Lite versus server, LanceDB local versus cloud, Weaviate embedded versus remote, and any structured-generation library across its model backends.">
-  <rect width="880" height="360" rx="14" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <rect width="880" height="360" rx="14" fill="#FFFFFF" stroke="#E7E5E4"/>
 
-  <text x="40" y="44" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="700" letter-spacing="2" fill="#64748B">WHERE TO POINT IT</text>
-  <text x="40" y="70" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12.5" fill="#334155">Any library that ships a convenient local mode is maintaining two implementations of one contract.</text>
+  <text x="40" y="44" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="700" letter-spacing="2" fill="#78716C">WHERE TO POINT IT</text>
+  <text x="40" y="70" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12.5" fill="#44403C">Any library that ships a convenient local mode is maintaining two implementations of one contract.</text>
 
   <g font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12.5">
     <!-- row template: name | impl A | vs | impl B -->
-    <rect x="40" y="94" width="800" height="38" rx="7" fill="#F5F7FA" stroke="#D8DFE8"/>
-    <text x="60" y="118" fill="#0F172A" font-weight="600">Qdrant</text>
-    <text x="240" y="118" fill="#334155" font-family="ui-monospace,Consolas,monospace" font-size="12">QdrantClient(":memory:")</text>
-    <text x="560" y="118" fill="#94A3B8">vs</text>
-    <text x="610" y="118" fill="#334155" font-family="ui-monospace,Consolas,monospace" font-size="12">a running server</text>
+    <rect x="40" y="94" width="800" height="38" rx="7" fill="#F7F5F2" stroke="#E7E5E4"/>
+    <text x="60" y="118" fill="#1C1917" font-weight="600">Qdrant</text>
+    <text x="240" y="118" fill="#44403C" font-family="ui-monospace,Consolas,monospace" font-size="12">QdrantClient(":memory:")</text>
+    <text x="560" y="118" fill="#A8A29E">vs</text>
+    <text x="610" y="118" fill="#44403C" font-family="ui-monospace,Consolas,monospace" font-size="12">a running server</text>
 
-    <rect x="40" y="140" width="800" height="38" rx="7" fill="#F5F7FA" stroke="#D8DFE8"/>
-    <text x="60" y="164" fill="#0F172A" font-weight="600">Chroma</text>
-    <text x="240" y="164" fill="#334155" font-family="ui-monospace,Consolas,monospace" font-size="12">PersistentClient</text>
-    <text x="560" y="164" fill="#94A3B8">vs</text>
-    <text x="610" y="164" fill="#334155" font-family="ui-monospace,Consolas,monospace" font-size="12">HttpClient</text>
+    <rect x="40" y="140" width="800" height="38" rx="7" fill="#F7F5F2" stroke="#E7E5E4"/>
+    <text x="60" y="164" fill="#1C1917" font-weight="600">Chroma</text>
+    <text x="240" y="164" fill="#44403C" font-family="ui-monospace,Consolas,monospace" font-size="12">PersistentClient</text>
+    <text x="560" y="164" fill="#A8A29E">vs</text>
+    <text x="610" y="164" fill="#44403C" font-family="ui-monospace,Consolas,monospace" font-size="12">HttpClient</text>
 
-    <rect x="40" y="186" width="800" height="38" rx="7" fill="#F5F7FA" stroke="#D8DFE8"/>
-    <text x="60" y="210" fill="#0F172A" font-weight="600">Milvus</text>
-    <text x="240" y="210" fill="#334155" font-family="ui-monospace,Consolas,monospace" font-size="12">Milvus Lite</text>
-    <text x="560" y="210" fill="#94A3B8">vs</text>
-    <text x="610" y="210" fill="#334155" font-family="ui-monospace,Consolas,monospace" font-size="12">the server</text>
+    <rect x="40" y="186" width="800" height="38" rx="7" fill="#F7F5F2" stroke="#E7E5E4"/>
+    <text x="60" y="210" fill="#1C1917" font-weight="600">Milvus</text>
+    <text x="240" y="210" fill="#44403C" font-family="ui-monospace,Consolas,monospace" font-size="12">Milvus Lite</text>
+    <text x="560" y="210" fill="#A8A29E">vs</text>
+    <text x="610" y="210" fill="#44403C" font-family="ui-monospace,Consolas,monospace" font-size="12">the server</text>
 
-    <rect x="40" y="232" width="800" height="38" rx="7" fill="#F5F7FA" stroke="#D8DFE8"/>
-    <text x="60" y="256" fill="#0F172A" font-weight="600">Weaviate</text>
-    <text x="240" y="256" fill="#334155" font-family="ui-monospace,Consolas,monospace" font-size="12">embedded</text>
-    <text x="560" y="256" fill="#94A3B8">vs</text>
-    <text x="610" y="256" fill="#334155" font-family="ui-monospace,Consolas,monospace" font-size="12">remote</text>
+    <rect x="40" y="232" width="800" height="38" rx="7" fill="#F7F5F2" stroke="#E7E5E4"/>
+    <text x="60" y="256" fill="#1C1917" font-weight="600">Weaviate</text>
+    <text x="240" y="256" fill="#44403C" font-family="ui-monospace,Consolas,monospace" font-size="12">embedded</text>
+    <text x="560" y="256" fill="#A8A29E">vs</text>
+    <text x="610" y="256" fill="#44403C" font-family="ui-monospace,Consolas,monospace" font-size="12">remote</text>
 
-    <rect x="40" y="278" width="800" height="38" rx="7" fill="#F5F7FA" stroke="#C2410C"/>
+    <rect x="40" y="278" width="800" height="38" rx="7" fill="#F7F5F2" stroke="#C2410C"/>
     <text x="60" y="302" fill="#C2410C" font-weight="600">Structured generation</text>
     <text x="240" y="302" fill="#9A3412" font-family="ui-monospace,Consolas,monospace" font-size="12">one schema</text>
-    <text x="560" y="302" fill="#94A3B8">across</text>
+    <text x="560" y="302" fill="#A8A29E">across</text>
     <text x="610" y="302" fill="#9A3412" font-family="ui-monospace,Consolas,monospace" font-size="12">every model backend</text>
   </g>
 
-  <text x="40" y="342" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" fill="#64748B">If the project has no congruence tests, assume the two have drifted. Qdrant has them &#8212; and had drifted anyway.</text>
+  <text x="40" y="342" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" fill="#78716C">If the project has no congruence tests, assume the two have drifted. Qdrant has them &#8212; and had drifted anyway.</text>
 </svg>

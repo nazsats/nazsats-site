@@ -2,32 +2,36 @@
 
 /* ── Design tokens ────────────────────────────── */
 @theme {
-  /* Surfaces. The scale runs light -> slightly darker, so `dark-950` is the
-     page and `dark-600` is the deepest tint. Names kept from the previous
-     dark theme so 20 files of `bg-dark-800` markup did not have to churn. */
-  --color-dark-950: #FFFFFF;
-  --color-dark-900: #FFFFFF;
-  --color-dark-800: #F5F7FA;
-  --color-dark-700: #EDF1F6;
-  --color-dark-600: #E2E8F0;
+  /* One accent, warm neutrals for everything else. Two saturated colours
+     fight each other; orange only has to compete with grey, so it always
+     wins and always means "act here".
 
-  /* Brand accent — orange, kept from the old identity. Used for CTAs and
-     highlights only, never for large fills. */
+     Token names are inherited from the original dark theme: `dark-*` is the
+     surface scale (now light), `slate-*` is ink from strongest to faintest. */
+
+  /* Surfaces — warm, so white never goes clinical next to the orange. */
+  --color-dark-950: #FDFCFA;
+  --color-dark-900: #FFFFFF;
+  --color-dark-800: #F7F5F2;
+  --color-dark-700: #EFEBE6;
+  --color-dark-600: #E3DDD6;
+
+  /* The accent. */
   --color-purple-400: #E85D00;
   --color-purple-500: #C2410C;
   --color-purple-600: #9A3412;
 
-  /* Trust accent — deep blue. Carries structure: links, headings, borders. */
-  --color-cyan-400: #1D4ED8;
-  --color-cyan-500: #1E40AF;
+  /* Deeper steps of the same accent, kept under the old `cyan-*` names so the
+     markup did not have to churn. Not a second colour — a darker orange. */
+  --color-cyan-400: #9A3412;
+  --color-cyan-500: #7C2D12;
 
-  /* Ink. `slate-200` is the strongest (headings) down to `slate-600` (faint),
-     matching how the tokens were used when the theme was dark. */
-  --color-slate-200: #0F172A;
-  --color-slate-300: #1E293B;
-  --color-slate-400: #475569;
-  --color-slate-500: #64748B;
-  --color-slate-600: #94A3B8;
+  /* Warm ink. */
+  --color-slate-200: #1C1917;
+  --color-slate-300: #292524;
+  --color-slate-400: #57534E;
+  --color-slate-500: #78716C;
+  --color-slate-600: #A8A29E;
 }
 
 /* ── Keyframes ────────────────────────────────── */
@@ -113,13 +117,13 @@
 
 .bg-grid {
   background-image:
-    linear-gradient(rgba(15, 23, 42, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(15, 23, 42, 0.045) 1px, transparent 1px);
+    linear-gradient(rgba(28, 25, 23, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(28, 25, 23, 0.035) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
 .bg-dot-pattern {
-  background-image: radial-gradient(rgba(29, 78, 216, 0.16) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(232, 93, 0, 0.14) 1px, transparent 1px);
   background-size: 22px 22px;
 }
 
@@ -132,14 +136,14 @@
 .glass {
   background: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(16px);
-  border: 1px solid rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(28, 25, 23, 0.08);
 }
 
 .glass-card {
   background: #FFFFFF;
   backdrop-filter: none;
-  border: 1px solid rgba(15, 23, 42, 0.09);
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px rgba(15, 23, 42, 0.04);
+  border: 1px solid rgba(28, 25, 23, 0.09);
+  box-shadow: 0 1px 2px rgba(28, 25, 23, 0.04), 0 8px 24px rgba(28, 25, 23, 0.04);
   border-radius: 1rem;
   padding: 2rem;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -150,15 +154,15 @@
   background: #FFFFFF;
   transform: translateY(-4px);
   box-shadow:
-    0 2px 4px rgba(15, 23, 42, 0.05),
-    0 16px 40px rgba(15, 23, 42, 0.10);
+    0 2px 4px rgba(28, 25, 23, 0.05),
+    0 16px 40px rgba(28, 25, 23, 0.10);
 }
 
 .glass-card-cyan:hover {
-  border-color: rgba(29, 78, 216, 0.35);
+  border-color: rgba(154, 52, 18, 0.32);
   box-shadow:
-    0 2px 4px rgba(15, 23, 42, 0.05),
-    0 16px 40px rgba(29, 78, 216, 0.10);
+    0 2px 4px rgba(28, 25, 23, 0.05),
+    0 16px 40px rgba(154, 52, 18, 0.10);
 }
 
 /* ── Gradient text ────────────────────────────── */
@@ -225,22 +229,22 @@
   align-items: center;
   gap: 0.5rem;
   background: transparent;
-  color: #1D4ED8;
+  color: #C2410C;
   padding: 0.875rem 2rem;
   border-radius: 9999px;
   font-weight: 600;
   font-size: 0.9rem;
-  border: 1px solid rgba(29, 78, 216, 0.30);
+  border: 1px solid rgba(232, 93, 0, 0.32);
   transition: all 0.3s ease;
   white-space: nowrap;
 }
 
 .btn-secondary:hover {
-  border-color: rgba(29, 78, 216, 0.6);
-  color: #1E40AF;
+  border-color: rgba(232, 93, 0, 0.6);
+  color: #9A3412;
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(29, 78, 216, 0.12);
-  background: rgba(29, 78, 216, 0.05);
+  box-shadow: 0 8px 20px rgba(232, 93, 0, 0.14);
+  background: rgba(232, 93, 0, 0.05);
 }
 
 /* ── Badge ────────────────────────────────────── */
@@ -266,20 +270,20 @@
   width: 100%;
   padding: 0.875rem 1.25rem;
   background: #FFFFFF;
-  border: 1px solid rgba(15, 23, 42, 0.14);
+  border: 1px solid rgba(28, 25, 23, 0.14);
   border-radius: 0.75rem;
-  color: #0F172A;
+  color: #1C1917;
   transition: all 0.3s ease;
   font-size: 0.95rem;
 }
 
-.input-dark::placeholder { color: #94A3B8; }
+.input-dark::placeholder { color: #A8A29E; }
 
 .input-dark:focus {
   outline: none;
-  border-color: rgba(29, 78, 216, 0.55);
+  border-color: rgba(232, 93, 0, 0.55);
   background: #FFFFFF;
-  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.12);
+  box-shadow: 0 0 0 3px rgba(232, 93, 0, 0.14);
 }
 
 /* ── Divider line ─────────────────────────────── */
@@ -287,14 +291,14 @@
 .divider {
   border: none;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(15, 23, 42, 0.14), transparent);
+  background: linear-gradient(90deg, transparent, rgba(28, 25, 23, 0.14), transparent);
 }
 
 /* ── Terminal/code block decoration ──────────── */
 
 .terminal-card {
-  background: #0F172A;
-  border: 1px solid rgba(15, 23, 42, 0.18);
+  background: #1C1917;
+  border: 1px solid rgba(28, 25, 23, 0.18);
   border-radius: 0.75rem;
   font-family: 'Courier New', monospace;
   font-size: 0.8rem;
@@ -340,24 +344,24 @@
 }
 /* ── Blog article content ─────────────────────── */
 
-.blog-content { color: #334155; line-height: 1.8; }
+.blog-content { color: #44403C; line-height: 1.8; }
 .blog-content > * + * { margin-top: 1.25rem; }
 .blog-content h2 {
-  color: #0F172A;
+  color: #1C1917;
   font-weight: 800;
   font-size: 1.6rem;
   margin-top: 2.5rem;
   margin-bottom: 0.5rem;
 }
 .blog-content h3 {
-  color: #0F172A;
+  color: #1C1917;
   font-weight: 700;
   font-size: 1.25rem;
   margin-top: 2rem;
 }
-.blog-content p { color: #334155; }
-.blog-content a { color: #1D4ED8; text-decoration: underline; }
-.blog-content strong { color: #0F172A; font-weight: 700; }
+.blog-content p { color: #44403C; }
+.blog-content a { color: #C2410C; text-decoration: underline; }
+.blog-content strong { color: #1C1917; font-weight: 700; }
 .blog-content ul, .blog-content ol { padding-left: 1.5rem; }
 .blog-content ul { list-style: disc; }
 .blog-content ol { list-style: decimal; }
@@ -365,23 +369,23 @@
 .blog-content code {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 0.85em;
-  background: rgba(15, 23, 42, 0.06);
+  background: rgba(28, 25, 23, 0.06);
   padding: 0.15em 0.4em;
   border-radius: 4px;
   color: #9A3412;
 }
 .blog-content pre {
-  background: #0F172A;
-  border: 1px solid rgba(15, 23, 42, 0.12);
+  background: #1C1917;
+  border: 1px solid rgba(28, 25, 23, 0.12);
   border-radius: 10px;
   padding: 1.1rem 1.25rem;
   overflow-x: auto;
 }
-.blog-content pre code { background: none; padding: 0; color: #E2E8F0; }
+.blog-content pre code { background: none; padding: 0; color: #E7E5E4; }
 .blog-content blockquote {
   border-left: 3px solid #E85D00;
   padding-left: 1rem;
-  color: #475569;
+  color: #57534E;
   font-style: italic;
 }
 
@@ -393,7 +397,7 @@
   height: auto;
   margin: 2rem auto 0.75rem;
   border-radius: 12px;
-  border: 1px solid rgba(15, 23, 42, 0.10);
+  border: 1px solid rgba(28, 25, 23, 0.10);
   background: #FFFFFF;
 }
 
@@ -417,7 +421,7 @@
 .blog-content th,
 .blog-content td {
   padding: 0.6rem 0.9rem;
-  border-bottom: 1px solid rgba(15, 23, 42, 0.10);
+  border-bottom: 1px solid rgba(28, 25, 23, 0.10);
   text-align: left;
   vertical-align: top;
 }
@@ -428,7 +432,7 @@
   white-space: nowrap;
 }
 .blog-content td { color: #94a3b8; }
-.blog-content tbody tr:hover td { background: rgba(15, 23, 42, 0.025); }
+.blog-content tbody tr:hover td { background: rgba(28, 25, 23, 0.025); }
 
 /* ── Print: /resume → PDF ─────────────────────────
    The page is the source of truth for the CV, so "Save as PDF" prints it
