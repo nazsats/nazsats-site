@@ -1,55 +1,57 @@
 /**
- * Chart colours for the light site surface (#FFFFFF).
+ * Chart colours for a monochrome site with one accent.
  *
- * These are not hand-picked. Re-validated with the dataviz palette checker
- * after the site moved from a dark theme to a light one:
+ * The brand is black, white and their shades, with cyan used sparingly. That
+ * rules out a six-hue categorical palette, so the language breakdown uses an
+ * ORDINAL cyan ramp instead — legitimate here because those segments are
+ * sorted by size, so position in the ramp carries the ordering rather than
+ * spending the identity channel on it.
  *
- *   lightness band  PASS  all 6 inside OKLCH L 0.43–0.77
- *   chroma floor    PASS  all 6 >= 0.10
- *   CVD separation  PASS  worst adjacent pair ΔE 10.9 (protanopia)
- *   normal vision   PASS  worst adjacent pair ΔE 17.1
- *   contrast        PASS  all 6 >= 3:1 vs white
+ * Validated with the dataviz checker against the card surface (#FCFCFD):
  *
- * The categorical slots survived the surface change unchanged. The single
- * brand orange did not: #FF7A00 measures 2.61:1 on white, below the 3:1 mark
- * for marks, so the bar series uses the darker #E06A00 instead.
+ *   lightness monotone   PASS  steps read light→dark
+ *   adjacent ΔL          PASS  all gaps >= 0.06
+ *   light-end contrast   PASS  #0CB4CF at 2.43:1, above the 2:1 floor
+ *   single hue           PASS  hue spread 10°
  *
- * The ORDER is the colourblind-safety mechanism — slots are assigned in
- * sequence and never re-ordered or cycled. A 7th hue would break the
- * adjacency guarantee, so the tail folds into OTHER.
+ * The two-series bar chart uses emphasis rather than categorical: the measure
+ * that matters is cyan, the other is de-emphasis grey. Both clear 3:1.
  */
 
-export const CHART_SURFACE = "#FFFFFF";
+export const CHART_SURFACE = "#FCFCFD";
 
-/** Categorical slots, in fixed assignment order. */
-export const CATEGORICAL = [
-  "#E06A00", // orange
-  "#2E86E0", // blue
-  "#FF2266", // magenta
-  "#A566E0", // purple
-  "#A88A1E", // olive
-  "#16856A", // teal
+/**
+ * Ordinal ramp, light → dark, for share-of-total segments sorted by size.
+ * Not a categorical palette: swapping two steps would misstate the order.
+ */
+export const RAMP = [
+  "#0CB4CF",
+  "#0A97B0",
+  "#0C8096",
+  "#0E6A7E",
+  "#114F5F",
+  "#143B48",
 ] as const;
 
-/** Everything past the 6 slots collapses here rather than growing the palette. */
-export const OTHER = "#A8A29E";
+/** Everything past the ramp collapses here rather than extending it. */
+export const OTHER = "#A9B0BA";
 
-/** Editor time — the brand orange, stepped down to clear 3:1 on white. */
-export const SERIES_EDITOR = "#E06A00";
+/** Editor time — the measure the section is about, so it carries the accent. */
+export const SERIES_EDITOR = "#0891B2";
 
-/** Second series: manual stopwatch time, distinct from editor time. */
-export const SERIES_MANUAL = "#2E86E0";
+/** Manually tracked time — present for completeness, so it recedes to grey. */
+export const SERIES_MANUAL = "#565C66";
 
 /** Recessive chrome: one step off the surface, never competing with the data. */
-export const GRID = "rgba(28, 25, 23, 0.10)";
-export const AXIS_TEXT = "#78716C";
+export const GRID = "rgba(22, 24, 29, 0.10)";
+export const AXIS_TEXT = "#7A828D";
 
-/** Tooltip surface — a raised white card, not an inverted dark one. */
-export const TOOLTIP_BG = "#FFFFFF";
-export const TOOLTIP_BORDER = "rgba(28, 25, 23, 0.12)";
-export const TOOLTIP_SHADOW = "0 8px 24px rgba(28, 25, 23, 0.14)";
+/** Tooltip surface — a raised card, not an inverted dark one. */
+export const TOOLTIP_BG = "#FCFCFD";
+export const TOOLTIP_BORDER = "rgba(22, 24, 29, 0.12)";
+export const TOOLTIP_SHADOW = "0 8px 24px rgba(22, 24, 29, 0.14)";
 
-/** Assign a slot by index, folding the tail into OTHER. */
+/** Assign a ramp step by rank, folding the tail into OTHER. */
 export function slot(index: number): string {
-  return index < CATEGORICAL.length ? CATEGORICAL[index] : OTHER;
+  return index < RAMP.length ? RAMP[index] : OTHER;
 }

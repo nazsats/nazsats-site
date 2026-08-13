@@ -125,7 +125,7 @@ export default function CodingBars({ days, pending = false }: Props) {
                     {/* Focus/hover wash across the whole column */}
                     <span
                       className="absolute inset-0 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity"
-                      style={{ background: "rgba(28,25,23,0.05)" }}
+                      style={{ background: "rgba(22,24,29,0.05)" }}
                       aria-hidden="true"
                     />
 

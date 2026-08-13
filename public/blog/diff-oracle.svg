@@ -1,40 +1,40 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 330" width="880" height="330" role="img" aria-label="When a library has only one implementation, the standard library can serve as the second. The same pattern is sent through the library and through Python's own re.fullmatch, and the two answers are compared.">
-  <rect width="880" height="330" rx="14" fill="#FFFFFF" stroke="#E7E5E4"/>
+  <rect width="880" height="330" rx="14" fill="#FFFFFF" stroke="#E4E7EA"/>
 
-  <text x="40" y="44" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="700" letter-spacing="2" fill="#78716C">NO SECOND IMPLEMENTATION? BORROW ONE</text>
+  <text x="40" y="44" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="700" letter-spacing="2" fill="#7A828D">NO SECOND IMPLEMENTATION? BORROW ONE</text>
 
   <!-- input -->
-  <rect x="40" y="132" width="168" height="56" rx="8" fill="#F7F5F2" stroke="#E7E5E4"/>
-  <text x="124" y="158" font-family="ui-monospace,Consolas,monospace" font-size="13" fill="#1C1917" text-anchor="middle">r"(a)\1"</text>
-  <text x="124" y="176" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="11" fill="#78716C" text-anchor="middle">a pattern with a backreference</text>
+  <rect x="40" y="132" width="168" height="56" rx="8" fill="#EEF0F2" stroke="#E4E7EA"/>
+  <text x="124" y="158" font-family="ui-monospace,Consolas,monospace" font-size="13" fill="#16181D" text-anchor="middle">r"(a)\1"</text>
+  <text x="124" y="176" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="11" fill="#7A828D" text-anchor="middle">a pattern with a backreference</text>
 
   <!-- split -->
-  <path d="M216 150 C 258 150, 258 100, 300 100" stroke="#44403C" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <path d="M292 93 L300 100 L292 107" stroke="#44403C" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M216 172 C 258 172, 258 222, 300 222" stroke="#44403C" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <path d="M292 215 L300 222 L292 229" stroke="#44403C" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M216 150 C 258 150, 258 100, 300 100" stroke="#3A4049" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M292 93 L300 100 L292 107" stroke="#3A4049" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M216 172 C 258 172, 258 222, 300 222" stroke="#3A4049" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M292 215 L300 222 L292 229" stroke="#3A4049" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 
   <!-- library path -->
-  <rect x="308" y="74" width="292" height="52" rx="8" fill="#F7F5F2" stroke="#E7E5E4"/>
-  <text x="454" y="96" font-family="ui-monospace,Consolas,monospace" font-size="12.5" fill="#1C1917" text-anchor="middle">Regex(p).matches(s)</text>
-  <text x="454" y="114" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="11" fill="#78716C" text-anchor="middle">the library, which wraps the pattern in a group</text>
+  <rect x="308" y="74" width="292" height="52" rx="8" fill="#EEF0F2" stroke="#E4E7EA"/>
+  <text x="454" y="96" font-family="ui-monospace,Consolas,monospace" font-size="12.5" fill="#16181D" text-anchor="middle">Regex(p).matches(s)</text>
+  <text x="454" y="114" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="11" fill="#7A828D" text-anchor="middle">the library, which wraps the pattern in a group</text>
 
   <!-- oracle path -->
-  <rect x="308" y="196" width="292" height="52" rx="8" fill="#F7F5F2" stroke="#E7E5E4"/>
-  <text x="454" y="218" font-family="ui-monospace,Consolas,monospace" font-size="12.5" fill="#1C1917" text-anchor="middle">re.fullmatch(p, s)</text>
-  <text x="454" y="236" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="11" fill="#78716C" text-anchor="middle">the standard library, which does not</text>
+  <rect x="308" y="196" width="292" height="52" rx="8" fill="#EEF0F2" stroke="#E4E7EA"/>
+  <text x="454" y="218" font-family="ui-monospace,Consolas,monospace" font-size="12.5" fill="#16181D" text-anchor="middle">re.fullmatch(p, s)</text>
+  <text x="454" y="236" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="11" fill="#7A828D" text-anchor="middle">the standard library, which does not</text>
 
   <!-- results -->
-  <path d="M608 100 L664 100" stroke="#44403C" stroke-width="2" stroke-linecap="round"/>
-  <path d="M656 93 L664 100 L656 107" stroke="#44403C" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <rect x="672" y="76" width="168" height="48" rx="8" fill="#FEF3E8" stroke="#C2410C"/>
-  <text x="756" y="97" font-family="ui-monospace,Consolas,monospace" font-size="12" font-weight="700" fill="#C2410C" text-anchor="middle">PatternError</text>
-  <text x="756" y="113" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="10.5" fill="#9A3412" text-anchor="middle">cannot refer to an open group</text>
+  <path d="M608 100 L664 100" stroke="#3A4049" stroke-width="2" stroke-linecap="round"/>
+  <path d="M656 93 L664 100 L656 107" stroke="#3A4049" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="672" y="76" width="168" height="48" rx="8" fill="#FEF3E8" stroke="#0E7490"/>
+  <text x="756" y="97" font-family="ui-monospace,Consolas,monospace" font-size="12" font-weight="700" fill="#0E7490" text-anchor="middle">PatternError</text>
+  <text x="756" y="113" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="10.5" fill="#155E75" text-anchor="middle">cannot refer to an open group</text>
 
-  <path d="M608 222 L664 222" stroke="#44403C" stroke-width="2" stroke-linecap="round"/>
-  <path d="M656 215 L664 222 L656 229" stroke="#44403C" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <rect x="672" y="198" width="168" height="48" rx="8" fill="#F7F5F2" stroke="#E7E5E4"/>
-  <text x="756" y="227" font-family="ui-monospace,Consolas,monospace" font-size="13" fill="#15803D" text-anchor="middle">matches</text>
+  <path d="M608 222 L664 222" stroke="#3A4049" stroke-width="2" stroke-linecap="round"/>
+  <path d="M656 215 L664 222 L656 229" stroke="#3A4049" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="672" y="198" width="168" height="48" rx="8" fill="#EEF0F2" stroke="#E4E7EA"/>
+  <text x="756" y="227" font-family="ui-monospace,Consolas,monospace" font-size="13" fill="#0E7490" text-anchor="middle">matches</text>
 
-  <text x="40" y="294" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" fill="#78716C">The contract was never written down, but it is obvious once stated: <tspan fill="#44403C">Regex(p) should mean exactly p</tspan>.</text>
+  <text x="40" y="294" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" fill="#7A828D">The contract was never written down, but it is obvious once stated: <tspan fill="#3A4049">Regex(p) should mean exactly p</tspan>.</text>
 </svg>
