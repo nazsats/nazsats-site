@@ -14,12 +14,12 @@ const services = [
   {
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1 1 .03 2.703-1.352 2.703a1.25 1.25 0 01-.88-.367l-4.998-4.998m0 0a1.25 1.25 0 00-1.77 0" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
       </svg>
     ),
-    title: "Machine Learning & AI",
-    desc: "Custom ML models, predictive analytics, NLP, and intelligent automation solutions tailored for your industry.",
-    tags: ["Prediction", "NLP", "Automation", "Computer Vision"],
+    title: "AI Assistants & Chatbots",
+    desc: "Assistants that answer from your own data and take real actions — booking, lookups, escalation — instead of guessing. Deployed on your site, WhatsApp or internal tools.",
+    tags: ["Customer support", "Lead capture", "WhatsApp", "Tool-calling"],
     status: "available",
     color: "text-purple-400",
     bg: "bg-purple-500/10",
@@ -27,12 +27,12 @@ const services = [
   {
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 013.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75M11.25 11.25l3 3m0 0l3-3m-3 3v-6" />
       </svg>
     ),
-    title: "Data Science",
-    desc: "Advanced data pipelines, visualization dashboards, and actionable insights that drive smarter business decisions.",
-    tags: ["Analytics", "Visualization", "Pipelines", "BI"],
+    title: "Document & Data AI",
+    desc: "Turn PDFs, forms, invoices and reports into structured data your systems can use. Extraction validated against a schema, so what reaches your database is checked, not hallucinated.",
+    tags: ["Extraction", "OCR", "Validation", "RAG"],
     status: "available",
     color: "text-purple-400",
     bg: "bg-purple-500/10",
@@ -40,12 +40,12 @@ const services = [
   {
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 2.625c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125m16.5 2.625c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
       </svg>
     ),
-    title: "Crypto & Bitcoin Software",
-    desc: "Secure wallets, trading tools, and custom software for Bitcoin, Ethereum, Solana, and any crypto network.",
-    tags: ["Wallets", "Trading", "Bitcoin", "Ethereum"],
+    title: "AI Automation",
+    desc: "Quietly remove the repetitive work: triaging inbound messages, drafting replies, enriching records, summarising long threads. Wired into the tools your team already uses.",
+    tags: ["Workflows", "Integrations", "Summarisation", "Enrichment"],
     status: "available",
     color: "text-purple-400",
     bg: "bg-purple-500/10",
@@ -53,12 +53,12 @@ const services = [
   {
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" />
       </svg>
     ),
-    title: "dApp Development",
-    desc: "Full-stack decentralized applications with smart contracts, token integrations, and seamless Web3 UX.",
-    tags: ["Smart Contracts", "Web3", "Solana", "NFT"],
+    title: "Custom AI Applications",
+    desc: "Full products, not demos. Multi-tenant SaaS, dashboards and internal tools with auth, roles, rate limiting and cost controls — built to survive real users.",
+    tags: ["FastAPI", "Next.js", "Postgres", "Multi-tenant"],
     status: "available",
     color: "text-purple-400",
     bg: "bg-purple-500/10",
@@ -66,15 +66,28 @@ const services = [
   {
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605" />
       </svg>
     ),
-    title: "AI + Blockchain Fusion",
-    desc: "Next-generation platforms combining AI predictions with smart contract automation for DeFi and beyond.",
-    tags: ["DeFi", "AI Agents", "Predictive", "Automated"],
-    status: "soon",
-    color: "text-cyan-400",
-    bg: "bg-cyan-500/10",
+    title: "Machine Learning & Data",
+    desc: "Predictive models, search and analytics pipelines over your own data, with dashboards that make the output usable by people who are not data scientists.",
+    tags: ["Prediction", "Search", "Pipelines", "Dashboards"],
+    status: "available",
+    color: "text-purple-400",
+    bg: "bg-purple-500/10",
+  },
+  {
+    icon: (
+      <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+      </svg>
+    ),
+    title: "AI Code & Systems Review",
+    desc: "An outside read of an AI system that is already running — prompt and retrieval quality, failure modes, cost, and the correctness bugs that silently return wrong answers.",
+    tags: ["Audit", "RAG quality", "Cost", "Reliability"],
+    status: "available",
+    color: "text-purple-400",
+    bg: "bg-purple-500/10",
   },
 ];
 
@@ -88,7 +101,7 @@ export default function Services() {
           Our <span className="gradient-text-animated">Services</span>
         </h1>
         <p className="text-slate-500 max-w-xl mx-auto text-lg leading-relaxed animate-fade-in-up delay-200">
-          From machine learning to smart contracts — we build the technology that powers the next generation of products.
+          AI systems for businesses — assistants, document processing and automation, built to run in production rather than demo well.
         </p>
       </div>
 
