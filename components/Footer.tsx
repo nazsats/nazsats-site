@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const pages = [
@@ -21,7 +22,7 @@ export default function Footer() {
               <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-purple-500 to-cyan-500 flex items-center justify-center text-slate-200 font-black text-base">
                 N
               </div>
-              <span className="text-lg font-black gradient-text">Nazsats</span>
+              <Image src="/nazsats-logo.png" alt="Nazsats" width={416} height={89} className="h-5 w-auto" />
             </div>
             <p className="text-slate-600 text-sm leading-relaxed max-w-xs">
               AI-driven platform for machine learning, data science, and blockchain. Building the future, one innovation at a time.

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { whatsappLink } from "../lib/site";
 
@@ -42,11 +43,15 @@ export default function Navbar() {
     >
       <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-purple-500 to-cyan-500 flex items-center justify-center text-slate-200 font-black text-base animate-glow-pulse shadow-lg shadow-purple-900/40">
-            N
-          </div>
-          <span className="text-xl font-black gradient-text-animated tracking-tight">Nazsats</span>
+        <Link href="/" className="flex items-center" aria-label="Nazsats — home">
+          <Image
+            src="/nazsats-logo.png"
+            alt="Nazsats"
+            width={416}
+            height={89}
+            priority
+            className="h-6 w-auto sm:h-7"
+          />
         </Link>
 
         {/* Desktop nav */}
