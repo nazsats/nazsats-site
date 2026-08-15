@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 360" width="880" height="360" role="img" aria-label="Prompt-level isolation: the retriever searches every tenant's documents and hands the model a mixed set, then the system prompt asks the model to ignore the ones that are not the current tenant's. The boundary sits inside the model, where it cannot be enforced.">
+  <rect width="880" height="360" rx="14" fill="#FFFFFF" stroke="#E6E3DF"/>
+
+  <text x="40" y="44" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="700" letter-spacing="2" fill="#C2410C">THE PATTERN THAT LEAKS</text>
+
+  <!-- store -->
+  <rect x="40" y="86" width="196" height="150" rx="8" fill="#F1EFEC" stroke="#E6E3DF"/>
+  <text x="138" y="110" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" font-weight="700" fill="#1A1815" text-anchor="middle">one vector store</text>
+  <g font-family="ui-monospace,Consolas,monospace" font-size="11.5">
+    <text x="60" y="136" fill="#3D3A35">doc · tenant A</text>
+    <text x="60" y="158" fill="#3D3A35">doc · tenant B</text>
+    <text x="60" y="180" fill="#3D3A35">doc · tenant C</text>
+    <text x="60" y="202" fill="#3D3A35">doc · tenant A</text>
+    <text x="60" y="224" fill="#3D3A35">doc · tenant B</text>
+  </g>
+
+  <!-- arrow -->
+  <path d="M244 161 L306 161" stroke="#3D3A35" stroke-width="2" stroke-linecap="round"/>
+  <path d="M298 154 L306 161 L298 168" stroke="#3D3A35" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="275" y="150" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="10.5" fill="#7C7873" text-anchor="middle">top-k</text>
+
+  <!-- retriever output -->
+  <rect x="314" y="112" width="180" height="98" rx="8" fill="#FEF3E8" stroke="#C2410C"/>
+  <text x="404" y="134" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" font-weight="700" fill="#C2410C" text-anchor="middle">context handed to</text>
+  <text x="404" y="150" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" font-weight="700" fill="#C2410C" text-anchor="middle">the model</text>
+  <g font-family="ui-monospace,Consolas,monospace" font-size="11">
+    <text x="404" y="174" fill="#9A3412" text-anchor="middle">tenant A · tenant B</text>
+    <text x="404" y="192" fill="#9A3412" text-anchor="middle">tenant C</text>
+  </g>
+
+  <path d="M502 161 L560 161" stroke="#3D3A35" stroke-width="2" stroke-linecap="round"/>
+  <path d="M552 154 L560 161 L552 168" stroke="#3D3A35" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- model -->
+  <rect x="568" y="100" width="272" height="122" rx="8" fill="#F1EFEC" stroke="#E6E3DF"/>
+  <text x="704" y="124" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" font-weight="700" fill="#1A1815" text-anchor="middle">the model</text>
+  <text x="704" y="148" font-family="ui-monospace,Consolas,monospace" font-size="10.5" fill="#7C7873" text-anchor="middle">system prompt:</text>
+  <text x="704" y="166" font-family="ui-monospace,Consolas,monospace" font-size="10.5" fill="#9A3412" text-anchor="middle">&#8220;only use documents</text>
+  <text x="704" y="182" font-family="ui-monospace,Consolas,monospace" font-size="10.5" fill="#9A3412" text-anchor="middle">belonging to tenant A&#8221;</text>
+  <text x="704" y="206" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="11" font-weight="700" fill="#C2410C" text-anchor="middle">&#8592; the boundary is here</text>
+
+  <line x1="40" y1="262" x2="840" y2="262" stroke="#E6E3DF" stroke-width="1"/>
+
+  <text x="40" y="290" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12.5" fill="#1A1815">The other tenants&#8217; data already crossed the trust boundary. It is in the context window.</text>
+  <text x="40" y="312" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12.5" fill="#3D3A35">Everything after that is the model choosing to comply &#8212; which is a behaviour, not a control.</text>
+  <text x="40" y="338" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" fill="#7C7873">You cannot audit it, cannot test it exhaustively, and cannot prove it to a customer.</text>
+</svg>
