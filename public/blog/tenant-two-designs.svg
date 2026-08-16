@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 420" width="880" height="420" role="img" aria-label="Two designs. In the first, retrieval runs unfiltered and every tenant's rows reach the model, which is then asked in the prompt to only use one tenant's data. In the second, the tenant key is bound into the query, so only that tenant's rows are ever returned and the model never sees the rest.">
+  <rect width="880" height="420" rx="14" fill="#FFFFFF" stroke="#E6E3DF"/>
+
+  <text x="40" y="42" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="700" letter-spacing="2" fill="#7C7873">WHERE THE BOUNDARY SITS</text>
+
+  <!-- ── design A ───────────────────────────────────────────── -->
+  <text x="40" y="76" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="700" fill="#C2410C">A — the prompt is the boundary</text>
+
+  <rect x="40" y="90" width="120" height="46" rx="8" fill="#F1EFEC" stroke="#E6E3DF"/>
+  <text x="100" y="112" font-family="ui-monospace,Consolas,monospace" font-size="12" fill="#1A1815" text-anchor="middle">question</text>
+  <text x="100" y="128" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="10" fill="#7C7873" text-anchor="middle">tenant A</text>
+
+  <path d="M168 113 L216 113" stroke="#3D3A35" stroke-width="2" stroke-linecap="round"/>
+  <path d="M208 106 L216 113 L208 120" stroke="#3D3A35" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <rect x="224" y="90" width="150" height="46" rx="8" fill="#F1EFEC" stroke="#E6E3DF"/>
+  <text x="299" y="112" font-family="ui-monospace,Consolas,monospace" font-size="12" fill="#1A1815" text-anchor="middle">retrieval</text>
+  <text x="299" y="128" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="10" fill="#7C7873" text-anchor="middle">no tenant filter</text>
+
+  <path d="M382 113 L430 113" stroke="#C2410C" stroke-width="2" stroke-linecap="round"/>
+  <path d="M422 106 L430 113 L422 120" stroke="#C2410C" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <rect x="438" y="86" width="182" height="54" rx="8" fill="#FEF3E8" stroke="#C2410C"/>
+  <text x="529" y="107" font-family="ui-monospace,Consolas,monospace" font-size="12" font-weight="700" fill="#C2410C" text-anchor="middle">rows: A + B + C</text>
+  <text x="529" y="124" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="10" fill="#9A3412" text-anchor="middle">every tenant, in the context window</text>
+
+  <path d="M628 113 L676 113" stroke="#3D3A35" stroke-width="2" stroke-linecap="round"/>
+  <path d="M668 106 L676 113 L668 120" stroke="#3D3A35" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <rect x="684" y="86" width="156" height="54" rx="8" fill="#F1EFEC" stroke="#E6E3DF"/>
+  <text x="762" y="106" font-family="ui-monospace,Consolas,monospace" font-size="12" fill="#1A1815" text-anchor="middle">model</text>
+  <text x="762" y="123" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="10" fill="#7C7873" text-anchor="middle">&#8220;only use tenant A&#8221;</text>
+
+  <text x="40" y="164" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="11.5" fill="#9A3412">The instruction is the only thing standing between tenant B&#8217;s data and the answer. It is a request, not a control.</text>
+
+  <line x1="40" y1="186" x2="840" y2="186" stroke="#E6E3DF" stroke-width="1"/>
+
+  <!-- ── design B ───────────────────────────────────────────── -->
+  <text x="40" y="220" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="700" fill="#1A1815">B — the query is the boundary</text>
+
+  <rect x="40" y="234" width="120" height="46" rx="8" fill="#F1EFEC" stroke="#E6E3DF"/>
+  <text x="100" y="256" font-family="ui-monospace,Consolas,monospace" font-size="12" fill="#1A1815" text-anchor="middle">question</text>
+  <text x="100" y="272" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="10" fill="#7C7873" text-anchor="middle">tenant A</text>
+
+  <path d="M168 257 L216 257" stroke="#3D3A35" stroke-width="2" stroke-linecap="round"/>
+  <path d="M208 250 L216 257 L208 264" stroke="#3D3A35" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <rect x="224" y="230" width="150" height="54" rx="8" fill="#F1EFEC" stroke="#1A1815"/>
+  <text x="299" y="251" font-family="ui-monospace,Consolas,monospace" font-size="12" fill="#1A1815" text-anchor="middle">retrieval</text>
+  <text x="299" y="268" font-family="ui-monospace,Consolas,monospace" font-size="10" fill="#3D3A35" text-anchor="middle">WHERE agency_id = :a</text>
+
+  <path d="M382 257 L430 257" stroke="#3D3A35" stroke-width="2" stroke-linecap="round"/>
+  <path d="M422 250 L430 257 L422 264" stroke="#3D3A35" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <rect x="438" y="230" width="182" height="54" rx="8" fill="#F1EFEC" stroke="#E6E3DF"/>
+  <text x="529" y="251" font-family="ui-monospace,Consolas,monospace" font-size="12" font-weight="700" fill="#1A1815" text-anchor="middle">rows: A only</text>
+  <text x="529" y="268" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="10" fill="#7C7873" text-anchor="middle">B and C were never selected</text>
+
+  <path d="M628 257 L676 257" stroke="#3D3A35" stroke-width="2" stroke-linecap="round"/>
+  <path d="M668 250 L676 257 L668 264" stroke="#3D3A35" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <rect x="684" y="230" width="156" height="54" rx="8" fill="#F1EFEC" stroke="#E6E3DF"/>
+  <text x="762" y="250" font-family="ui-monospace,Consolas,monospace" font-size="12" fill="#1A1815" text-anchor="middle">model</text>
+  <text x="762" y="267" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="10" fill="#7C7873" text-anchor="middle">no instruction needed</text>
+
+  <text x="40" y="308" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="11.5" fill="#3D3A35">Nothing is asked of the model, so nothing depends on it complying. A jailbreak reaches a result set that never contained the other tenants.</text>
+
+  <rect x="40" y="330" width="800" height="60" rx="8" fill="#F1EFEC" stroke="#E6E3DF"/>
+  <text x="60" y="354" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" font-weight="700" fill="#1A1815">The test that separates them</text>
+  <text x="60" y="374" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="11.5" fill="#3D3A35">If the model ignored every instruction in the system prompt, could it still reach another tenant&#8217;s data? In A, yes. In B, there is nothing to reach.</text>
+</svg>

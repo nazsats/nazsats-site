@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 360" width="880" height="360" role="img" aria-label="The model controls the search arguments but not the tenant key. The tenant key arrives from the authenticated session and is closed over by the tool function, so it never appears in the tool schema the model can see.">
+  <rect width="880" height="360" rx="14" fill="#FFFFFF" stroke="#E6E3DF"/>
+
+  <text x="40" y="42" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="700" letter-spacing="2" fill="#7C7873">TWO SOURCES, ONE CALL</text>
+  <text x="40" y="66" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12.5" fill="#3D3A35">The model fills in the search. It cannot fill in the tenant, because that parameter is not in its vocabulary.</text>
+
+  <!-- model side -->
+  <rect x="40" y="92" width="330" height="120" rx="9" fill="#F1EFEC" stroke="#E6E3DF"/>
+  <text x="60" y="116" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" font-weight="700" fill="#1A1815">from the model &#8212; tool arguments</text>
+  <text x="60" y="140" font-family="ui-monospace,Consolas,monospace" font-size="11.5" fill="#3D3A35">bedrooms: 2</text>
+  <text x="60" y="160" font-family="ui-monospace,Consolas,monospace" font-size="11.5" fill="#3D3A35">area: "Marina"</text>
+  <text x="60" y="180" font-family="ui-monospace,Consolas,monospace" font-size="11.5" fill="#3D3A35">max_price: 2000000</text>
+  <text x="60" y="200" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="10.5" fill="#7C7873">attacker-controllable, in practice</text>
+
+  <!-- session side -->
+  <rect x="510" y="92" width="330" height="120" rx="9" fill="#F1EFEC" stroke="#1A1815"/>
+  <text x="530" y="116" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" font-weight="700" fill="#1A1815">from the session &#8212; closed over</text>
+  <text x="530" y="142" font-family="ui-monospace,Consolas,monospace" font-size="11.5" fill="#1A1815">agency_id = 7</text>
+  <text x="530" y="164" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="10.5" fill="#7C7873">decoded from the JWT at request time</text>
+  <text x="530" y="184" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="10.5" fill="#7C7873">never serialised into the tool schema,</text>
+  <text x="530" y="200" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="10.5" fill="#7C7873">so the model cannot name it, let alone set it</text>
+
+  <path d="M205 220 L205 250 L430 250 L430 268" stroke="#3D3A35" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M423 260 L430 268 L437 260" stroke="#3D3A35" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M675 220 L675 250 L450 250" stroke="#1A1815" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- the call -->
+  <rect x="150" y="270" width="580" height="44" rx="8" fill="#FEF3E8" stroke="#C2410C"/>
+  <text x="440" y="297" font-family="ui-monospace,Consolas,monospace" font-size="13" fill="#1A1815" text-anchor="middle">fetch_properties(session, <tspan fill="#C2410C" font-weight="700">agency_id</tspan>, **<tspan fill="#3D3A35">args</tspan>)</text>
+
+  <text x="40" y="340" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="11.5" fill="#7C7873">Splatting the model&#8217;s arguments beside a fixed positional parameter is the whole trick. There is no key in <tspan font-family="ui-monospace,Consolas,monospace">args</tspan> that can overwrite it.</text>
+</svg>
