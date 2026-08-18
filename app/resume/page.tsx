@@ -5,7 +5,7 @@ import PrintButton from "./PrintButton";
 export const metadata: Metadata = {
   title: "Resume",
   description:
-    "Nazrul Ansari — AI Engineer & Full-Stack Developer. 4+ years building production LLM applications, AI agents, algorithmic trading systems and Web3 platforms across HealthTech, FinTech, Real Estate and SaaS.",
+    "Nazrul Ansari — AI Engineer & Full-Stack Developer. 5+ years building production LLM applications, AI agents, distributed ML pipelines, algorithmic trading systems and Web3 platforms across HealthTech, FinTech, Real Estate and SaaS.",
   alternates: { canonical: "/resume" },
 };
 
@@ -20,6 +20,16 @@ const skills: { group: string; items: string[] }[] = [
       "OpenAI API (GPT-4o, GPT-4o Vision)", "Claude API", "LangChain", "LangGraph", "RAG",
       "AI Agents", "MCP", "Vector Databases", "Tool-calling", "NL→SQL agents", "LLM guardrails",
       "Prompt engineering", "Document & image analysis", "Synthetic data generation",
+    ],
+  },
+  {
+    group: "Machine Learning & Data Engineering",
+    items: [
+      "Apache Spark (PySpark)", "LightGBM", "scikit-learn", "pandas", "NumPy", "MLflow",
+      "statsmodels", "Parquet", "Feature engineering", "Leakage-safe temporal splits",
+      "Probability calibration (isotonic)", "Cost-weighted decision thresholds",
+      "Model evaluation (ROC AUC, Brier, ECE)", "Time-series forecasting (SARIMA)",
+      "Drift detection (PSI)", "Matplotlib",
     ],
   },
   {
@@ -171,6 +181,18 @@ type Project = {
 };
 
 const projects: Project[] = [
+  {
+    name: "Flight Delay Intelligence",
+    tagline: "Distributed ML over 1.6M flights, built for decisions rather than scores",
+    stack: "PySpark · LightGBM · MLflow · scikit-learn · FastAPI · Streamlit · LangGraph · Docker",
+    url: "https://github.com/nazsats/flight-delay-intelligence",
+    points: [
+      "Analysed 319,395 delayed US flights and found the headline result contradicts the assumption: weather causes 7% of delay minutes, while 39.8% come from an aircraft that was already late earlier in its rotation. Security, the thing passengers queue longest for, is 0.2%.",
+      "Engineered features on Apache Spark in a container — window functions, broadcast joins, partitioned Parquet — with every rolling aggregate shifted one day back and a strictly chronological split, so a flight's inputs can never contain its own outcome.",
+      "Trained and versioned a LightGBM classifier in MLflow, then optimised for decision quality rather than leaderboard position: isotonic calibration cut expected calibration error 2.5×, and the alert threshold is derived from the relative cost of a missed delay versus a false alarm rather than the 0.5 default, lifting recall on genuine delays to 77%.",
+      "Kept the 0.672 AUC deliberately honest — the model predicts before pushback, so it never sees departure delay. Shipped PSI drift detection, SARIMA demand forecasting, and a LangGraph agent that answers questions in English with every figure returned from code and an explicit refusal when the data cannot support one.",
+    ],
+  },
   {
     name: "Nazsats AI Store Builder",
     tagline: "One sentence to a complete storefront, in twenty seconds",
@@ -338,12 +360,14 @@ export default function Resume() {
 
       <Section title="Profile">
         <p className="text-slate-400 leading-relaxed">
-          AI &amp; Full-Stack Engineer with <strong className="text-slate-200">4+ years</strong> of
+          AI &amp; Full-Stack Engineer with <strong className="text-slate-200">5+ years</strong> of
           experience building and deploying production-grade LLM applications, AI agents,
           algorithmic trading systems and scalable web platforms. Experienced in designing
           end-to-end AI solutions using Python, FastAPI, LangChain, LangGraph, OpenAI, Claude and
-          Next.js —
-          from backend architecture to intuitive user interfaces. Built products across HealthTech,
+          Next.js — from backend architecture to intuitive user interfaces. Also builds classical
+          machine learning and data systems end to end: distributed PySpark feature pipelines over
+          millions of records, gradient-boosted models tracked in MLflow, probability calibration,
+          cost-weighted decision thresholds and drift monitoring. Built products across HealthTech,
           FinTech, Real Estate and SaaS, while also delivering secure Web3 applications, smart
           contracts and token standards. Contributes bug reports and fixes to the open-source AI
           libraries I build on — currently qdrant-client, LlamaIndex and Outlines.
