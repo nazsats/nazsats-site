@@ -86,6 +86,26 @@ const skills: { group: string; items: string[] }[] = [
 /** Filed against libraries I use in production — every item public and linkable. */
 const openSource = [
   {
+    repo: "langchain-ai/langchain",
+    title: "DeepSeek's prompt-cache savings were invisible in usage metadata",
+    merged: true,
+    detail:
+      "ChatDeepSeek inherits usage parsing from BaseChatOpenAI, which reads cache reads from the nested prompt_tokens_details.cached_tokens. DeepSeek never populates that field — it reports context-cache usage as a top-level prompt_cache_hit_tokens — so cache_read came back absent and anyone measuring their prompt-cache savings saw a flat line that was the reporting, not the cache. Mapped the top-level count in both the streaming and non-streaming paths. The streaming mapping sits outside the choices branch because DeepSeek sends usage in a trailing chunk carrying no choices, so the obvious placement never runs — the part you only find by streaming a real response. Only hits are mapped: DeepSeek defines prompt_tokens as hits plus misses, so a miss is an ordinary uncached input token rather than a cache write, and reporting it as cache_creation would invent activity that never happened. An existing cache_read is left untouched so OpenAI-compatible gateways that report the nested form keep working. Eight unit tests; approved and merged on first review.",
+    links: [
+      { label: "Issue #39637", url: "https://github.com/langchain-ai/langchain/issues/39637" },
+      { label: "PR #39668 (merged)", url: "https://github.com/langchain-ai/langchain/pull/39668" },
+    ],
+  },
+  {
+    repo: "chroma-core/chroma",
+    title: "add() rejected None metadata that update() and upsert() both accept",
+    detail:
+      "None was legal everywhere it was declared — the Metadata type permits it, validate_metadata() allows it deliberately, and the error that validator raises names None as accepted — but add() alone failed underneath validation, in the storage layer, with a different error per client: TypeError on PersistentClient and a deserialisation error over HTTP, so `except TypeError` was correct locally and wrong against a server. The decisive detail was that upsert() on a brand-new id with the same input already worked, which proved transport and storage were fine and only add()'s path was not. Fixed on the add path alone: normalize_insert_record_set is shared with update and upsert, so stripping there would have broken None-deletes-key on update.",
+    links: [
+      { label: "PR #7581", url: "https://github.com/chroma-core/chroma/pull/7581" },
+    ],
+  },
+  {
     repo: "qdrant/qdrant-client",
     title: "values_count filter matched points that no single value satisfied",
     merged: true,

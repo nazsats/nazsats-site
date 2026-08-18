@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 320" width="900" height="320" role="img" aria-label="DeepSeek defines prompt_tokens as cache hits plus cache misses. A hit is a token served from cache and belongs in cache_read. A miss is an ordinary uncached input token, not a cache write, so mapping it to cache_creation would report activity that never happened.">
+  <rect width="900" height="320" rx="14" fill="#0f1116"/>
+
+  <text x="40" y="42" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="700" letter-spacing="2" fill="#64748b">WHY ONLY HALF OF IT GETS MAPPED</text>
+  <text x="40" y="64" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12.5" fill="#94a3b8">DeepSeek documents prompt_tokens = cache hits + cache misses</text>
+
+  <g font-family="system-ui,-apple-system,Segoe UI,sans-serif">
+
+    <!-- the bar -->
+    <text x="40" y="102" font-size="11.5" font-weight="700" letter-spacing="1" fill="#64748b">100 PROMPT TOKENS</text>
+    <rect x="40" y="112" width="524" height="44" rx="6" fill="#101a17" stroke="#10b981"/>
+    <rect x="564" y="112" width="296" height="44" rx="6" fill="#1a1d25" stroke="#2b303c"/>
+    <text x="302" y="140" font-size="13" font-weight="800" fill="#10b981" text-anchor="middle">64 cache hits</text>
+    <text x="712" y="140" font-size="13" font-weight="800" fill="#94a3b8" text-anchor="middle">36 cache misses</text>
+
+    <!-- hit -->
+    <path d="M 302 156 L 302 182" stroke="#10b981" stroke-width="2"/>
+    <path d="M 296 176 L 302 184 L 308 176 Z" fill="#10b981"/>
+    <rect x="40" y="188" width="524" height="76" rx="9" fill="#101a17" stroke="#10b981"/>
+    <text x="62" y="212" font-size="12.5" font-weight="700" fill="#10b981">Served from cache &#8594; cache_read</text>
+    <text x="62" y="234" font-size="12" fill="#94a3b8">Real saving. Billed at a fraction of the normal rate,</text>
+    <text x="62" y="252" font-size="12" fill="#94a3b8">so this is the number worth measuring.</text>
+
+    <!-- miss -->
+    <path d="M 712 156 L 712 182" stroke="#f59e0b" stroke-width="2"/>
+    <path d="M 706 176 L 712 184 L 718 176 Z" fill="#f59e0b"/>
+    <rect x="584" y="188" width="276" height="76" rx="9" fill="#1f1508" stroke="#f59e0b"/>
+    <text x="606" y="212" font-size="12.5" font-weight="700" fill="#f59e0b">An ordinary input token</text>
+    <text x="606" y="234" font-size="12" fill="#94a3b8">Not a cache write. Calling it</text>
+    <text x="606" y="252" font-size="12" fill="#94a3b8">cache_creation would invent activity.</text>
+  </g>
+
+  <line x1="40" y1="286" x2="860" y2="286" stroke="#2b303c" stroke-width="1"/>
+  <text x="40" y="308" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12.5" fill="#94a3b8">Mapping both fields would have looked more complete and been <tspan fill="#fff" font-weight="700">wrong</tspan>.</text>
+</svg>

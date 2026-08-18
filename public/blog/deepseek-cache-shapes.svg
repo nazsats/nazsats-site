@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" width="900" height="360" role="img" aria-label="Two response shapes. OpenAI reports cached prompt tokens in a nested field called prompt_tokens_details.cached_tokens. DeepSeek reports them as top-level prompt_cache_hit_tokens and prompt_cache_miss_tokens. LangChain's base class reads only the nested path, which DeepSeek never fills, so the cache count is dropped.">
+  <rect width="900" height="360" rx="14" fill="#0f1116"/>
+
+  <text x="40" y="42" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="700" letter-spacing="2" fill="#64748b">TWO WAYS TO REPORT THE SAME NUMBER</text>
+  <text x="40" y="64" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12.5" fill="#94a3b8">Both responses say 64 prompt tokens came from cache. Only one of them is read.</text>
+
+  <g font-family="ui-monospace,SFMono-Regular,Consolas,monospace">
+
+    <!-- OpenAI shape -->
+    <text x="40" y="98" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" font-weight="700" letter-spacing="1" fill="#10b981">OPENAI — NESTED</text>
+    <rect x="40" y="110" width="380" height="132" rx="9" fill="#101a17" stroke="#10b981"/>
+    <text x="60" y="134" font-size="12" fill="#94a3b8">"usage": {</text>
+    <text x="60" y="154" font-size="12" fill="#94a3b8">  "prompt_tokens": 100,</text>
+    <text x="60" y="174" font-size="12" fill="#94a3b8">  "prompt_tokens_details": {</text>
+    <text x="60" y="194" font-size="12" font-weight="700" fill="#10b981">    "cached_tokens": 64</text>
+    <text x="60" y="214" font-size="12" fill="#94a3b8">  }</text>
+    <text x="60" y="232" font-size="12" fill="#94a3b8">}</text>
+
+    <!-- DeepSeek shape -->
+    <text x="480" y="98" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" font-weight="700" letter-spacing="1" fill="#FF5500">DEEPSEEK — TOP LEVEL</text>
+    <rect x="480" y="110" width="380" height="132" rx="9" fill="#1f1508" stroke="#FF5500"/>
+    <text x="500" y="134" font-size="12" fill="#94a3b8">"usage": {</text>
+    <text x="500" y="154" font-size="12" fill="#94a3b8">  "prompt_tokens": 100,</text>
+    <text x="500" y="174" font-size="12" font-weight="700" fill="#FF5500">  "prompt_cache_hit_tokens": 64,</text>
+    <text x="500" y="194" font-size="12" fill="#e2e8f0">  "prompt_cache_miss_tokens": 36</text>
+    <text x="500" y="214" font-size="12" fill="#94a3b8">}</text>
+    <text x="500" y="234" font-size="11" font-family="system-ui,-apple-system,Segoe UI,sans-serif" fill="#64748b">no prompt_tokens_details at all</text>
+  </g>
+
+  <g font-family="system-ui,-apple-system,Segoe UI,sans-serif">
+    <!-- reader -->
+    <rect x="40" y="262" width="820" height="76" rx="10" fill="#1a1d25" stroke="#2b303c"/>
+    <text x="64" y="288" font-size="12.5" fill="#94a3b8">LangChain's <tspan fill="#fff" font-weight="700">BaseChatOpenAI</tspan> looks for cache reads in one place only: the nested path.</text>
+    <text x="64" y="312" font-size="12.5" fill="#10b981">OpenAI &#8594; found, reported as cache_read</text>
+    <text x="64" y="330" font-size="12.5" font-weight="700" fill="#FF5500">DeepSeek &#8594; nothing found. The 64 is dropped, and no error is raised.</text>
+  </g>
+</svg>

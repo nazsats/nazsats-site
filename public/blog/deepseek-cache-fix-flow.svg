@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" width="900" height="380" role="img" aria-label="Before the fix, ChatDeepSeek inherited its usage parsing from BaseChatOpenAI, which read only the nested cached_tokens field, so cache_read was absent from usage metadata. After the fix, ChatDeepSeek also reads the top-level prompt_cache_hit_tokens in both the non-streaming and streaming paths, and defers to any cache_read the base class already set.">
+  <rect width="900" height="380" rx="14" fill="#0f1116"/>
+
+  <text x="40" y="42" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="700" letter-spacing="2" fill="#64748b">BEFORE AND AFTER</text>
+
+  <g font-family="system-ui,-apple-system,Segoe UI,sans-serif">
+
+    <!-- BEFORE -->
+    <text x="40" y="80" font-size="12" font-weight="700" letter-spacing="1" fill="#f59e0b">BEFORE</text>
+
+    <rect x="40" y="92" width="380" height="46" rx="9" fill="#1a1d25" stroke="#2b303c"/>
+    <text x="60" y="121" font-size="12.5" fill="#e2e8f0">ChatDeepSeek(BaseChatOpenAI)</text>
+
+    <path d="M 230 138 L 230 162" stroke="#2b303c" stroke-width="2"/>
+    <path d="M 224 156 L 230 164 L 236 156 Z" fill="#2b303c"/>
+
+    <rect x="40" y="166" width="380" height="60" rx="9" fill="#1a1d25" stroke="#2b303c"/>
+    <text x="60" y="190" font-size="12" fill="#94a3b8">base class reads cache reads from</text>
+    <text x="60" y="212" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="12" fill="#e2e8f0">prompt_tokens_details.cached_tokens</text>
+
+    <path d="M 230 226 L 230 250" stroke="#f59e0b" stroke-width="2"/>
+    <path d="M 224 244 L 230 252 L 236 244 Z" fill="#f59e0b"/>
+
+    <rect x="40" y="254" width="380" height="66" rx="9" fill="#1f1508" stroke="#f59e0b"/>
+    <text x="60" y="278" font-size="12.5" font-weight="700" fill="#f59e0b">DeepSeek never fills that field</text>
+    <text x="60" y="302" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="12" fill="#94a3b8">input_token_details: {}</text>
+
+    <!-- AFTER -->
+    <text x="480" y="80" font-size="12" font-weight="700" letter-spacing="1" fill="#10b981">AFTER</text>
+
+    <rect x="480" y="92" width="380" height="46" rx="9" fill="#1a1d25" stroke="#2b303c"/>
+    <text x="500" y="121" font-size="12.5" fill="#e2e8f0">ChatDeepSeek reads it explicitly</text>
+
+    <path d="M 670 138 L 670 162" stroke="#2b303c" stroke-width="2"/>
+    <path d="M 664 156 L 670 164 L 676 156 Z" fill="#2b303c"/>
+
+    <rect x="480" y="166" width="184" height="60" rx="9" fill="#101a17" stroke="#10b981"/>
+    <text x="498" y="190" font-size="11.5" font-weight="700" fill="#10b981">non-streaming</text>
+    <text x="498" y="212" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="11" fill="#94a3b8">_create_chat_result</text>
+
+    <rect x="676" y="166" width="184" height="60" rx="9" fill="#101a17" stroke="#10b981"/>
+    <text x="694" y="190" font-size="11.5" font-weight="700" fill="#10b981">streaming</text>
+    <text x="694" y="212" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="11" fill="#94a3b8">_convert_chunk_to_&#8230;</text>
+
+    <path d="M 670 226 L 670 250" stroke="#10b981" stroke-width="2"/>
+    <path d="M 664 244 L 670 252 L 676 244 Z" fill="#10b981"/>
+
+    <rect x="480" y="254" width="380" height="66" rx="9" fill="#101a17" stroke="#10b981"/>
+    <text x="500" y="278" font-size="12.5" font-weight="700" fill="#fff">cache_read is populated</text>
+    <text x="500" y="302" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="12" fill="#94a3b8">input_token_details: {cache_read: 64}</text>
+
+    <line x1="450" y1="72" x2="450" y2="320" stroke="#2b303c" stroke-width="1"/>
+
+    <rect x="40" y="336" width="820" height="30" rx="8" fill="#1a1d25" stroke="#2b303c"/>
+    <text x="64" y="356" font-size="12" fill="#94a3b8">An existing <tspan font-family="ui-monospace,SFMono-Regular,Consolas,monospace" fill="#e2e8f0">cache_read</tspan> is left alone, so OpenAI-compatible gateways that do report the nested form keep working.</text>
+  </g>
+</svg>
