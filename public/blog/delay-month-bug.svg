@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 300" width="900" height="300" role="img" aria-label="Spark writes Parquet partitioned by year and month. Pandas reads the partition keys back as a category type instead of integers, so month trains as a fourth categorical feature. At prediction time it is passed as an integer, the encoding no longer matches, and every prediction comes back identical with an accuracy score of exactly 0.5 and no error raised.">
+  <rect width="900" height="300" rx="14" fill="#0f1116"/>
+
+  <text x="40" y="42" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="700" letter-spacing="2" fill="#64748b">THE BUG THAT RAISED NOTHING</text>
+
+  <g font-family="system-ui,-apple-system,Segoe UI,sans-serif">
+
+    <!-- step 1 -->
+    <rect x="40" y="76" width="190" height="96" rx="10" fill="#1a1d25" stroke="#2b303c"/>
+    <text x="60" y="102" font-size="12.5" font-weight="700" fill="#fff">Spark writes Parquet</text>
+    <text x="60" y="124" font-size="12" fill="#94a3b8">partitioned by</text>
+    <text x="60" y="142" font-size="12" fill="#e2e8f0">year, month</text>
+    <text x="60" y="162" font-size="11" fill="#64748b">month is an integer</text>
+
+    <path d="M 230 124 L 262 124" stroke="#2b303c" stroke-width="2"/>
+    <path d="M 256 118 L 264 124 L 256 130 Z" fill="#2b303c"/>
+
+    <!-- step 2 -->
+    <rect x="268" y="76" width="190" height="96" rx="10" fill="#1f1508" stroke="#f59e0b"/>
+    <text x="288" y="102" font-size="12.5" font-weight="700" fill="#f59e0b">pandas reads it back</text>
+    <text x="288" y="124" font-size="12" fill="#94a3b8">partition keys become</text>
+    <text x="288" y="142" font-size="12" font-weight="700" fill="#fff">category, not int</text>
+    <text x="288" y="162" font-size="11" fill="#94a3b8">no warning, no error</text>
+
+    <path d="M 458 124 L 490 124" stroke="#2b303c" stroke-width="2"/>
+    <path d="M 484 118 L 492 124 L 484 130 Z" fill="#2b303c"/>
+
+    <!-- step 3 -->
+    <rect x="496" y="76" width="190" height="96" rx="10" fill="#1a1d25" stroke="#2b303c"/>
+    <text x="516" y="102" font-size="12.5" font-weight="700" fill="#fff">Training</text>
+    <text x="516" y="124" font-size="12" fill="#94a3b8">month is baked in as a</text>
+    <text x="516" y="142" font-size="12" fill="#e2e8f0">4th categorical feature</text>
+    <text x="516" y="162" font-size="11" fill="#64748b">alongside carrier, origin, dest</text>
+
+    <path d="M 686 124 L 718 124" stroke="#FF5500" stroke-width="2"/>
+    <path d="M 712 118 L 720 124 L 712 130 Z" fill="#FF5500"/>
+
+    <!-- step 4 -->
+    <rect x="724" y="76" width="136" height="96" rx="10" fill="#1f1508" stroke="#FF5500"/>
+    <text x="744" y="102" font-size="12.5" font-weight="700" fill="#FF5500">Serving</text>
+    <text x="744" y="124" font-size="12" fill="#94a3b8">passes an int</text>
+    <text x="744" y="142" font-size="12" fill="#94a3b8">encoding breaks</text>
+    <text x="744" y="162" font-size="11" fill="#94a3b8">silently</text>
+
+    <!-- outcome -->
+    <rect x="40" y="196" width="820" height="88" rx="10" fill="#101013" stroke="#FF5500"/>
+    <text x="64" y="224" font-size="13" font-weight="800" fill="#FF5500">Result: every prediction identical. Accuracy exactly 0.500.</text>
+    <text x="64" y="248" font-size="12.5" fill="#94a3b8">Nothing crashed. Nothing warned. A score landing on exactly 0.5 was the only reason it was caught —</text>
+    <text x="64" y="269" font-size="12.5" fill="#94a3b8">had the encoding been <tspan fill="#fff" font-weight="700">nearly</tspan> right, the model would have degraded quietly and still looked fine.</text>
+  </g>
+</svg>

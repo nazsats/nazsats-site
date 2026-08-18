@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 320" width="900" height="320" role="img" aria-label="Delay length is heavily skewed. The median delay is 42 minutes, the mean is 72 minutes, and the 90th percentile is 148 minutes. A long tail of very long delays drags the average well above a typical delay.">
+  <rect width="900" height="320" rx="14" fill="#0f1116"/>
+
+  <text x="40" y="42" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="700" letter-spacing="2" fill="#64748b">WHEN A FLIGHT IS LATE, HOW LATE IS IT?</text>
+  <text x="40" y="64" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12.5" fill="#94a3b8">Distribution of arrival delay across 319,395 delayed flights</text>
+
+  <g font-family="system-ui,-apple-system,Segoe UI,sans-serif">
+
+    <!-- skewed distribution -->
+    <path d="M 80 230 C 130 230, 150 120, 200 118 C 250 116, 270 150, 320 172 C 390 202, 470 216, 560 224 C 650 230, 740 232, 830 233 L 830 233 L 80 233 Z"
+          fill="#1a1d25" stroke="#2b303c" stroke-width="1.5"/>
+
+    <!-- shaded tail beyond p90 -->
+    <path d="M 560 224 C 650 230, 740 232, 830 233 L 830 233 L 560 233 Z" fill="#FF5500" opacity="0.25"/>
+
+    <!-- axis -->
+    <line x1="80" y1="233" x2="840" y2="233" stroke="#2b303c" stroke-width="1.5"/>
+
+    <!-- median marker -->
+    <line x1="200" y1="100" x2="200" y2="233" stroke="#10b981" stroke-width="2"/>
+    <circle cx="200" cy="100" r="4" fill="#10b981"/>
+    <text x="200" y="90" font-size="13" font-weight="800" fill="#10b981" text-anchor="middle">42 min</text>
+    <text x="200" y="253" font-size="11.5" font-weight="700" fill="#10b981" text-anchor="middle">MEDIAN</text>
+    <text x="200" y="269" font-size="11" fill="#64748b" text-anchor="middle">half are shorter</text>
+
+    <!-- mean marker -->
+    <line x1="320" y1="150" x2="320" y2="233" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4 3"/>
+    <circle cx="320" cy="150" r="4" fill="#f59e0b"/>
+    <text x="320" y="140" font-size="13" font-weight="800" fill="#f59e0b" text-anchor="middle">72 min</text>
+    <text x="320" y="253" font-size="11.5" font-weight="700" fill="#f59e0b" text-anchor="middle">MEAN</text>
+    <text x="320" y="269" font-size="11" fill="#64748b" text-anchor="middle">dragged up by the tail</text>
+
+    <!-- p90 marker -->
+    <line x1="560" y1="196" x2="560" y2="233" stroke="#FF5500" stroke-width="2"/>
+    <circle cx="560" cy="196" r="4" fill="#FF5500"/>
+    <text x="560" y="186" font-size="13" font-weight="800" fill="#FF5500" text-anchor="middle">148 min</text>
+    <text x="560" y="253" font-size="11.5" font-weight="700" fill="#FF5500" text-anchor="middle">WORST 10%</text>
+    <text x="560" y="269" font-size="11" fill="#64748b" text-anchor="middle">two and a half hours plus</text>
+
+    <text x="840" y="228" font-size="11" fill="#64748b" text-anchor="end">longer delays →</text>
+  </g>
+
+  <line x1="40" y1="286" x2="860" y2="286" stroke="#2b303c" stroke-width="1"/>
+  <text x="40" y="308" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12.5" fill="#94a3b8">Reporting the mean alone overstates a typical delay by <tspan fill="#fff" font-weight="700">70%</tspan>. The system returns the range, not one number.</text>
+</svg>

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 340" width="900" height="340" role="img" aria-label="Share of total delay minutes by cause across 319,395 delayed flights: late-arriving aircraft 39.8 percent, airline operations 33.2 percent, air traffic control 19.9 percent, weather 7.0 percent, security 0.2 percent.">
+  <rect width="900" height="340" rx="14" fill="#0f1116"/>
+
+  <text x="40" y="42" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="700" letter-spacing="2" fill="#64748b">WHAT ACTUALLY CAUSES FLIGHT DELAYS</text>
+  <text x="40" y="64" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12.5" fill="#94a3b8">Share of total delay minutes — 319,395 delayed flights, US DOT, Jan–Mar 2024</text>
+
+  <g font-family="system-ui,-apple-system,Segoe UI,sans-serif">
+
+    <!-- late aircraft: 39.8% -->
+    <text x="40" y="112" font-size="13.5" font-weight="700" fill="#fff">A previous flight ran late</text>
+    <rect x="300" y="96" width="478" height="24" rx="5" fill="#10b981"/>
+    <text x="790" y="113" font-size="14" font-weight="800" fill="#10b981">39.8%</text>
+
+    <!-- carrier: 33.2% -->
+    <text x="40" y="156" font-size="13.5" fill="#e2e8f0">Airline operations</text>
+    <rect x="300" y="140" width="398" height="24" rx="5" fill="#FF5500"/>
+    <text x="790" y="157" font-size="14" font-weight="700" fill="#FF5500">33.2%</text>
+
+    <!-- nas: 19.9% -->
+    <text x="40" y="200" font-size="13.5" fill="#e2e8f0">Air traffic control</text>
+    <rect x="300" y="184" width="239" height="24" rx="5" fill="#f59e0b" opacity="0.85"/>
+    <text x="790" y="201" font-size="14" font-weight="700" fill="#f59e0b">19.9%</text>
+
+    <!-- weather: 7.0% -->
+    <text x="40" y="244" font-size="13.5" font-weight="700" fill="#fff">Weather</text>
+    <rect x="300" y="228" width="84" height="24" rx="5" fill="#475569"/>
+    <text x="790" y="245" font-size="14" font-weight="800" fill="#94a3b8">7.0%</text>
+
+    <!-- security: 0.2% -->
+    <text x="40" y="288" font-size="13.5" fill="#e2e8f0">Security</text>
+    <rect x="300" y="272" width="4" height="24" rx="2" fill="#475569"/>
+    <text x="790" y="289" font-size="14" font-weight="700" fill="#94a3b8">0.2%</text>
+
+    <!-- sub-labels -->
+    <text x="40" y="129" font-size="11.5" fill="#94a3b8">the knock-on effect</text>
+    <text x="40" y="173" font-size="11.5" fill="#64748b">crew, maintenance, baggage</text>
+    <text x="40" y="217" font-size="11.5" fill="#64748b">congestion, routing</text>
+    <text x="40" y="261" font-size="11.5" fill="#94a3b8">what everyone assumes is number one</text>
+    <text x="40" y="305" font-size="11.5" fill="#64748b">a rounding error</text>
+  </g>
+
+  <line x1="300" y1="82" x2="300" y2="310" stroke="#2b303c" stroke-width="1"/>
+</svg>

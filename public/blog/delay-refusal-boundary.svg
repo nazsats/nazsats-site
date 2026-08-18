@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 320" width="900" height="320" role="img" aria-label="Two designs. In the first, the model is told not to invent figures and can still return one. In the second, the model may only choose which lookup to run; the lookup itself refuses below thirty flights, so no figure exists for the model to return.">
+  <rect width="900" height="320" rx="14" fill="#0f1116"/>
+
+  <text x="40" y="42" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="700" letter-spacing="2" fill="#64748b">WHERE THE &quot;DON'T MAKE IT UP&quot; RULE LIVES</text>
+
+  <g font-family="system-ui,-apple-system,Segoe UI,sans-serif">
+
+    <!-- LEFT: prompt-level -->
+    <text x="40" y="80" font-size="12" font-weight="700" letter-spacing="1" fill="#f59e0b">IN THE PROMPT — A REQUEST</text>
+
+    <rect x="40" y="94" width="380" height="58" rx="9" fill="#1a1d25" stroke="#2b303c"/>
+    <text x="60" y="119" font-size="12.5" fill="#94a3b8">System prompt:</text>
+    <text x="60" y="139" font-size="12.5" font-style="italic" fill="#e2e8f0">&quot;Never invent a statistic.&quot;</text>
+
+    <path d="M 230 152 L 230 178" stroke="#2b303c" stroke-width="2"/>
+    <path d="M 224 172 L 230 180 L 236 172 Z" fill="#2b303c"/>
+
+    <rect x="40" y="182" width="380" height="52" rx="9" fill="#1a1d25" stroke="#2b303c"/>
+    <text x="60" y="204" font-size="12.5" fill="#94a3b8">Model has the whole dataset in reach</text>
+    <text x="60" y="224" font-size="12.5" fill="#94a3b8">and decides what to say</text>
+
+    <path d="M 230 234 L 230 258" stroke="#f59e0b" stroke-width="2"/>
+    <path d="M 224 252 L 230 260 L 236 252 Z" fill="#f59e0b"/>
+
+    <rect x="40" y="262" width="380" height="42" rx="9" fill="#1f1508" stroke="#f59e0b"/>
+    <text x="60" y="288" font-size="12.5" font-weight="700" fill="#f59e0b">&quot;Roughly 18% of those flights are late.&quot;</text>
+
+    <!-- RIGHT: code-level -->
+    <text x="480" y="80" font-size="12" font-weight="700" letter-spacing="1" fill="#10b981">IN THE CODE — A GUARANTEE</text>
+
+    <rect x="480" y="94" width="380" height="58" rx="9" fill="#1a1d25" stroke="#2b303c"/>
+    <text x="500" y="119" font-size="12.5" fill="#94a3b8">Model may only choose</text>
+    <text x="500" y="139" font-size="12.5" fill="#e2e8f0">which lookup to run</text>
+
+    <path d="M 670 152 L 670 178" stroke="#2b303c" stroke-width="2"/>
+    <path d="M 664 172 L 670 180 L 676 172 Z" fill="#2b303c"/>
+
+    <rect x="480" y="182" width="380" height="52" rx="9" fill="#101a17" stroke="#10b981"/>
+    <text x="500" y="204" font-size="12.5" font-weight="700" fill="#10b981">if flights &lt; 30: raise ToolError</text>
+    <text x="500" y="224" font-size="12" fill="#94a3b8">the lookup returns nothing at all</text>
+
+    <path d="M 670 234 L 670 258" stroke="#10b981" stroke-width="2"/>
+    <path d="M 664 252 L 670 260 L 676 252 Z" fill="#10b981"/>
+
+    <rect x="480" y="262" width="380" height="42" rx="9" fill="#101a17" stroke="#10b981"/>
+    <text x="500" y="288" font-size="12.5" font-weight="700" fill="#fff">&quot;Only 12 flights on record — no figures.&quot;</text>
+  </g>
+
+  <line x1="450" y1="72" x2="450" y2="304" stroke="#2b303c" stroke-width="1"/>
+</svg>
