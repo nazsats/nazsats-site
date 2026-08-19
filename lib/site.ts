@@ -1,16 +1,6 @@
 // Central place for contact info, project showcase, and pricing.
 // Edit prices / descriptions here and they update everywhere on the site.
 
-/** WhatsApp number in international format, no "+" or spaces. */
-export const WHATSAPP_NUMBER = "971583029084";
-
-/** Pre-filled WhatsApp chat link with a default message. */
-export function whatsappLink(
-  message = "Hi Nazsats! I'd like to discuss a project."
-) {
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-}
-
 export type Project = {
   name: string;
   tagline: string;

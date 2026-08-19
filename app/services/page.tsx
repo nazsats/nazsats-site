@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import Tilt from "../../components/Tilt";
-import { packages, whatsappLink } from "../../lib/site";
+import { packages } from "../../lib/site";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -188,14 +188,12 @@ export default function Services() {
                   ))}
                 </ul>
 
-                <a
-                  href={whatsappLink(`Hi Nazsats! I'm interested in the ${pkg.name} package.`)}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/contact"
                   className={pkg.highlight ? "btn-primary w-full justify-center" : "btn-secondary w-full justify-center"}
                 >
                   Book a call →
-                </a>
+                </Link>
               </div>
             </Tilt>
           ))}
@@ -211,17 +209,12 @@ export default function Services() {
           Every project is different. Tell me what you&apos;re building and I&apos;ll design the right approach for you.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href={whatsappLink()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary"
-          >
-            Chat on WhatsApp →
-          </a>
-          <Link href="/contact" className="btn-secondary">
-            Send a message
+          <Link href="/contact" className="btn-primary">
+            Send a message →
           </Link>
+          <a href="mailto:contact@nazsats.com" className="btn-secondary">
+            Email me
+          </a>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Projects from "../../components/Projects";
-import { whatsappLink } from "../../lib/site";
 
 export const metadata: Metadata = {
   title: "Work",
@@ -32,14 +32,9 @@ export default function Work() {
         <p className="text-slate-500 text-sm mb-6 leading-relaxed">
           Let&apos;s build your project next. Message me directly and we&apos;ll talk through it.
         </p>
-        <a
-          href={whatsappLink("Hi Nazsats! I saw your work and want to build something.")}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-primary"
-        >
-          Book a call on WhatsApp →
-        </a>
+        <Link href="/contact" className="btn-primary">
+          Book a call →
+        </Link>
       </div>
     </div>
   );

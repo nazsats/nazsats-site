@@ -579,8 +579,8 @@ export default function Resume() {
         </div>
       </Section>
 
-      {/* CTA — no WhatsApp CTA here on purpose: wa.me links carry the phone
-          number in the markup, which defeats keeping it off this page. */}
+      {/* CTA — email and /contact only. The site carries no phone number:
+          a wa.me link puts one in the markup of every page that renders it. */}
       <div className="glass-card text-center animate-glow-pulse no-print">
         <h2 className="text-2xl font-black text-slate-200 mb-3">
           Let&apos;s <span className="gradient-text">work together</span>

@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { whatsappLink } from "../lib/site";
 
 const links = [
   { href: "/", label: "Home" },
@@ -21,11 +20,8 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
-  // The WhatsApp CTA is a wa.me link, so the phone number sits in the page
-  // markup wherever it renders. /resume is deliberately free of personal
-  // contact details, so the button is suppressed there — everywhere else it
-  // stays, since it's the main way clients get in touch.
-  const showWhatsApp = pathname !== "/resume";
+  // Contact goes through /contact rather than a wa.me link: those carry a
+  // phone number in the page markup on every route that renders them.
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -80,20 +76,9 @@ export default function Navbar() {
 
         {/* Desktop CTA */}
         <div className="hidden md:block">
-          {showWhatsApp ? (
-            <a
-              href={whatsappLink()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary py-2.5 px-5 text-sm"
-            >
-              Book a call →
-            </a>
-          ) : (
-            <Link href="/contact" className="btn-primary py-2.5 px-5 text-sm">
-              Book a call →
-            </Link>
-          )}
+          <Link href="/contact" className="btn-primary py-2.5 px-5 text-sm">
+            Book a call →
+          </Link>
         </div>
 
         {/* Mobile hamburger */}
@@ -134,25 +119,13 @@ export default function Navbar() {
               </li>
             ))}
             <li className="mt-2">
-              {showWhatsApp ? (
-                <a
-                  href={whatsappLink()}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setIsOpen(false)}
-                  className="btn-primary w-full justify-center text-sm py-3"
-                >
-                  Book a call →
-                </a>
-              ) : (
-                <Link
-                  href="/contact"
-                  onClick={() => setIsOpen(false)}
-                  className="btn-primary w-full justify-center text-sm py-3"
-                >
-                  Book a call →
-                </Link>
-              )}
+              <Link
+                href="/contact"
+                onClick={() => setIsOpen(false)}
+                className="btn-primary w-full justify-center text-sm py-3"
+              >
+                Book a call →
+              </Link>
             </li>
           </ul>
         </div>
