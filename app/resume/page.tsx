@@ -361,7 +361,7 @@ export default function Resume() {
             github.com/nazsats
           </a>
           <a
-            href="https://www.linkedin.com/in/naz-sats-026468408/"
+            href="https://www.linkedin.com/in/nazrul-ansari-ai/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-slate-200 transition-colors"

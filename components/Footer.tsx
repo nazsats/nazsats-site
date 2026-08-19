@@ -88,7 +88,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://www.linkedin.com/in/naz-sats-026468408/"
+                  href="https://www.linkedin.com/in/nazrul-ansari-ai/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-slate-600 text-sm hover:text-purple-400 transition-colors duration-200 flex items-center gap-2"

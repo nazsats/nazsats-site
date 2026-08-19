@@ -22,6 +22,24 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    name: "Flight Delay Intelligence",
+    tagline: "Distributed ML over 1.6M flights",
+    description:
+      "A containerised PySpark pipeline and calibrated LightGBM model over 1.6M US DOT flight records, tracked in MLflow and served through FastAPI. Built for decision quality rather than leaderboard scores: isotonic calibration cut expected calibration error 2.5x, and the alert threshold is derived from the cost of a missed delay versus a false alarm rather than the 0.5 default.",
+    url: "https://github.com/nazsats/flight-delay-intelligence",
+    tags: ["PySpark", "LightGBM", "MLflow", "MLOps"],
+    category: "AI",
+  },
+  {
+    name: "Nazsats AI Store Builder",
+    tagline: "One sentence to a complete storefront",
+    description:
+      "Describe a store in plain English and the system produces a full storefront — theme, hero, categories and catalogue — in about twenty seconds, with live preview and inline editing. Model output is returned as schema-validated data rather than code, so generated content can never be executed or injected.",
+    url: "https://nazsats-ai-store-builder-web.vercel.app/",
+    tags: ["Next.js", "NestJS", "OpenAI", "Zod"],
+    category: "AI",
+  },
+  {
     name: "OTTER Protocol",
     tagline: "Gamified Web3 community on Ethereum",
     description:
