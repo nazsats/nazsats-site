@@ -30,8 +30,8 @@ export default function BloodLabPrivacyPage() {
         <p>
           Blood Lab is built and operated by Mohammad Nazrul Ansari, Mumbai, India.
           For any question about this policy or your data, write to{" "}
-          <a className="underline" href="mailto:dudelynft@gmail.com">
-            dudelynft@gmail.com
+          <a className="underline" href="mailto:contact@nazsats.com">
+            contact@nazsats.com
           </a>
           .
         </p>
