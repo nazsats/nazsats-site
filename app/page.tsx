@@ -245,7 +245,7 @@ export default async function Home() {
       {/* Left untinted on purpose: the tinted "Why Nazsats" band follows
           immediately, and two tinted sections in a row read as one block. */}
       {coding && (
-        <section className="pb-24 px-4">
+        <section id="coding" className="pb-24 px-4 scroll-mt-24">
           <div className="max-w-7xl mx-auto">
             <ScrollReveal>
               <div className="text-center mb-14">
@@ -323,7 +323,7 @@ export default async function Home() {
       </section>
 
       {/* ── Subscribe ────────────────────────────── */}
-      <section className="py-28 px-4">
+      <section id="subscribe" className="py-28 px-4 scroll-mt-24">
         <div className="max-w-2xl mx-auto">
           <ScrollReveal>
             <div className="glass-card text-center animate-glow-pulse">
