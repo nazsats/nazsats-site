@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" width="900" height="360" role="img" aria-label="Two paths through the local filter code. Before the fix, a filter went straight into the point scan, where a min_count of zero made the comparison trivially true and every point matched. After the fix, a validate_filter step runs once before the scan and raises a ValueError for an invalid min_count, so the query fails immediately instead of returning everything.">
+  <rect width="900" height="360" rx="14" fill="#0f1116"/>
+
+  <text x="40" y="42" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="700" letter-spacing="2" fill="#64748b">WHERE THE CHECK GOES</text>
+  <text x="40" y="64" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12.5" fill="#94a3b8">One validation pass before the scan, rather than a check inside the per-point comparison.</text>
+
+  <g font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12">
+
+    <!-- BEFORE -->
+    <text x="40" y="112" font-size="11.5" font-weight="700" letter-spacing="1" fill="#7f1d1d">BEFORE</text>
+
+    <rect x="130" y="94" width="140" height="38" rx="6" fill="#1a1d25" stroke="#2b303c"/>
+    <text x="200" y="118" fill="#cbd5e1" text-anchor="middle">Filter arrives</text>
+
+    <path d="M270 113 H 320" stroke="#2b303c" stroke-width="1.5" fill="none"/>
+    <path d="M320 113 l -7 -4 v 8 z" fill="#2b303c"/>
+
+    <rect x="326" y="94" width="180" height="38" rx="6" fill="#1a1d25" stroke="#2b303c"/>
+    <text x="416" y="118" fill="#cbd5e1" text-anchor="middle">calculate_payload_mask</text>
+
+    <path d="M506 113 H 556" stroke="#2b303c" stroke-width="1.5" fill="none"/>
+    <path d="M556 113 l -7 -4 v 8 z" fill="#2b303c"/>
+
+    <rect x="562" y="94" width="180" height="38" rx="6" fill="#2a1216" stroke="#7f1d1d"/>
+    <text x="652" y="118" fill="#fca5a5" text-anchor="middle">matches &gt;= min_count</text>
+
+    <path d="M742 113 H 792" stroke="#7f1d1d" stroke-width="1.5" fill="none"/>
+    <path d="M792 113 l -7 -4 v 8 z" fill="#7f1d1d"/>
+    <text x="800" y="118" fill="#fca5a5">true</text>
+
+    <text x="130" y="154" font-size="11.5" fill="#94a3b8">With min_count at or below zero the comparison is true for every point, so the filter is</text>
+    <text x="130" y="172" font-size="11.5" fill="#94a3b8">silently removed and the whole collection comes back.</text>
+
+    <!-- divider -->
+    <path d="M40 202 H 860" stroke="#1e222b" stroke-width="1"/>
+
+    <!-- AFTER -->
+    <text x="40" y="252" font-size="11.5" font-weight="700" letter-spacing="1" fill="#14532d">AFTER</text>
+
+    <rect x="130" y="234" width="140" height="38" rx="6" fill="#1a1d25" stroke="#2b303c"/>
+    <text x="200" y="258" fill="#cbd5e1" text-anchor="middle">Filter arrives</text>
+
+    <path d="M270 253 H 320" stroke="#2b303c" stroke-width="1.5" fill="none"/>
+    <path d="M320 253 l -7 -4 v 8 z" fill="#2b303c"/>
+
+    <rect x="326" y="234" width="180" height="38" rx="6" fill="#12211a" stroke="#14532d"/>
+    <text x="416" y="252" fill="#86efac" text-anchor="middle">validate_filter()</text>
+    <text x="416" y="266" font-size="10" fill="#4d7c5a" text-anchor="middle">recurses into nested clauses</text>
+
+    <path d="M506 253 H 556" stroke="#2b303c" stroke-width="1.5" fill="none"/>
+    <path d="M556 253 l -7 -4 v 8 z" fill="#2b303c"/>
+
+    <rect x="562" y="234" width="180" height="38" rx="6" fill="#1a1d25" stroke="#2b303c"/>
+    <text x="652" y="258" fill="#cbd5e1" text-anchor="middle">scan points</text>
+
+    <!-- rejection branch -->
+    <path d="M416 272 V 306" stroke="#14532d" stroke-width="1.5" fill="none"/>
+    <path d="M416 306 l -4 -7 h 8 z" fill="#14532d"/>
+    <rect x="286" y="308" width="260" height="34" rx="6" fill="#12211a" stroke="#14532d"/>
+    <text x="416" y="330" font-size="11.5" fill="#86efac" text-anchor="middle">ValueError: min_count value 0 is invalid</text>
+
+    <text x="600" y="322" font-size="11.5" fill="#94a3b8">The query fails where it is wrong,</text>
+    <text x="600" y="339" font-size="11.5" fill="#94a3b8">not in production three weeks later.</text>
+
+  </g>
+</svg>
