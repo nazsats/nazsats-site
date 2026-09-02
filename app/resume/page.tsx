@@ -84,74 +84,90 @@ const skills: { group: string; items: string[] }[] = [
 ];
 
 /** Filed against libraries I use in production — every item public and linkable. */
-const openSource = [
-  {
-    repo: "langchain-ai/langchain",
-    title: "DeepSeek's prompt-cache savings were invisible in usage metadata",
-    merged: true,
-    detail:
-      "ChatDeepSeek inherits usage parsing from BaseChatOpenAI, which reads cache reads from the nested prompt_tokens_details.cached_tokens. DeepSeek never populates that field — it reports context-cache usage as a top-level prompt_cache_hit_tokens — so cache_read came back absent and anyone measuring their prompt-cache savings saw a flat line that was the reporting, not the cache. Mapped the top-level count in both the streaming and non-streaming paths. The streaming mapping sits outside the choices branch because DeepSeek sends usage in a trailing chunk carrying no choices, so the obvious placement never runs — the part you only find by streaming a real response. Only hits are mapped: DeepSeek defines prompt_tokens as hits plus misses, so a miss is an ordinary uncached input token rather than a cache write, and reporting it as cache_creation would invent activity that never happened. An existing cache_read is left untouched so OpenAI-compatible gateways that report the nested form keep working. Eight unit tests; approved and merged on first review.",
-    links: [
-      { label: "Issue #39637", url: "https://github.com/langchain-ai/langchain/issues/39637" },
-      { label: "PR #39668 (merged)", url: "https://github.com/langchain-ai/langchain/pull/39668" },
-    ],
-  },
-  {
-    repo: "chroma-core/chroma",
-    title: "add() rejected None metadata that update() and upsert() both accept",
-    detail:
-      "None was legal everywhere it was declared — the Metadata type permits it, validate_metadata() allows it deliberately, and the error that validator raises names None as accepted — but add() alone failed underneath validation, in the storage layer, with a different error per client: TypeError on PersistentClient and a deserialisation error over HTTP, so `except TypeError` was correct locally and wrong against a server. The decisive detail was that upsert() on a brand-new id with the same input already worked, which proved transport and storage were fine and only add()'s path was not. Fixed on the add path alone: normalize_insert_record_set is shared with update and upsert, so stripping there would have broken None-deletes-key on update.",
-    links: [
-      { label: "PR #7581", url: "https://github.com/chroma-core/chroma/pull/7581" },
-    ],
-  },
+type Contribution = {
+  repo: string;
+  title: string;
+  /** Release the fix went out in, where it has shipped. */
+  shipped?: string;
+  points: string[];
+  links: { label: string; url: string }[];
+};
+
+/** Merged upstream. A maintainer read the diagnosis and accepted it — the only
+ *  claim on this page that a stranger can verify in one click. */
+const merged: Contribution[] = [
   {
     repo: "qdrant/qdrant-client",
-    title: "values_count filter matched points that no single value satisfied",
-    merged: true,
-    shipped: "v1.19.0",
-    detail:
-      "Found a parity bug between Qdrant's local mode and the real server: four range bounds were checked independently across all counts, so two different values could each satisfy half a range. Filed the issue, then the fix — one expression matching the server's semantics, with a congruence regression test running the same query against both clients. Merged +74 / −9 and shipped in qdrant-client v1.19.0; a second fix submitted for the same bug two days later was closed in favour of this one.",
-    links: [
-      { label: "Issue #1292", url: "https://github.com/qdrant/qdrant-client/issues/1292" },
-      { label: "PR #1293 (merged)", url: "https://github.com/qdrant/qdrant-client/pull/1293" },
-      { label: "Released in v1.19.0", url: "https://github.com/qdrant/qdrant-client/releases/tag/v1.19.0" },
+    title: "A filter that removed itself — min_should returned the whole collection",
+    points: [
+      "min_should is evaluated in local mode as matches >= min_count, so any min_count at or below zero is trivially true for every point: the filter returned the entire collection instead of being refused. A real server answers 422.",
+      "Returning everything is the worst direction for a filter to fail in. Nothing looks broken — tests pass, the page populates, and a clause meant to scope results silently stops scoping them.",
+      "Fixed with a validate_filter() helper called once before the scan rather than inside the per-point comparison, recursing into nested clauses. The known limitation — scroll returns early on an empty collection, before any filter code runs — is stated in the PR.",
     ],
-  },
-  {
-    repo: "dottxt-ai/outlines",
-    title: "Regex terms with a backreference failed to compile at all",
-    detail:
-      "to_regex wrapped every term in a capturing group. Groups are there to bind operators, but capturing renumbers the groups inside them — so a user pattern carrying a numbered backreference was rewritten to mean something else, and Regex(r\"(a)\\1\") raised \"cannot refer to an open group\" instead of matching. Named backreferences were unaffected, so the behaviour depended on which group syntax you happened to pick. Fixed by making every wrapper non-capturing, with a regression test using re.fullmatch as an independent oracle.",
     links: [
-      { label: "PR #1993", url: "https://github.com/dottxt-ai/outlines/pull/1993" },
+      { label: "PR #1369", url: "https://github.com/qdrant/qdrant-client/pull/1369" },
     ],
   },
   {
     repo: "qdrant/qdrant-client",
     title: "Two filter conditions returned the wrong points in local mode",
-    merged: true,
-    detail:
-      "Found by running identical filters against local mode and a real Qdrant 1.19.0 server and diffing the matched ids. MatchExcept treated an explicit null as a value that differs from everything, so it matched points the server excluded — it is the only negated match condition, and the only one without a type guard. Separately, an empty `should` matched nothing rather than everything, because any([]) is False while the sibling must/must_not clauses use all() and are vacuously true. Both fixed with congruence tests that fail without the change.",
+    points: [
+      "MatchExcept treated an explicit null as a value that differs from everything, so it matched points the server excluded. It is the only negated match condition, and the only one without a type guard.",
+      "Separately, an empty should clause matched nothing rather than everything, because any([]) is False while the sibling must and must_not clauses use all() and are vacuously true.",
+      "Both found by running identical filters against local mode and a real Qdrant 1.19.0 server and diffing the matched ids, and both fixed with congruence tests that fail without the change.",
+    ],
     links: [
-      { label: "PR #1333 (merged)", url: "https://github.com/qdrant/qdrant-client/pull/1333" },
+      { label: "PR #1333", url: "https://github.com/qdrant/qdrant-client/pull/1333" },
     ],
   },
   {
     repo: "qdrant/qdrant-client",
-    title: "A filter that removed itself: min_should returned the whole collection",
-    merged: true,
-    detail:
-      "min_should is evaluated in local mode as matches >= min_count, so any min_count at or below zero is trivially true for every point and the filter returns the entire collection rather than being refused. The server answers 422. Verified across the range against Qdrant 1.19.0 in Docker: at one and above the two agree exactly, below one they diverge in opposite directions — the server refuses, local mode answers with everything. Returning everything is the worst direction for a filter to be wrong in, because nothing looks broken: tests pass, the page populates, and a clause meant to scope results silently stops scoping them. Fixed with a validate_filter() helper called once from calculate_payload_mask before the scan rather than inside the per-point comparison, recursing into nested clauses, with the error shaped like the existing limit validation. The known limitation — scroll returns early on an empty collection, before any filter code runs — is stated in the PR.",
+    title: "values_count matched points that no single value satisfied",
+    shipped: "v1.19.0",
+    points: [
+      "Four range bounds were checked independently across all counts, so two different values could each satisfy half a range and the point matched — where the real server rejected it.",
+      "Fixed with one expression matching the server's semantics, plus a congruence regression test running the same query against local mode and a live server.",
+      "Merged +74 / −9 and shipped in v1.19.0. A competing fix for the same bug, submitted two days later, was closed in favour of this one.",
+    ],
     links: [
-      { label: "PR #1369 (merged)", url: "https://github.com/qdrant/qdrant-client/pull/1369" },
+      { label: "Issue #1292", url: "https://github.com/qdrant/qdrant-client/issues/1292" },
+      { label: "PR #1293", url: "https://github.com/qdrant/qdrant-client/pull/1293" },
+      { label: "Released in v1.19.0", url: "https://github.com/qdrant/qdrant-client/releases/tag/v1.19.0" },
     ],
   },
   {
+    repo: "langchain-ai/langchain",
+    title: "DeepSeek prompt-cache hits never reached usage metadata",
+    points: [
+      "ChatDeepSeek inherits usage parsing from BaseChatOpenAI, which reads cache hits from a nested prompt_tokens_details.cached_tokens. DeepSeek never populates that field — it reports a top-level prompt_cache_hit_tokens — so anyone measuring their cache savings saw a flat line that was the reporting, not the cache.",
+      "The streaming mapping sits outside the choices branch, because DeepSeek sends usage in a trailing chunk carrying no choices and the obvious placement never runs. That is the part you only find by streaming a real response.",
+      "Only hits are mapped: DeepSeek defines prompt_tokens as hits plus misses, so reporting a miss as cache_creation would invent activity that never happened. Eight unit tests; approved and merged on first review.",
+    ],
+    links: [
+      { label: "PR #39668", url: "https://github.com/langchain-ai/langchain/pull/39668" },
+    ],
+  },
+];
+
+/** Open pull requests. Filed with a reproduction and a regression test, awaiting
+ *  review — a claim, not yet a verdict, and listed as such. */
+const openPRs: { repo: string; summary: string; links: { label: string; url: string }[] }[] = [
+  {
+    repo: "chroma-core/chroma",
+    summary:
+      "add() alone rejected None metadata that update() and upsert() both accept, failing beneath validation in the storage layer with a different error per client — TypeError locally, a deserialisation error over HTTP.",
+    links: [{ label: "PR #7581", url: "https://github.com/chroma-core/chroma/pull/7581" }],
+  },
+  {
+    repo: "dottxt-ai/outlines",
+    summary:
+      "to_regex wrapped every term in a capturing group, renumbering the groups inside it, so a user pattern carrying a numbered backreference failed to compile at all while a named one worked.",
+    links: [{ label: "PR #1993", url: "https://github.com/dottxt-ai/outlines/pull/1993" }],
+  },
+  {
     repo: "run-llama/llama_index",
-    title: "similarity_top_k=0 returned every embedding instead of none",
-    detail:
-      "Two retrieval functions tested the limit for truthiness, so an explicit 0 was indistinguishable from \"no limit\" and returned the entire index — the opposite of the request. A sibling function in the same file handled 0 correctly, so the three disagreed on one contract. Fixed both call sites with regression tests that fail on main and pin the default behaviour.",
+    summary:
+      "similarity_top_k=0 was tested for truthiness, making an explicit zero indistinguishable from \"no limit\" — so it returned the entire index, the exact opposite of the request.",
     links: [
       { label: "Issue #22508", url: "https://github.com/run-llama/llama_index/issues/22508" },
       { label: "PR #22519", url: "https://github.com/run-llama/llama_index/pull/22519" },
@@ -159,9 +175,8 @@ const openSource = [
   },
   {
     repo: "run-llama/llama_index",
-    title: "run_async_tasks swallowed task exceptions when show_progress=True",
-    detail:
-      "A try/except intended as a compatibility check also wrapped task execution, so real failures were swallowed and replaced by an unrelated error that sent users debugging their event loop. Toggling a progress bar changed error semantics. Fixed with a parametrised regression test across both code paths.",
+    summary:
+      "A try/except intended as a compatibility check also wrapped task execution, so run_async_tasks swallowed real failures and toggling a progress bar changed error semantics.",
     links: [
       { label: "Issue #22493", url: "https://github.com/run-llama/llama_index/issues/22493" },
       { label: "PR #22520", url: "https://github.com/run-llama/llama_index/pull/22520" },
@@ -216,11 +231,14 @@ const projects: Project[] = [
     tagline: "Distributed ML over 1.6M flights, built for decisions rather than scores",
     stack: "PySpark · LightGBM · MLflow · scikit-learn · FastAPI · Streamlit · LangGraph · Docker",
     url: "https://github.com/nazsats/flight-delay-intelligence",
+    live: "https://flight-delay-intelligence-fw2x7ihcvoptbp5nmgsvnj.streamlit.app/",
     points: [
       "Analysed 319,395 delayed US flights and found the headline result contradicts the assumption: weather causes 7% of delay minutes, while 39.8% come from an aircraft that was already late earlier in its rotation. Security, the thing passengers queue longest for, is 0.2%.",
       "Engineered features on Apache Spark in a container — window functions, broadcast joins, partitioned Parquet — with every rolling aggregate shifted one day back and a strictly chronological split, so a flight's inputs can never contain its own outcome.",
       "Trained and versioned a LightGBM classifier in MLflow, then optimised for decision quality rather than leaderboard position: isotonic calibration cut expected calibration error 2.5×, and the alert threshold is derived from the relative cost of a missed delay versus a false alarm rather than the 0.5 default, lifting recall on genuine delays to 77%.",
-      "Kept the 0.672 AUC deliberately honest — the model predicts before pushback, so it never sees departure delay. Shipped PSI drift detection, SARIMA demand forecasting, and a LangGraph agent that answers questions in English with every figure returned from code and an explicit refusal when the data cannot support one.",
+      "Made the headline finding traceable rather than only citable. The download had trimmed away the aircraft identifier, so a knock-on delay could be counted and never followed; retaining it turned rotation analysis into a sort — partition by tail number, order by scheduled departure, and the buffer between one leg landing and the next departing is what absorbs a delay.",
+      "Simulating that on the busiest real rotation: ninety minutes injected into a Hawaiian inter-island aircraft flying fourteen legs on 28–39 minute turnarounds propagates to twelve of them and produces 1,187 minutes of cascade, an amplification of 13.2×. The simulation refuses to propagate across a discontinuity where a cancelled leg is missing from the data, because that gap is not a turnaround.",
+      "Kept the 0.672 AUC deliberately honest — the model predicts before pushback, so it never sees departure delay. Shipped PSI drift detection, SARIMA demand forecasting, and a two-agent LangGraph system: a router choosing between an analyst over aggregate history and a cascade specialist over rotations, with every figure returned from code and an explicit refusal when the data cannot support one.",
     ],
   },
   {
@@ -413,22 +431,32 @@ export default function Resume() {
           qdrant-client, one of them shipped in v1.19.0, and one into langchain-ai/langchain</strong>;
           the rest are open pull requests.
         </p>
-        <div className="space-y-6">
-          {openSource.map((c) => (
-            <div key={c.title}>
+        <div className="space-y-7">
+          {merged.map((c) => (
+            <div
+              key={c.title}
+              className="border-l-2 border-green-400/40 pl-4 print:border-l print:border-slate-300"
+            >
               <div className="flex items-baseline justify-between gap-4 flex-wrap">
                 <h3 className="text-slate-200 font-bold text-sm">
                   {c.title}
-                  {c.merged && (
-                    <span className="ml-2 align-middle text-[10px] font-black uppercase tracking-wider text-green-400 border border-green-400/30 bg-green-400/10 px-2 py-0.5 rounded-full">
-                      {c.shipped ? `Shipped ${c.shipped}` : "Merged"}
-                    </span>
-                  )}
+                  <span className="ml-2 align-middle text-[10px] font-black uppercase tracking-wider text-green-400 border border-green-400/30 bg-green-400/10 px-2 py-0.5 rounded-full">
+                    {c.shipped ? `Merged · shipped ${c.shipped}` : "Merged"}
+                  </span>
                 </h3>
                 <span className="text-xs text-slate-600 font-mono">{c.repo}</span>
               </div>
-              <p className="text-slate-400 text-sm leading-relaxed mt-1.5">{c.detail}</p>
-              <div className="flex flex-wrap gap-2 mt-2">
+              <ul className="mt-2 space-y-1.5">
+                {c.points.map((p) => (
+                  <li
+                    key={p}
+                    className="text-slate-400 text-sm leading-relaxed pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:h-1 before:w-1 before:rounded-full before:bg-slate-600"
+                  >
+                    {p}
+                  </li>
+                ))}
+              </ul>
+              <div className="flex flex-wrap gap-2 mt-2.5">
                 {c.links.map((l) => (
                   <a
                     key={l.url}
@@ -443,6 +471,34 @@ export default function Resume() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Open work sits below the rule and stays to one line each. A pull
+            request nobody has reviewed is a claim, and giving it the same
+            weight as a merged fix would flatten the difference. */}
+        <div className="mt-8 pt-5 border-t border-slate-800">
+          <h3 className="text-[11px] font-black uppercase tracking-wider text-slate-500 mb-3">
+            Open pull requests
+          </h3>
+          <ul className="space-y-2.5">
+            {openPRs.map((c) => (
+              <li key={c.summary} className="text-sm leading-relaxed">
+                <span className="text-xs text-slate-600 font-mono mr-2">{c.repo}</span>
+                <span className="text-slate-500">{c.summary}</span>
+                {c.links.map((l) => (
+                  <a
+                    key={l.url}
+                    href={l.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ml-2 text-xs font-mono text-orange-400/70 hover:text-orange-400 whitespace-nowrap"
+                  >
+                    {l.label} ↗
+                  </a>
+                ))}
+              </li>
+            ))}
+          </ul>
         </div>
         <p className="text-slate-600 text-xs mt-5 no-print">
           Write-up of the qdrant-client fix:{" "}
