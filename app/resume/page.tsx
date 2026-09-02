@@ -138,6 +138,16 @@ const openSource = [
     ],
   },
   {
+    repo: "qdrant/qdrant-client",
+    title: "A filter that removed itself: min_should returned the whole collection",
+    merged: true,
+    detail:
+      "min_should is evaluated in local mode as matches >= min_count, so any min_count at or below zero is trivially true for every point and the filter returns the entire collection rather than being refused. The server answers 422. Verified across the range against Qdrant 1.19.0 in Docker: at one and above the two agree exactly, below one they diverge in opposite directions — the server refuses, local mode answers with everything. Returning everything is the worst direction for a filter to be wrong in, because nothing looks broken: tests pass, the page populates, and a clause meant to scope results silently stops scoping them. Fixed with a validate_filter() helper called once from calculate_payload_mask before the scan rather than inside the per-point comparison, recursing into nested clauses, with the error shaped like the existing limit validation. The known limitation — scroll returns early on an empty collection, before any filter code runs — is stated in the PR.",
+    links: [
+      { label: "PR #1369 (merged)", url: "https://github.com/qdrant/qdrant-client/pull/1369" },
+    ],
+  },
+  {
     repo: "run-llama/llama_index",
     title: "similarity_top_k=0 returned every embedding instead of none",
     detail:
@@ -390,17 +400,18 @@ export default function Resume() {
           cost-weighted decision thresholds and drift monitoring. Built products across HealthTech,
           FinTech, Real Estate and SaaS, while also delivering secure Web3 applications, smart
           contracts and token standards. Contributes bug reports and fixes to the open-source AI
-          libraries I build on — currently qdrant-client, LlamaIndex and Outlines.
+          libraries I build on — currently qdrant-client, langchain, LlamaIndex and Outlines.
         </p>
       </Section>
 
       {/* Open source first — it's third-party-verifiable, which nothing else here is. */}
       <Section title="Open Source Contributions">
         <p className="text-slate-400 text-sm leading-relaxed mb-6">
-          <strong className="text-slate-200">6 bugs found, reported and patched</strong> across three
+          <strong className="text-slate-200">7 bugs found, reported and patched</strong> across four
           widely-used AI libraries — each with a reproduction, a minimal fix and regression
-          tests that fail without it. <strong className="text-orange-400/90">Two merged upstream into qdrant-client,
-          one of them shipped in v1.19.0</strong>; the rest are open pull requests.
+          tests that fail without it. <strong className="text-orange-400/90">Four merged upstream: three into
+          qdrant-client, one of them shipped in v1.19.0, and one into langchain-ai/langchain</strong>;
+          the rest are open pull requests.
         </p>
         <div className="space-y-6">
           {openSource.map((c) => (
