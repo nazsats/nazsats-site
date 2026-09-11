@@ -4,7 +4,7 @@ description: "A pull request that fixed a filter returning entire collections sa
 date: "2026-09-02"
 author: "Nazsats"
 tags: ["Open Source", "Python", "Qdrant", "Vector Databases", "Career"]
-published: false
+published: true
 ---
 
 On 22 August I opened a pull request against `qdrant-client`. For eleven days the only things that touched it were a deploy-preview bot and a review bot.

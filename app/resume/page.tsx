@@ -98,6 +98,17 @@ type Contribution = {
 const merged: Contribution[] = [
   {
     repo: "qdrant/qdrant-client",
+    title: "An error message that named the one index it rejects",
+    points: [
+      "The slice guard accepts 0 <= index < total, so the largest valid index is total - 1. The message advertised the range as 0..total — naming the single value the guard refuses, so a caller correcting against the message lands back on the same error.",
+      "The message came across unchanged when a maintainer moved the guard into validate_filter() on my own PR #1369. A review bot flagged it seven minutes before that merge and neither of us read the comment. I found it two days later re-reading the merged code — which is the habit worth having, not the fix.",
+    ],
+    links: [
+      { label: "PR #1412", url: "https://github.com/qdrant/qdrant-client/pull/1412" },
+    ],
+  },
+  {
+    repo: "qdrant/qdrant-client",
     title: "A filter that removed itself — min_should returned the whole collection",
     points: [
       "min_should is evaluated in local mode as matches >= min_count, so any min_count at or below zero is trivially true for every point: the filter returned the entire collection instead of being refused. A real server answers 422.",
@@ -427,7 +438,7 @@ export default function Resume() {
         <p className="text-slate-400 text-sm leading-relaxed mb-6">
           <strong className="text-slate-200">7 bugs found, reported and patched</strong> across four
           widely-used AI libraries — each with a reproduction, a minimal fix and regression
-          tests that fail without it. <strong className="text-orange-400/90">Four merged upstream: three into
+          tests that fail without it. <strong className="text-orange-400/90">Five merged upstream: four into
           qdrant-client, one of them shipped in v1.19.0, and one into langchain-ai/langchain</strong>;
           the rest are open pull requests.
         </p>

@@ -4,7 +4,7 @@ description: "qdrant-client's local mode accepted a min_should min_count of zero
 date: "2026-09-02"
 author: "Nazsats"
 tags: ["Open Source", "Python", "Vector Databases", "Qdrant", "Testing"]
-published: false
+published: true
 ---
 
 A filter is supposed to narrow a result set. This one widened it to everything, and told
